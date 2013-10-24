@@ -21,6 +21,8 @@
   "DNAState": "dna",
   "DNA": "",
   "DNAMutations": true,
+  "useQuantumDynamics": false,
+  "useChemicalReactions": false,
   "viewOptions": {
     "viewPortWidth": 4,
     "viewPortHeight": 2.5,
@@ -90,7 +92,7 @@
       -0.3821428716182709,
       -0.1,
       -0.4035714268684387,
-      -5
+      -0.1
     ],
     "color": [
       -855310,

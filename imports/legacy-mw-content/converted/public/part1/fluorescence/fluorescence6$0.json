@@ -21,6 +21,8 @@
   "DNAState": "dna",
   "DNA": "",
   "DNAMutations": true,
+  "useQuantumDynamics": true,
+  "useChemicalReactions": false,
   "viewOptions": {
     "viewPortWidth": 5.5,
     "viewPortHeight": 2,
@@ -98,6 +100,7 @@
         "y": 0.33,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.1,
         "backgroundColor": "rgb(255,255,192)",
         "anchor": "upper-left"
       },
@@ -107,6 +110,7 @@
         "y": 0.33,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.1,
         "anchor": "upper-left"
       },
       {
@@ -115,6 +119,7 @@
         "y": 0.31,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.1,
         "anchor": "upper-left"
       },
       {
@@ -123,6 +128,7 @@
         "y": 0.32,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.1,
         "anchor": "upper-left"
       },
       {
@@ -131,6 +137,7 @@
         "y": 1.58,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.1,
         "calloutPoint": [
           2.08,
           1.16
@@ -183,7 +190,7 @@
       -0.1,
       -0.1,
       -0.1,
-      -5
+      -0.1
     ],
     "color": [
       -855310,
@@ -1764,6 +1771,12 @@
       ]
     ],
     "photons": {},
-    "radiationlessEmissionProbability": 0.24845487
+    "radiationlessEmissionProbability": 0.24845487,
+    "lightSource": {
+      "on": true,
+      "frequency": 13.2,
+      "radiationPeriod": 298,
+      "angleOfIncidence": -1.5707964
+    }
   }
 }

@@ -22,6 +22,8 @@
   "DNAState": "dna",
   "DNA": "",
   "DNAMutations": true,
+  "useQuantumDynamics": false,
+  "useChemicalReactions": true,
   "viewOptions": {
     "viewPortWidth": 2.6,
     "viewPortHeight": 2,
@@ -91,7 +93,7 @@
       -0.1,
       -0.1,
       -0.1,
-      -5
+      -0.1
     ],
     "color": [
       -855310,
@@ -150,6 +152,14 @@
       0,
       0
     ],
+    "radical": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
     "element": [
       2,
       2,
@@ -193,5 +203,23 @@
       101,
       101
     ]
+  },
+  "chemicalReactions": {
+    "valenceElectrons": [
+      1,
+      1,
+      7,
+      7
+    ],
+    "bondEnergy": {
+      "default": 6,
+      "0-0": 4,
+      "1-1": 4,
+      "2-2": 4,
+      "3-3": 4
+    },
+    "activationEnergy": {
+      "default": 0.2
+    }
   }
 }

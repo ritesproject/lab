@@ -7,7 +7,7 @@
     <meta content='text/xhtml; charset=utf-8' http-equiv='content-type'>
     <meta content='all' name='distribution'>
     <meta content='all' name='robots'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300italic,400,300,700&amp;subset=latin,greek,latin-ext' rel='stylesheet' type='text/css' />
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300italic,400,300,700&amp;subset=latin,greek,latin-ext' rel='stylesheet' type='text/css' />
     <link href="readme.css" media="screen" rel="stylesheet" type="text/css" />
   </head>
   <body>
@@ -70,6 +70,8 @@ A live version of the readme is always available here:
       </li>
       <li><a href="#use-git-to-create-a-local-clone-of-the-lab-repository">Use git to create a local clone of the Lab repository.</a></li>
       <li><a href="#setup-the-local-lab-repository-for-development">Setup the local Lab repository for development</a>        <ul>
+          <li><a href="#initial-configuration">Initial configuration</a></li>
+          <li><a href="#create-a-git-post-commit-hook">Create a git post-commit hook</a></li>
           <li><a href="#automatic-build-processing-using-guard">Automatic build processing using Guard</a></li>
           <li><a href="#startup-the-rack-based-lab-server-for-local-development">Startup the Rack-based Lab server for local development</a>            <ul>
               <li><a href="#jnlpapp-rack-application-service">JnlpApp Rack Application Service</a></li>
@@ -521,7 +523,7 @@ preferences-Title and Command, and check Run command as a login shell.</p>
 <p>After installation you should see something like the following:</p>
 
 <pre><code>$  ruby -v
-ruby 1.9.3p194 (2012-04-20 revision 35410) [x86_64-linux]
+ruby 2.0.0p247 (2013-06-27 revision 41674) [x86_64-darwin12.4.0]
 </code></pre>
 
 <p>RVM has some additional dependancies, to view these type:</p>
@@ -536,9 +538,9 @@ and install them using <code>sudo</code>. The command will look something like t
 </code></pre>
 
 <p>Becouse of some unknown bugs RVM doesn’t recognise readline without being explictly pointed to it.
-To do this I’ve had to reinstall ruby 1.9.3-p194.</p>
+To do this I’ve had to reinstall ruby 2.0.0p247.</p>
 
-<p>$ rvm reinstall 1.9.3-p194 –with-zlib1g-dev</p>
+<p>$ rvm reinstall 2.0.0-p247 –with-zlib1g-dev</p>
 
 <p><a href="http://gembundler.com/">ruby gem bundler</a> should be installed. To check if it has been try:</p>
 
@@ -644,15 +646,47 @@ configuration samples:</p>
 the RubyGem <a href="http://gembundler.com/">bundler</a>, and <a href="http://nodejs.org/">nodejs</a> (which now includes
 <a href="http://npmjs.org/">npm</a> the Node Package Manager.</p>
 
-<p>Open a shell and change to the <code>lab/</code> directory. The first time you <code>cd</code> into the <code>lab/</code> directory RVM will
-switch to using <code>ruby-2.0.0-p247</code> based on the <code>.ruby-version</code> file in the repository. If you don’t have
-this version of ruby installed rvm will tell you the command to install it.</p>
-
-<p>Additionally the <code>.ruby-gemset</code> tells RVM to install the gems in a gemset named <code>lab</code>. So together these
-files tell RVM to store and load gems from the <code>ruby-2.0.0-p247@lab</code> gemset.</p>
+<p>Open a shell and change to the <code>lab/</code> directory. The first time you <code>cd</code> into the <code>lab/</code> directory
+RVM will switch to using <code>ruby-2.0.0-p247</code> based on the <code>.ruby-version</code> file in the repository.
+Additionally the <code>.ruby-gemset</code> tells RVM to install the gems in a gemset named <code>lab</code>. So together
+these files tell RVM to store and load gems from the <code>ruby-2.0.0-p247@lab</code> gemset.</p>
 
 <pre><code>cd lab
-make everything
+</code></pre>
+
+<p>If you don’t have <code>ruby-2.0.0-p247</code> already installed rvm will display the command you need to
+run to install it. Run this command if required.</p>
+
+<p>If you do end up having to install a new version of Ruby with RVM change out of and back into the lab directory after the RVM install of Ruby is complete:</p>
+
+<pre><code>cd ..
+cd lab
+</code></pre>
+
+<h4 id="initial-configuration">Initial configuration</h4>
+
+<p>Copy the sample project configuration file to <code>config/config.yml</code> (you can examine it and edit if you want).</p>
+
+<pre><code>cp config/config.sample.yml config/config.yml
+</code></pre>
+
+<h4 id="create-a-git-post-commit-hook">Create a git post-commit hook</h4>
+
+<p>Create a git <code>post-commit</code> hook by creating the file <code>.git/hooks/post-commit</code> and adding this content:</p>
+
+<pre><code>#!/bin/sh
+(cd ../.. &amp;&amp; ./script/update-git-commit-and-branch.rb)
+</code></pre>
+
+<p>Make the file <code>.git/hooks/post-commit</code> executable:</p>
+
+<pre><code>chmod u+x .git/hooks/post-commit
+</code></pre>
+
+<p>Now run a make task that will download and install all the dependencies and build the whole project
+for the first time.</p>
+
+<pre><code>make everything
 </code></pre>
 
 <p>When <code>make everything</code> is run on a freshly cloned repository it performs the following tasks:</p>

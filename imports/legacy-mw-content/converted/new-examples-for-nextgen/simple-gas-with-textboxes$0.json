@@ -21,6 +21,8 @@
   "DNAState": "dna",
   "DNA": "",
   "DNAMutations": true,
+  "useQuantumDynamics": false,
+  "useChemicalReactions": false,
   "viewOptions": {
     "viewPortWidth": 6,
     "viewPortHeight": 4,
@@ -53,6 +55,7 @@
         "y": 1.73,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.12,
         "calloutPoint": [
           3.16,
           1.92
@@ -68,6 +71,7 @@
         "y": 2.71,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.12,
         "backgroundColor": "rgb(204,204,204)",
         "anchor": "upper-left"
       },
@@ -77,6 +81,7 @@
         "y": 2,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.24,
         "anchor": "upper-left"
       },
       {
@@ -85,6 +90,7 @@
         "y": 0.96,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.12,
         "anchor": "upper-left"
       },
       {
@@ -93,6 +99,7 @@
         "y": 3.41,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.12,
         "anchor": "upper-left"
       },
       {
@@ -101,6 +108,7 @@
         "y": 3.07,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.12,
         "anchor": "upper-left"
       },
       {
@@ -109,6 +117,7 @@
         "y": 2.36,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.12,
         "backgroundColor": "rgb(255,204,204)",
         "anchor": "upper-left"
       },
@@ -118,6 +127,7 @@
         "y": 3.28,
         "layer": 1,
         "frame": "rectangle",
+        "fontSize": 0.12,
         "anchor": "upper-left"
       },
       {
@@ -125,6 +135,7 @@
         "x": 3.69,
         "y": 3.96,
         "layer": 1,
+        "fontSize": 0.12,
         "backgroundColor": "rgb(204,255,204)",
         "anchor": "upper-left"
       },
@@ -133,6 +144,7 @@
         "x": -0.01,
         "y": 3.97,
         "layer": 1,
+        "fontSize": 0.12,
         "backgroundColor": "rgb(204,255,255)",
         "anchor": "upper-left"
       },
@@ -141,6 +153,7 @@
         "x": 0.01,
         "y": 0.24,
         "layer": 1,
+        "fontSize": 0.12,
         "backgroundColor": "rgb(204,204,255)",
         "anchor": "upper-left"
       },
@@ -149,6 +162,7 @@
         "x": 3.71,
         "y": 0.23,
         "layer": 1,
+        "fontSize": 0.12,
         "backgroundColor": "rgb(255,255,204)",
         "anchor": "upper-left"
       },
@@ -158,6 +172,7 @@
         "y": 1.23,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.12,
         "calloutPoint": [
           2.28,
           0.72
@@ -209,7 +224,7 @@
       -0.1,
       -0.1,
       -0.1,
-      -5
+      -0.1
     ],
     "color": [
       -13057,

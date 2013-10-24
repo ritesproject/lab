@@ -35,8 +35,15 @@
       "filteredOutputs": {
         "defaultValue": []
       },
+      "experiment": {
+        "required": false
+      },
       "exports": {
         "required": false
+      },
+      "hideExportDataControl": {
+        "required": false,
+        "defaultValue": false
       },
       "components": {
         "defaultValue": []
@@ -129,6 +136,91 @@
       },
       "perTick": {
         "required": true
+      }
+    },
+    "experiment": {
+      "timeSeries": {
+        "required": true
+      },
+      "parameters": {
+        "required": true,
+        "defaultValue": []
+      },
+      "destinations": {
+        "required": true,
+        "defaultValue": []
+      },
+      "stateButtons": {
+        "required": true,
+        "startRun": {
+          "required": true,
+          "defaultValue": "start-run"
+        },
+        "stopRun": {
+          "required": true,
+          "defaultValue": "stop-run"
+        },
+        "saveRun": {
+          "required": true,
+          "defaultValue": "save-run"
+        },
+        "nextRun": {
+          "required": true,
+          "defaultValue": "next-run"
+        },
+        "clearAll": {
+          "required": true,
+          "defaultValue": "clear-all"
+        }
+      },
+      "onReset": {},
+      "savedRuns": {
+        "defaultValue": []
+      }
+    },
+    "experimentTimeSeries": {
+      "time": {
+        "defaultValue": "displayTime"
+      },
+      "properties": {
+        "required": true,
+        "defaultValue": []
+      }
+    },
+    "experimentParameter": {
+      "inputs": {
+        "required": true,
+        "defaultValue": []
+      },
+      "outputs": {
+        "required": true,
+        "defaultValue": []
+      }
+    },
+    "experimentDestination": {
+      "type": {
+        "required": true
+      },
+      "componentIds": {
+        "required": true,
+        "defaultValue": []
+      },
+      "properties": {
+        "required": true,
+        "defaultValue": []
+      }
+    },
+    "experimentSavedRun": {
+      "timeStamp": {
+        "required": true
+      },
+      "timeSeries": {
+        "required": true,
+        "defaultValue": []
+      },
+      "parameters": {
+        "required": true,
+        "defaultValue": []
       }
     },
     "playback": {
@@ -425,6 +517,9 @@
       "type": {
         "required": true
       },
+      "property": {
+        "required": true
+      },
       "label": {
         "defaultValue": ""
       },
@@ -440,7 +535,6 @@
       "height": {
         "defaultValue": "auto"
       },
-      "property": {},
       "displayValue": {},
       "tooltip": {
         "defaultValue": ""
@@ -480,6 +574,50 @@
         "defaultValue": []
       }
     },
+    "table": {
+      "id": {
+        "required": true
+      },
+      "type": {
+        "required": true
+      },
+      "title": {
+        "defaultValue": null
+      },
+      "clearDataOnReset": {
+        "defaultValue": true
+      },
+      "streamDataFromModel": {
+        "defaultValue": true
+      },
+      "addNewRows": {
+        "defaultValue": true
+      },
+      "visibleRows": {
+        "defaultValue": 4
+      },
+      "indexColumn": {
+        "defaultValue": true
+      },
+      "propertyColumns": {
+        "defaultValue": []
+      },
+      "headerData": {
+        "defaultValue": []
+      },
+      "tableData": {
+        "defaultValue": []
+      },
+      "width": {
+        "defaultValue": "auto"
+      },
+      "height": {
+        "defaultValue": "100%"
+      },
+      "tooltip": {
+        "defaultValue": ""
+      }
+    },
     "graph": {
       "id": {
         "required": true
@@ -487,8 +625,29 @@
       "type": {
         "required": true
       },
+      "clearDataOnReset": {
+        "defaultValue": true
+      },
+      "resetAxesOnReset": {
+        "defaultValue": true
+      },
+      "streamDataFromModel": {
+        "defaultValue": true
+      },
+      "enableAutoScaleButton": {
+        "defaultValue": true
+      },
+      "enableAxisScaling": {
+        "defaultValue": true
+      },
       "dataPoints": {
         "defaultValue": []
+      },
+      "markAllDataPoints": {
+        "defaultValue": false
+      },
+      "showRulersOnSelection": {
+        "defaultValue": false
       },
       "fontScaleRelativeToParent": {
         "defaultValue": true
@@ -542,10 +701,10 @@
         "defaultValue": 0.5
       },
       "xFormatter": {
-        "defaultValue": "3.2r"
+        "defaultValue": ".2r"
       },
       "yFormatter": {
-        "defaultValue": "3.2r"
+        "defaultValue": ".2r"
       },
       "lines": {
         "defaultValue": true
@@ -732,8 +891,10 @@
           "defaultValue": true
         },
         "useQuantumDynamics": {
-          "default": false,
-          "serialize": false
+          "defaultValue": false
+        },
+        "useChemicalReactions": {
+          "defaultValue": false
         }
       },
       "viewOptions": {
@@ -811,9 +972,11 @@
           "defaultValue": "auto"
         },
         "showAtomTrace": {
+          "storeInTickHistory": true,
           "defaultValue": false
         },
         "atomTraceId": {
+          "storeInTickHistory": true,
           "defaultValue": 0
         },
         "images": {
@@ -915,6 +1078,9 @@
           "defaultValue": 0,
           "unitType": "dampingCoefficient"
         },
+        "radical": {
+          "defaultValue": 0
+        },
         "visible": {
           "defaultValue": 1
         },
@@ -952,7 +1118,8 @@
           "unitType": "mass",
           "serialize": false
         },
-        "excitation": {}
+        "excitation": {},
+        "sharedElectrons": {}
       },
       "element": {
         "mass": {
@@ -1266,12 +1433,64 @@
         "rotate": {
           "defaultValue": 0
         },
-        "fontScale": {
-          "defaultValue": 1
+        "fontSize": {
+          "defaultValue": 0.12
         },
         "hostType": {},
         "hostIndex": {},
         "textAlign": {}
+      },
+      "chemicalReactions": {
+        "valenceElectrons": {
+          "defaultValue": [
+            1,
+            1,
+            7,
+            7
+          ],
+          "immutable": true
+        },
+        "bondEnergy": {
+          "defaultValue": {
+            "default": 6,
+            "0-0": 4,
+            "1-1": 4,
+            "2-2": 4,
+            "3-3": 4
+          },
+          "immutable": true
+        },
+        "activationEnergy": {
+          "defaultValue": {
+            "default": 0.2
+          },
+          "immutable": true
+        }
+      },
+      "image": {
+        "imageUri": {
+          "required": true
+        },
+        "imageX": {
+          "defaultValue": 0,
+          "required": true
+        },
+        "imageY": {
+          "defaultValue": 0,
+          "required": true
+        },
+        "imageHostType": {
+          "defaultValue": ""
+        },
+        "imageHostIndex": {
+          "defaultValue": 0
+        },
+        "imageLayer": {
+          "defaultValue": 1
+        },
+        "imageLayerPosition": {
+          "defaultValue": 1
+        }
       },
       "quantumDynamics": {
         "elementEnergyLevels": {
@@ -1282,7 +1501,8 @@
         },
         "radiationlessEmissionProbability": {
           "defaultValue": 1
-        }
+        },
+        "lightSource": {}
       },
       "photon": {
         "x": {
@@ -1526,10 +1746,16 @@
           "immutable": true
         },
         "sensorType": {
-          "defaultValue": "goMotion"
+          "defaultValue": null
         },
         "samplesPerSecond": {
           "readOnly": true
+        },
+        "collectionTime": {
+          "defaultValue": null
+        },
+        "tareValue": {
+          "defaultValue": 0
         }
       },
       "viewOptions": {

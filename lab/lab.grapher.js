@@ -413,14 +413,14 @@ define('lab.version',['require'],function (require) {
     "repo": {
       "branch": "master",
       "commit": {
-        "sha":           "864d620289c2482ed9a4904a345c67be893ad156",
-        "short_sha":      "864d6202",
-        "url":            "https://github.com/concord-consortium/lab/commit/864d6202",
-        "author":        "Stephen Bannasch",
-        "email":         "stephen.bannasch@gmail.com",
-        "date":          "2013-08-13 18:05:55 -0400",
-        "short_message": "make the gh-pages branch a full static site also",
-        "message":       "make the gh-pages branch a full static site also"
+        "sha":           "b19cb8115e58d0be55ef7aa48f2372a5a22b87dd",
+        "short_sha":      "b19cb811",
+        "url":            "https://github.com/concord-consortium/lab/commit/b19cb811",
+        "author":        "William Day",
+        "email":         "code@william-day.com",
+        "date":          "2013-10-24 16:29:36 -0400",
+        "short_message": "initial radioactivity model and interactives",
+        "message":       "initial radioactivity model and interactives"
       },
       "dirty": false
     }
@@ -452,21 +452,21 @@ define('lab.config',['require','common/actual-root'],function (require) {
   var actualRoot = require('common/actual-root'),
       publicAPI;
   publicAPI = {
-  "static": false,
   "sharing": true,
   "logging": true,
   "tracing": false,
-  "home": "http://lab.concord.org",
-  "homeForSharing": "http://lab.concord.org",
-  "homeInteractivePath": "/interactive.html",
-  "homeEmbeddablePath": "/embeddable.html",
+  "home": "http://lab.ritesproject.net",
+  "homeForSharing": null,
+  "homeInteractivePath": "/examples/interactives/interactive.html",
+  "homeEmbeddablePath": "/examples/interactives/embeddable.html",
+  "benchmarkAPIurl": "https://script.google.com/macros/s/AKfycbzosXAVPdVRFUrF6FRI42dzQb2IGLnF9GlIbj9gUpeWpXALKgM/exec",
+  "actualRoot": "",
   "utmCampaign": null,
   "fontface": "Lato",
-  "hostName": "lab.dev.concord.org",
-  "dataGamesProxyPrefix": "DataGames/Games/concord/lab/",
+  "hostName": "localhost:9292",
   "authoring": false,
-  "actualRoot": "",
-  "environment": "development"
+  "environment": "development",
+  "static": false
 };
   publicAPI.actualRoot = actualRoot;
   return publicAPI;
@@ -557,7 +557,7 @@ define('grapher/core/axis',['require'],function (require) {
   };
 });
 
-/*global define, d3, $ self */
+/*global define, d3 */
 
 define('grapher/core/graph',['require','grapher/core/axis'],function (require) {
   // Dependencies.
@@ -651,7 +651,6 @@ define('grapher/core/graph',['require','grapher/core/axis'],function (require) {
         gcanvas,
         gctx,
         canvasFillStyle = "rgba(255,255,255, 0.0)",
-        cplot = {},
 
         // Function dynamically created when X axis domain shift is in progress
         domainShift,
@@ -683,7 +682,7 @@ define('grapher/core/graph',['require','grapher/core/axis'],function (require) {
 
         // Array objects containing width and height of X and Y axis labels
         xlabelMetrics,
-        yLabelMetrics,
+        ylabelMetrics,
 
         // Width of widest numeric labels on X and Y axes
         xAxisNumberWidth,
@@ -766,6 +765,14 @@ define('grapher/core/graph',['require','grapher/core/axis'],function (require) {
         // An array containing 1 or more points arrays to be plotted.
         pointArray,
 
+        // When additional dataseries are added to the graph via addPoints(datapoints)
+        // newDataSeries contains the number of series in dataPoints
+        // Each series is a separate stream of data consisting of [x, y] pairs.
+        // Additional static dataseries can be graphed along with the new series that
+        // are streaming in as samples by pushing extra series into the array of data
+        // setup with resetPoints().
+        newDataSeries,
+
         // Index into points array for current sample/point.
         // Normally references data point last added.
         // Current sample can refer to earlier points. This is
@@ -776,6 +783,10 @@ define('grapher/core/graph',['require','grapher/core/axis'],function (require) {
         // When graphing data samples as opposed to [x, y] data pairs contains
         // the fixed time interval between subsequent samples.
         sampleInterval,
+
+        // Normally data sent to graph as samples starts at an X value of 0
+        // A different starting x value can be set
+        dataSampleStart,
 
         // The default options for a graph
         default_options = {
@@ -792,6 +803,9 @@ define('grapher/core/graph',['require','grapher/core/axis'],function (require) {
           // element. hs means whn the containing element is smaller the
           // foint-size of the labels in thegraph will be smaller.
           fontScaleRelativeToParent: true,
+
+          enableAutoScaleButton: true,
+          enableAxisScaling: true,
 
           //
           // dataType can be either 'points or 'samples'
@@ -1230,10 +1244,28 @@ define('grapher/core/graph',['require','grapher/core/axis'],function (require) {
       return formatter(array[index]);
     }
 
-
+    // Setup xScale, yScale, making sure that options.xmax/xmin/ymax/ymin always reflect changes to
+    // the relevant domains.
     function setupScales() {
-      xScale = d3.scale[options.xscale]();
-      yScale = d3.scale[options.yscale]();
+      function domainObservingScale(scale, callback) {
+        var domain = scale.domain;
+        scale.domain = function(_) {
+          if (arguments.length) {
+            callback(_);
+          }
+          return domain.apply(scale, arguments);
+        };
+        return scale;
+      }
+
+      xScale = domainObservingScale(d3.scale[options.xscale](), function(_) {
+        options.xmin = _[0];
+        options.xmax = _[1];
+      });
+      yScale = domainObservingScale(d3.scale[options.yscale](), function(_) {
+        options.ymin = _[0];
+        options.ymax = _[1];
+      });
       updateScales();
     }
 
@@ -1246,21 +1278,13 @@ define('grapher/core/graph',['require','grapher/core/axis'],function (require) {
     function updateXScale() {
       xScale.domain([options.xmin, options.xmax])
             .range([0, size.width]);
+      cancelDomainShift();
     }
 
     // Update the y-scale.
     function updateYScale() {
       yScale.domain([options.ymin, options.ymax])
             .range([size.height, 0]);
-    }
-
-    function persistScaleChangesToOptions() {
-      var xdomain = xScale.domain(),
-          ydomain = yScale.domain();
-      options.xmax = xdomain[1];
-      options.xmin = xdomain[0];
-      options.ymax = ydomain[1];
-      options.ymin = ydomain[0];
     }
 
     function fakeDataPoints() {
@@ -1318,17 +1342,20 @@ define('grapher/core/graph',['require','grapher/core/axis'],function (require) {
 
       buttonLayer
         .attr("class", "button-layer")
-        .style("z-index", 3)
-        .append('a')
-          .attr({
-            "class": "autoscale-button",
-            "title": tooltips.autoscale
-          })
-          .on("click", function() {
-            autoscale();
-          })
-          .append("i")
-            .attr("class", "icon-picture");
+        .style("z-index", 3);
+
+      if (options.enableAutoScaleButton) {
+        buttonLayer.append('a')
+            .attr({
+              "class": "autoscale-button",
+              "title": tooltips.autoscale
+            })
+            .on("click", function() {
+              autoscale();
+            })
+            .append("i")
+              .attr("class", "icon-picture");
+      }
 
       resizeButtonLayer();
     }
@@ -1471,7 +1498,7 @@ define('grapher/core/graph',['require','grapher/core/axis'],function (require) {
       }
 
       // Add the x-axis label
-      if (options.xlabel && sizeType.value > 2) {
+      if (sizeType.value > 2) {
         xlabel = vis.append("text")
             .attr("class", "axis")
             .attr("class", "xlabel")
@@ -1483,7 +1510,7 @@ define('grapher/core/graph',['require','grapher/core/axis'],function (require) {
       }
 
       // add y-axis label
-      if (options.ylabel && sizeType.value > 2) {
+      if (sizeType.value > 2) {
         ylabel = vis.append("g").append("text")
             .attr("class", "axis")
             .attr("class", "ylabel")
@@ -1735,8 +1762,7 @@ define('grapher/core/graph',['require','grapher/core/axis'],function (require) {
 
     // samplePoint is optional argument
     function updateOrRescalePoints(samplePoint) {
-      var i,
-          domain = xScale.domain(),
+      var domain = xScale.domain(),
           xAxisStart = Math.round(domain[0]),
           xAxisEnd = Math.round(domain[1]),
           start = Math.max(0, xAxisStart),
@@ -1745,7 +1771,11 @@ define('grapher/core/graph',['require','grapher/core/axis'],function (require) {
           currentExtent;
 
       setCurrentSample(samplePoint);
-      currentExtent = points[currentSample-1][0];
+      if (currentSample > 0) {
+        currentExtent = points[currentSample-1][0];
+      } else {
+        currentExtent = points[currentSample][0];
+      }
       if (shiftingX) {
         shiftingX = domainShift();
         if (shiftingX) {
@@ -1785,14 +1815,18 @@ define('grapher/core/graph',['require','grapher/core/axis'],function (require) {
         factor = shift * cubicEase(index);
         if (direction > 0) {
           xScale.domain([d0 + factor, d1 + factor]);
-          persistScaleChangesToOptions();
           return xScale.domain()[0] < (d0 + shift);
         } else {
           xScale.domain([d0 - factor, d1 - factor]);
-          persistScaleChangesToOptions();
           return xScale.domain()[0] > (d0 - shift);
         }
       };
+    }
+
+    function cancelDomainShift() {
+      shiftingX = false;
+      // effectively asserts that we don't call domainShift until a new domain shift is required
+      domainShift = null;
     }
 
     function cancelAxisRescale() {
@@ -1805,7 +1839,7 @@ define('grapher/core/graph',['require','grapher/core/axis'],function (require) {
     }
 
     function circleClasses(d) {
-      cs = [];
+      var cs = [];
       if (d === selected) {
         cs.push("selected");
       }
@@ -1820,8 +1854,8 @@ define('grapher/core/graph',['require','grapher/core/axis'],function (require) {
       var d = xScale.domain(),
           r = xScale.range();
       markerRadius = (r[1] - r[0]) / ((d[1] - d[0]));
-      markerRadius = Math.min(markerRadius, 6);
-      markerStrokeWidth = markerRadius/4;
+      markerRadius = Math.min(Math.max(markerRadius, 4), 8);
+      markerStrokeWidth = markerRadius/3;
     }
 
     function updateMarkers() {
@@ -1831,7 +1865,7 @@ define('grapher/core/graph',['require','grapher/core/axis'],function (require) {
         markedPoints = points;
       } else if (options.markNearbyDataPoints && sizeType.value > 1) {
         markedPoints = selectable.slice(0);
-        if (selected !== null && markedPoints.indexOf(selected) == -1) {
+        if (selected !== null && markedPoints.indexOf(selected) === -1) {
           markedPoints.push(selected);
         }
       }
@@ -1896,7 +1930,8 @@ define('grapher/core/graph',['require','grapher/core/axis'],function (require) {
         var mousePoint = d3.mouse(vis.node()),
             translatedMousePointX = xScale.invert(Math.max(0, Math.min(size.width, mousePoint[0]))),
             p,
-            idx, pMin, pMax;
+            idx, pMin, pMax,
+            i;
         // highlight the central point, and also points to the left and right
         // TODO Handle multiple data sets/lines
         selectable = [];
@@ -1917,7 +1952,7 @@ define('grapher/core/graph',['require','grapher/core/axis'],function (require) {
     }
 
     function findClosestPointByX(x, line) {
-      if (typeof(line) == "undefined" || line === null) { line = 0; }
+      if (typeof(line) === "undefined" || line === null) { line = 0; }
       // binary search through points.
       // This assumes points is sorted ascending by x value, which for realTime graphs is true.
       points = pointArray[line];
@@ -1951,32 +1986,34 @@ define('grapher/core/graph',['require','grapher/core/axis'],function (require) {
     }
 
     function plotDrag() {
-      var p;
-      d3.event.preventDefault();
-      d3.select('body').style("cursor", "move");
-      if (d3.event.altKey) {
-        plot.style("cursor", "nesw-resize");
-        if (d3.event.shiftKey && options.addData) {
-          p = d3.mouse(vis.node());
-          var newpoint = [];
-          newpoint[0] = xScale.invert(Math.max(0, Math.min(size.width,  p[0])));
-          newpoint[1] = yScale.invert(Math.max(0, Math.min(size.height, p[1])));
-          points.push(newpoint);
-          points.sort(function(a, b) {
-            if (a[0] < b[0]) { return -1; }
-            if (a[0] > b[0]) { return  1; }
-            return 0;
-          });
-          selected = newpoint;
-          update();
-        } else {
-          p = d3.mouse(vis.node());
-          downx = xScale.invert(p[0]);
-          downy = yScale.invert(p[1]);
-          draggedPoint = false;
-          d3.event.stopPropagation();
+      if(options.enableAxisScaling) {
+        var p;
+        d3.event.preventDefault();
+        d3.select('body').style("cursor", "move");
+        if (d3.event.altKey) {
+          plot.style("cursor", "nesw-resize");
+          if (d3.event.shiftKey && options.addData) {
+            p = d3.mouse(vis.node());
+            var newpoint = [];
+            newpoint[0] = xScale.invert(Math.max(0, Math.min(size.width,  p[0])));
+            newpoint[1] = yScale.invert(Math.max(0, Math.min(size.height, p[1])));
+            points.push(newpoint);
+            points.sort(function(a, b) {
+              if (a[0] < b[0]) { return -1; }
+              if (a[0] > b[0]) { return  1; }
+              return 0;
+            });
+            selected = newpoint;
+            update();
+          } else {
+            p = d3.mouse(vis.node());
+            downx = xScale.invert(p[0]);
+            downy = yScale.invert(p[1]);
+            draggedPoint = false;
+            d3.event.stopPropagation();
+          }
+          // d3.event.stopPropagation();
         }
-        // d3.event.stopPropagation();
       }
     }
 
@@ -1985,19 +2022,23 @@ define('grapher/core/graph',['require','grapher/core/axis'],function (require) {
     }
 
     function xAxisDrag() {
-      node.focus();
-      document.onselectstart = falseFunction;
-      d3.event.preventDefault();
-      var p = d3.mouse(vis.node());
-      downx = xScale.invert(p[0]);
+      if(options.enableAxisScaling) {
+        node.focus();
+        document.onselectstart = falseFunction;
+        d3.event.preventDefault();
+        var p = d3.mouse(vis.node());
+        downx = xScale.invert(p[0]);
+      }
     }
 
     function yAxisDrag() {
-      node.focus();
-      d3.event.preventDefault();
-      document.onselectstart = falseFunction;
-      var p = d3.mouse(vis.node());
-      downy = yScale.invert(p[1]);
+      if(options.enableAxisScaling) {
+        node.focus();
+        d3.event.preventDefault();
+        document.onselectstart = falseFunction;
+        var p = d3.mouse(vis.node());
+        downy = yScale.invert(p[1]);
+      }
     }
 
     function dataPointDrag(d) {
@@ -2047,7 +2088,6 @@ define('grapher/core/graph',['require','grapher/core/axis'],function (require) {
             }
           }
         }
-        persistScaleChangesToOptions();
         update();
       }
 
@@ -2059,7 +2099,6 @@ define('grapher/core/graph',['require','grapher/core/axis'],function (require) {
         } else {
           xScale.domain(axis.axisProcessDrag(downx, xScale.invert(p[0]), xScale.domain()));
         }
-        persistScaleChangesToOptions();
         updateMarkerRadius();
         redraw();
         d3.event.stopPropagation();
@@ -2069,7 +2108,6 @@ define('grapher/core/graph',['require','grapher/core/axis'],function (require) {
         d3.select('body').style("cursor", "row-resize");
         plot.style("cursor", "row-resize");
         yScale.domain(axis.axisProcessDrag(downy, yScale.invert(p[1]), yScale.domain()));
-        persistScaleChangesToOptions();
         redraw();
         d3.event.stopPropagation();
       }
@@ -2158,7 +2196,6 @@ define('grapher/core/graph',['require','grapher/core/axis'],function (require) {
 
       xScale.domain([xmin, xmax]).nice();
       yScale.domain([transform(ymin - 0.15*(ymax-ymin)), transform(ymax + 0.15*(ymax-ymin))]).nice();
-      persistScaleChangesToOptions();
       redraw();
     }
 
@@ -2392,10 +2429,11 @@ define('grapher/core/graph',['require','grapher/core/axis'],function (require) {
           lines = options.lines,
           bars = options.bars,
           twopi = 2 * Math.PI,
-          pointsLength = pointArray[0].length,
+          pointsLength,
           numberOfLines = pointArray.length,
           xAxisStart,
           xAxisEnd,
+          pointStop,
           start,
           lengthX;
 
@@ -2405,13 +2443,15 @@ define('grapher/core/graph',['require','grapher/core/axis'],function (require) {
       setCurrentSample(samplePoint);
       clearCanvas();
       gctx.fillRect(0, 0, gcanvas.width, gcanvas.height);
-      if (pointsLength === 0) { return; }
+      gctx.lineWidth = lineWidth;
       xAxisStart = xScale.domain()[0];
       xAxisEnd =   xScale.domain()[1];
       start = Math.max(0, xAxisStart);
       if (lines) {
         for (i = 0; i < numberOfLines; i++) {
           points = pointArray[i];
+          pointsLength = points.length;
+          if (pointsLength === 0) { break; }
           index = 0;
           // find first point >= xAxisStart
           for (j = 0; j < pointsLength; j++) {
@@ -2427,23 +2467,43 @@ define('grapher/core/graph',['require','grapher/core/axis'],function (require) {
           gctx.moveTo(px, py);
           dx = points[index][0];
           index++;
-          // plot all ... or until one point past xAxisEnd
-          // or until we reach currentSample
-          for (; index < samplePoint; index++) {
-            dx = points[index][0];
-            px = xScale(dx);
-            py = yScale(points[index][1]);
-            gctx.lineTo(px, py);
-            if (dx >= xAxisEnd) { break; }
-          }
-          gctx.stroke();
-          // now plot in a desaturated style all the rest of the points
-          // ... or until one point past xAxisEnd
-          if (index < pointsLength && dx < xAxisEnd) {
-            setStrokeColor(i, true);
-            for (;index < pointsLength; index++) {
+          if (i < newDataSeries) {
+            // plot all ... or until one point past xAxisEnd
+            // or until we reach currentSample
+            for (; index < samplePoint; index++) {
               dx = points[index][0];
               px = xScale(dx);
+              py = yScale(points[index][1]);
+              gctx.lineTo(px, py);
+              if (dx >= xAxisEnd) { break; }
+            }
+            gctx.stroke();
+            // now plot in a desaturated style all the rest of the points
+            // ... or until one point past xAxisEnd
+            if (index < pointsLength && dx < xAxisEnd) {
+              setStrokeColor(i, true);
+              gctx.lineWidth = lineWidth/2;
+              for (;index < pointsLength; index++) {
+                dx = points[index][0];
+                px = xScale(dx);
+                py = yScale(points[index][1]);
+                gctx.lineTo(px, py);
+                if (dx >= xAxisEnd) { break; }
+              }
+              gctx.stroke();
+            }
+          } else {
+            // else we are plotting older complete datasets
+            // plot all ... or until one point past xAxisEnd
+            setStrokeColor(0, true);
+            gctx.lineWidth = lineWidth/2;
+            // temporary hack ...
+            var previousPx = 0;
+            for (; index < pointsLength-1; index++) {
+              dx = points[index][0];
+              px = xScale(dx);
+              if (px < previousPx) { break; }
+              previousPx = px;
               py = yScale(points[index][1]);
               gctx.lineTo(px, py);
               if (dx >= xAxisEnd) { break; }
@@ -2454,6 +2514,7 @@ define('grapher/core/graph',['require','grapher/core/axis'],function (require) {
       } else if (bars) {
         for (i = 0; i < numberOfLines; i++) {
           points = pointArray[i];
+          pointsLength = points.length;
           setStrokeColor(i);
           pointStop = samplePoint - 1;
           for (index=start; index < pointStop; index++) {
@@ -2483,6 +2544,7 @@ define('grapher/core/graph',['require','grapher/core/axis'],function (require) {
       } else {
         for (i = 0; i < numberOfLines; i++) {
           points = pointArray[i];
+          pointsLength = points.length;
           index = 0;
           // find first point >= xAxisStart
           for (j = 0; j < pointsLength; j++) {
@@ -2522,7 +2584,7 @@ define('grapher/core/graph',['require','grapher/core/axis'],function (require) {
     }
 
     function setStrokeColor(i, afterSamplePoint) {
-      var opacity = afterSamplePoint ? 0.4 : 1.0;
+      var opacity = afterSamplePoint ? 0.5 : 1.0;
       switch(i) {
         case 0:
           gctx.strokeStyle = "rgba(160,00,0," + opacity + ")";
@@ -2531,6 +2593,9 @@ define('grapher/core/graph',['require','grapher/core/axis'],function (require) {
           gctx.strokeStyle = "rgba(44,160,0," + opacity + ")";
           break;
         case 2:
+          gctx.strokeStyle = "rgba(44,0,160," + opacity + ")";
+          break;
+        default:
           gctx.strokeStyle = "rgba(44,0,160," + opacity + ")";
           break;
       }
@@ -2548,6 +2613,9 @@ define('grapher/core/graph',['require','grapher/core/axis'],function (require) {
         case 2:
           gctx.fillStyle = "rgba(44,0,160," + opacity + ")";
           break;
+        default:
+          gctx.fillStyle = "rgba(44,0,160," + opacity + ")";
+          break;
       }
     }
 
@@ -2559,6 +2627,7 @@ define('grapher/core/graph',['require','grapher/core/axis'],function (require) {
 
     // Add an array of points then update the graph.
     function addPoints(datapoints) {
+      newDataSeries = datapoints.length;
       addDataPoints(datapoints);
       setCurrentSample(points.length);
       updateOrRescale();
@@ -2642,9 +2711,7 @@ define('grapher/core/graph',['require','grapher/core/axis'],function (require) {
       if (!datapoints || datapoints.length === 0) {
         points = [];
         pointArray = [points];
-        return;
-      }
-      if (Object.prototype.toString.call(datapoints[0]) === "[object Array]") {
+      } else if (Object.prototype.toString.call(datapoints[0]) === "[object Array]") {
         for (var i = 0; i < datapoints.length; i++) {
           pointArray.push(copy(datapoints[i]));
         }
@@ -2653,6 +2720,9 @@ define('grapher/core/graph',['require','grapher/core/axis'],function (require) {
         points = datapoints;
         pointArray = [copy(points)];
       }
+
+      setCurrentSample(points.length - 1);
+      cancelDomainShift();
     }
 
     function resetDataSamples(datasamples, interval, start) {
@@ -2670,10 +2740,6 @@ define('grapher/core/graph',['require','grapher/core/axis'],function (require) {
       dataSampleStart = start;
     }
 
-
-    function resetPoints(datapoints) {
-      resetDataPoints(datapoints);
-    }
 
     function resetSamples(datasamples) {
       resetDataSamples(datasamples, sampleInterval, dataSampleStart);
@@ -2697,7 +2763,7 @@ define('grapher/core/graph',['require','grapher/core/axis'],function (require) {
     function registerKeyboardHandler() {
       svg.node().addEventListener("keydown", function (evt) {
         if (!selected) return false;
-        if (evt.type == "keydown") {
+        if (evt.type === "keydown") {
           switch (evt.keyCode) {
             case 8:   // backspace
             case 46:  // delete
@@ -2727,6 +2793,7 @@ define('grapher/core/graph',['require','grapher/core/axis'],function (require) {
       if (options.title && title) {
         title.text(options.title);
       }
+      renderGraph();
     }
 
     // update the x-axis label
@@ -2734,6 +2801,7 @@ define('grapher/core/graph',['require','grapher/core/axis'],function (require) {
       if (options.xlabel && xlabel) {
         xlabel.text(options.xlabel);
       }
+      renderGraph();
     }
 
     // update the y-axis label
@@ -2743,6 +2811,7 @@ define('grapher/core/graph',['require','grapher/core/axis'],function (require) {
       } else {
         ylabel.style("display", "none");
       }
+      renderGraph();
     }
 
     // ------------------------------------------------------------
@@ -2833,8 +2902,9 @@ define('grapher/core/graph',['require','grapher/core/axis'],function (require) {
       updateOrRescale:      updateOrRescale,
 
       xDomain: function(_) {
-        if (!arguments.length) return xScale.domain();
-        xScale.domain(_);
+        if (!arguments.length) return [options.xmin, options.xmax];
+        options.xmin = _[0];
+        options.xmax = _[1];
         if (updateXScale) {
           updateXScale();
           redraw();
@@ -2843,8 +2913,9 @@ define('grapher/core/graph',['require','grapher/core/axis'],function (require) {
       },
 
       yDomain: function(_) {
-        if (!arguments.length) return yScale.domain();
-        yScale.domain(_);
+        if (!arguments.length) return [options.ymin, options.ymax];
+        options.ymin = _[0];
+        options.ymax = _[1];
         if (updateYScale) {
           updateYScale();
           redraw();
@@ -2947,7 +3018,7 @@ define('grapher/core/graph',['require','grapher/core/axis'],function (require) {
       // Point data consist of an array (or arrays) of [x,y] arrays.
       addPoints:       addPoints,
       addPoint:        addPoint,
-      resetPoints:      resetPoints,
+      resetPoints:     resetDataPoints,
 
       // Sample data consists of an array (or an array or arrays) of samples.
       // The interval between samples is assumed to have already been set
@@ -4184,9 +4255,10 @@ define("underscore", (function (global) {
     };
 }(this)));
 
-//     Backbone.js 1.0.0
+//     Backbone.js 1.1.0
 
-//     (c) 2010-2013 Jeremy Ashkenas, DocumentCloud Inc.
+//     (c) 2010-2011 Jeremy Ashkenas, DocumentCloud Inc.
+//     (c) 2011-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
 //     Backbone may be freely distributed under the MIT license.
 //     For all details and documentation:
 //     http://backbonejs.org
@@ -4220,7 +4292,7 @@ define("underscore", (function (global) {
   }
 
   // Current version of the library. Keep in sync with `package.json`.
-  Backbone.VERSION = '1.0.0';
+  Backbone.VERSION = '1.1.0';
 
   // Require Underscore, if we're on the server, and it's not already present.
   var _ = root._;
@@ -4238,7 +4310,7 @@ define("underscore", (function (global) {
   };
 
   // Turn on `emulateHTTP` to support legacy HTTP servers. Setting this option
-  // will fake `"PUT"` and `"DELETE"` requests via the `_method` parameter and
+  // will fake `"PATCH"`, `"PUT"` and `"DELETE"` requests via the `_method` parameter and
   // set a `X-Http-Method-Override` header.
   Backbone.emulateHTTP = false;
 
@@ -4297,7 +4369,6 @@ define("underscore", (function (global) {
         this._events = {};
         return this;
       }
-
       names = name ? [name] : _.keys(this._events);
       for (i = 0, l = names.length; i < l; i++) {
         name = names[i];
@@ -4337,14 +4408,15 @@ define("underscore", (function (global) {
     // Tell this object to stop listening to either specific events ... or
     // to every object it's currently listening to.
     stopListening: function(obj, name, callback) {
-      var listeners = this._listeners;
-      if (!listeners) return this;
-      var deleteListener = !name && !callback;
-      if (typeof name === 'object') callback = this;
-      if (obj) (listeners = {})[obj._listenerId] = obj;
-      for (var id in listeners) {
-        listeners[id].off(name, callback, this);
-        if (deleteListener) delete this._listeners[id];
+      var listeningTo = this._listeningTo;
+      if (!listeningTo) return this;
+      var remove = !name && !callback;
+      if (!callback && typeof name === 'object') callback = this;
+      if (obj) (listeningTo = {})[obj._listenId] = obj;
+      for (var id in listeningTo) {
+        obj = listeningTo[id];
+        obj.off(name, callback, this);
+        if (remove || _.isEmpty(obj._events)) delete this._listeningTo[id];
       }
       return this;
     }
@@ -4401,10 +4473,10 @@ define("underscore", (function (global) {
   // listening to.
   _.each(listenMethods, function(implementation, method) {
     Events[method] = function(obj, name, callback) {
-      var listeners = this._listeners || (this._listeners = {});
-      var id = obj._listenerId || (obj._listenerId = _.uniqueId('l'));
-      listeners[id] = obj;
-      if (typeof name === 'object') callback = this;
+      var listeningTo = this._listeningTo || (this._listeningTo = {});
+      var id = obj._listenId || (obj._listenId = _.uniqueId('l'));
+      listeningTo[id] = obj;
+      if (!callback && typeof name === 'object') callback = this;
       obj[implementation](name, callback, this);
       return this;
     };
@@ -4429,23 +4501,17 @@ define("underscore", (function (global) {
   // Create a new model with the specified attributes. A client id (`cid`)
   // is automatically generated and assigned for you.
   var Model = Backbone.Model = function(attributes, options) {
-    var defaults;
     var attrs = attributes || {};
     options || (options = {});
     this.cid = _.uniqueId('c');
     this.attributes = {};
-    _.extend(this, _.pick(options, modelOptions));
+    if (options.collection) this.collection = options.collection;
     if (options.parse) attrs = this.parse(attrs, options) || {};
-    if (defaults = _.result(this, 'defaults')) {
-      attrs = _.defaults({}, attrs, defaults);
-    }
+    attrs = _.defaults({}, attrs, _.result(this, 'defaults'));
     this.set(attrs, options);
     this.changed = {};
     this.initialize.apply(this, arguments);
   };
-
-  // A list of options to be attached directly to the model, if provided.
-  var modelOptions = ['url', 'urlRoot', 'collection'];
 
   // Attach all inheritable methods to the Model prototype.
   _.extend(Model.prototype, Events, {
@@ -4642,13 +4708,16 @@ define("underscore", (function (global) {
         (attrs = {})[key] = val;
       }
 
-      // If we're not waiting and attributes exist, save acts as `set(attr).save(null, opts)`.
-      if (attrs && (!options || !options.wait) && !this.set(attrs, options)) return false;
-
       options = _.extend({validate: true}, options);
 
-      // Do not persist invalid models.
-      if (!this._validate(attrs, options)) return false;
+      // If we're not waiting and attributes exist, save acts as
+      // `set(attr).save(null, opts)` with validation. Otherwise, check if
+      // the model will be valid when the attributes, if any, are set.
+      if (attrs && !options.wait) {
+        if (!this.set(attrs, options)) return false;
+      } else {
+        if (!this._validate(attrs, options)) return false;
+      }
 
       // Set temporary attributes if `{wait: true}`.
       if (attrs && options.wait) {
@@ -4749,7 +4818,7 @@ define("underscore", (function (global) {
       attrs = _.extend({}, this.attributes, attrs);
       var error = this.validationError = this.validate(attrs, options) || null;
       if (!error) return true;
-      this.trigger('invalid', this, error, _.extend(options || {}, {validationError: error}));
+      this.trigger('invalid', this, error, _.extend(options, {validationError: error}));
       return false;
     }
 
@@ -4782,7 +4851,6 @@ define("underscore", (function (global) {
   // its models in sort order, as they're added and removed.
   var Collection = Backbone.Collection = function(models, options) {
     options || (options = {});
-    if (options.url) this.url = options.url;
     if (options.model) this.model = options.model;
     if (options.comparator !== void 0) this.comparator = options.comparator;
     this._reset();
@@ -4792,7 +4860,7 @@ define("underscore", (function (global) {
 
   // Default options for `Collection#set`.
   var setOptions = {add: true, remove: true, merge: true};
-  var addOptions = {add: true, merge: false, remove: false};
+  var addOptions = {add: true, remove: false};
 
   // Define the Collection's inheritable methods.
   _.extend(Collection.prototype, Events, {
@@ -4818,16 +4886,17 @@ define("underscore", (function (global) {
 
     // Add a model, or list of models to the set.
     add: function(models, options) {
-      return this.set(models, _.defaults(options || {}, addOptions));
+      return this.set(models, _.extend({merge: false}, options, addOptions));
     },
 
     // Remove a model, or a list of models from the set.
     remove: function(models, options) {
-      models = _.isArray(models) ? models.slice() : [models];
+      var singular = !_.isArray(models);
+      models = singular ? [models] : _.clone(models);
       options || (options = {});
       var i, l, index, model;
       for (i = 0, l = models.length; i < l; i++) {
-        model = this.get(models[i]);
+        model = models[i] = this.get(models[i]);
         if (!model) continue;
         delete this._byId[model.id];
         delete this._byId[model.cid];
@@ -4840,7 +4909,7 @@ define("underscore", (function (global) {
         }
         this._removeReference(model);
       }
-      return this;
+      return singular ? models[0] : models;
     },
 
     // Update a collection by `set`-ing a new list of models, adding new ones,
@@ -4848,31 +4917,45 @@ define("underscore", (function (global) {
     // already exist in the collection, as necessary. Similar to **Model#set**,
     // the core operation for updating the data contained by the collection.
     set: function(models, options) {
-      options = _.defaults(options || {}, setOptions);
+      options = _.defaults({}, options, setOptions);
       if (options.parse) models = this.parse(models, options);
-      if (!_.isArray(models)) models = models ? [models] : [];
-      var i, l, model, attrs, existing, sort;
+      var singular = !_.isArray(models);
+      models = singular ? (models ? [models] : []) : _.clone(models);
+      var i, l, id, model, attrs, existing, sort;
       var at = options.at;
+      var targetModel = this.model;
       var sortable = this.comparator && (at == null) && options.sort !== false;
       var sortAttr = _.isString(this.comparator) ? this.comparator : null;
       var toAdd = [], toRemove = [], modelMap = {};
+      var add = options.add, merge = options.merge, remove = options.remove;
+      var order = !sortable && add && remove ? [] : false;
 
       // Turn bare objects into model references, and prevent invalid models
       // from being added.
       for (i = 0, l = models.length; i < l; i++) {
-        if (!(model = this._prepareModel(models[i], options))) continue;
+        attrs = models[i];
+        if (attrs instanceof Model) {
+          id = model = attrs;
+        } else {
+          id = attrs[targetModel.prototype.idAttribute];
+        }
 
         // If a duplicate is found, prevent it from being added and
         // optionally merge it into the existing model.
-        if (existing = this.get(model)) {
-          if (options.remove) modelMap[existing.cid] = true;
-          if (options.merge) {
-            existing.set(model.attributes, options);
+        if (existing = this.get(id)) {
+          if (remove) modelMap[existing.cid] = true;
+          if (merge) {
+            attrs = attrs === model ? model.attributes : attrs;
+            if (options.parse) attrs = existing.parse(attrs, options);
+            existing.set(attrs, options);
             if (sortable && !sort && existing.hasChanged(sortAttr)) sort = true;
           }
+          models[i] = existing;
 
-        // This is a new model, push it to the `toAdd` list.
-        } else if (options.add) {
+        // If this is a new, valid model, push it to the `toAdd` list.
+        } else if (add) {
+          model = models[i] = this._prepareModel(attrs, options);
+          if (!model) continue;
           toAdd.push(model);
 
           // Listen to added models' events, and index models for lookup by
@@ -4881,10 +4964,11 @@ define("underscore", (function (global) {
           this._byId[model.cid] = model;
           if (model.id != null) this._byId[model.id] = model;
         }
+        if (order) order.push(existing || model);
       }
 
       // Remove nonexistent models if appropriate.
-      if (options.remove) {
+      if (remove) {
         for (i = 0, l = this.length; i < l; ++i) {
           if (!modelMap[(model = this.models[i]).cid]) toRemove.push(model);
         }
@@ -4892,29 +4976,35 @@ define("underscore", (function (global) {
       }
 
       // See if sorting is needed, update `length` and splice in new models.
-      if (toAdd.length) {
+      if (toAdd.length || (order && order.length)) {
         if (sortable) sort = true;
         this.length += toAdd.length;
         if (at != null) {
-          splice.apply(this.models, [at, 0].concat(toAdd));
+          for (i = 0, l = toAdd.length; i < l; i++) {
+            this.models.splice(at + i, 0, toAdd[i]);
+          }
         } else {
-          push.apply(this.models, toAdd);
+          if (order) this.models.length = 0;
+          var orderedModels = order || toAdd;
+          for (i = 0, l = orderedModels.length; i < l; i++) {
+            this.models.push(orderedModels[i]);
+          }
         }
       }
 
       // Silently sort the collection if appropriate.
       if (sort) this.sort({silent: true});
 
-      if (options.silent) return this;
-
-      // Trigger `add` events.
-      for (i = 0, l = toAdd.length; i < l; i++) {
-        (model = toAdd[i]).trigger('add', model, this, options);
+      // Unless silenced, it's time to fire all appropriate add/sort events.
+      if (!options.silent) {
+        for (i = 0, l = toAdd.length; i < l; i++) {
+          (model = toAdd[i]).trigger('add', model, this, options);
+        }
+        if (sort || (order && order.length)) this.trigger('sort', this, options);
       }
-
-      // Trigger `sort` if the collection was sorted.
-      if (sort) this.trigger('sort', this, options);
-      return this;
+      
+      // Return the added (or merged) model (or models).
+      return singular ? models[0] : models;
     },
 
     // When you have more items than you want to add or remove individually,
@@ -4928,16 +5018,14 @@ define("underscore", (function (global) {
       }
       options.previousModels = this.models;
       this._reset();
-      this.add(models, _.extend({silent: true}, options));
+      models = this.add(models, _.extend({silent: true}, options));
       if (!options.silent) this.trigger('reset', this, options);
-      return this;
+      return models;
     },
 
     // Add a model to the end of the collection.
     push: function(model, options) {
-      model = this._prepareModel(model, options);
-      this.add(model, _.extend({at: this.length}, options));
-      return model;
+      return this.add(model, _.extend({at: this.length}, options));
     },
 
     // Remove a model from the end of the collection.
@@ -4949,9 +5037,7 @@ define("underscore", (function (global) {
 
     // Add a model to the beginning of the collection.
     unshift: function(model, options) {
-      model = this._prepareModel(model, options);
-      this.add(model, _.extend({at: 0}, options));
-      return model;
+      return this.add(model, _.extend({at: 0}, options));
     },
 
     // Remove a model from the beginning of the collection.
@@ -4962,14 +5048,14 @@ define("underscore", (function (global) {
     },
 
     // Slice out a sub-array of models from the collection.
-    slice: function(begin, end) {
-      return this.models.slice(begin, end);
+    slice: function() {
+      return slice.apply(this.models, arguments);
     },
 
     // Get a model from the set by id.
     get: function(obj) {
       if (obj == null) return void 0;
-      return this._byId[obj.id != null ? obj.id : obj.cid || obj];
+      return this._byId[obj.id] || this._byId[obj.cid] || this._byId[obj];
     },
 
     // Get the model at the given index.
@@ -5013,16 +5099,6 @@ define("underscore", (function (global) {
       return this;
     },
 
-    // Figure out the smallest index at which a model should be inserted so as
-    // to maintain order.
-    sortedIndex: function(model, value, context) {
-      value || (value = this.comparator);
-      var iterator = _.isFunction(value) ? value : function(model) {
-        return model.get(value);
-      };
-      return _.sortedIndex(this.models, model, iterator, context);
-    },
-
     // Pluck an attribute from each model in the collection.
     pluck: function(attr) {
       return _.invoke(this.models, 'get', attr);
@@ -5055,7 +5131,7 @@ define("underscore", (function (global) {
       if (!options.wait) this.add(model, options);
       var collection = this;
       var success = options.success;
-      options.success = function(resp) {
+      options.success = function(model, resp, options) {
         if (options.wait) collection.add(model, options);
         if (success) success(model, resp, options);
       };
@@ -5089,14 +5165,12 @@ define("underscore", (function (global) {
         if (!attrs.collection) attrs.collection = this;
         return attrs;
       }
-      options || (options = {});
+      options = options ? _.clone(options) : {};
       options.collection = this;
       var model = new this.model(attrs, options);
-      if (!model._validate(attrs, options)) {
-        this.trigger('invalid', this, attrs, options);
-        return false;
-      }
-      return model;
+      if (!model.validationError) return model;
+      this.trigger('invalid', this, model.validationError, options);
+      return false;
     },
 
     // Internal method to sever a model's ties to a collection.
@@ -5128,8 +5202,8 @@ define("underscore", (function (global) {
     'inject', 'reduceRight', 'foldr', 'find', 'detect', 'filter', 'select',
     'reject', 'every', 'all', 'some', 'any', 'include', 'contains', 'invoke',
     'max', 'min', 'toArray', 'size', 'first', 'head', 'take', 'initial', 'rest',
-    'tail', 'drop', 'last', 'without', 'indexOf', 'shuffle', 'lastIndexOf',
-    'isEmpty', 'chain'];
+    'tail', 'drop', 'last', 'without', 'difference', 'indexOf', 'shuffle',
+    'lastIndexOf', 'isEmpty', 'chain'];
 
   // Mix in each Underscore method as a proxy to `Collection#models`.
   _.each(methods, function(method) {
@@ -5168,7 +5242,8 @@ define("underscore", (function (global) {
   // if an existing element is not provided...
   var View = Backbone.View = function(options) {
     this.cid = _.uniqueId('view');
-    this._configure(options || {});
+    options || (options = {});
+    _.extend(this, _.pick(options, viewOptions));
     this._ensureElement();
     this.initialize.apply(this, arguments);
     this.delegateEvents();
@@ -5187,7 +5262,7 @@ define("underscore", (function (global) {
     tagName: 'div',
 
     // jQuery delegate for element lookup, scoped to DOM elements within the
-    // current view. This should be prefered to global lookups where possible.
+    // current view. This should be preferred to global lookups where possible.
     $: function(selector) {
       return this.$el.find(selector);
     },
@@ -5227,7 +5302,7 @@ define("underscore", (function (global) {
     //
     //     {
     //       'mousedown .title':  'edit',
-    //       'click .button':     'save'
+    //       'click .button':     'save',
     //       'click .open':       function(e) { ... }
     //     }
     //
@@ -5263,16 +5338,6 @@ define("underscore", (function (global) {
     undelegateEvents: function() {
       this.$el.off('.delegateEvents' + this.cid);
       return this;
-    },
-
-    // Performs the initial configuration of a View with a set of options.
-    // Keys with special meaning *(e.g. model, collection, id, className)* are
-    // attached directly to the view.  See `viewOptions` for an exhaustive
-    // list.
-    _configure: function(options) {
-      if (this.options) options = _.extend({}, _.result(this, 'options'), options);
-      _.extend(this, _.pick(options, viewOptions));
-      this.options = options;
     },
 
     // Ensure that the View has a DOM element to render into.
@@ -5360,8 +5425,7 @@ define("underscore", (function (global) {
     // If we're sending a `PATCH` request, and we're in an old Internet Explorer
     // that still has ActiveX enabled by default, override jQuery to use that
     // for XHR instead. Remove this line when jQuery supports `PATCH` on IE8.
-    if (params.type === 'PATCH' && window.ActiveXObject &&
-          !(window.external && window.external.msActiveXFilteringEnabled)) {
+    if (params.type === 'PATCH' && noXhrPatch) {
       params.xhr = function() {
         return new ActiveXObject("Microsoft.XMLHTTP");
       };
@@ -5372,6 +5436,8 @@ define("underscore", (function (global) {
     model.trigger('request', model, xhr, options);
     return xhr;
   };
+
+  var noXhrPatch = typeof window !== 'undefined' && !!window.ActiveXObject && !(window.XMLHttpRequest && (new XMLHttpRequest).dispatchEvent);
 
   // Map from CRUD to HTTP for our default `Backbone.sync` implementation.
   var methodMap = {
@@ -5461,7 +5527,7 @@ define("underscore", (function (global) {
     _routeToRegExp: function(route) {
       route = route.replace(escapeRegExp, '\\$&')
                    .replace(optionalParam, '(?:$1)?')
-                   .replace(namedParam, function(match, optional){
+                   .replace(namedParam, function(match, optional) {
                      return optional ? match : '([^\/]+)';
                    })
                    .replace(splatParam, '(.*?)');
@@ -5511,6 +5577,9 @@ define("underscore", (function (global) {
   // Cached regex for removing a trailing slash.
   var trailingSlash = /\/$/;
 
+  // Cached regex for stripping urls of hash and query.
+  var pathStripper = /[?#].*$/;
+
   // Has the history handling already been started?
   History.started = false;
 
@@ -5535,7 +5604,7 @@ define("underscore", (function (global) {
         if (this._hasPushState || !this._wantsHashChange || forcePushState) {
           fragment = this.location.pathname;
           var root = this.root.replace(trailingSlash, '');
-          if (!fragment.indexOf(root)) fragment = fragment.substr(root.length);
+          if (!fragment.indexOf(root)) fragment = fragment.slice(root.length);
         } else {
           fragment = this.getHash();
         }
@@ -5551,7 +5620,7 @@ define("underscore", (function (global) {
 
       // Figure out the initial configuration. Do we need an iframe?
       // Is pushState desired ... is it available?
-      this.options          = _.extend({}, {root: '/'}, this.options, options);
+      this.options          = _.extend({root: '/'}, this.options, options);
       this.root             = this.options.root;
       this._wantsHashChange = this.options.hashChange !== false;
       this._wantsPushState  = !!this.options.pushState;
@@ -5584,19 +5653,25 @@ define("underscore", (function (global) {
       var loc = this.location;
       var atRoot = loc.pathname.replace(/[^\/]$/, '$&/') === this.root;
 
-      // If we've started off with a route from a `pushState`-enabled browser,
-      // but we're currently in a browser that doesn't support it...
-      if (this._wantsHashChange && this._wantsPushState && !this._hasPushState && !atRoot) {
-        this.fragment = this.getFragment(null, true);
-        this.location.replace(this.root + this.location.search + '#' + this.fragment);
-        // Return immediately as browser will do redirect to new url
-        return true;
+      // Transition from hashChange to pushState or vice versa if both are
+      // requested.
+      if (this._wantsHashChange && this._wantsPushState) {
 
-      // Or if we've started out with a hash-based route, but we're currently
-      // in a browser where it could be `pushState`-based instead...
-      } else if (this._wantsPushState && this._hasPushState && atRoot && loc.hash) {
-        this.fragment = this.getHash().replace(routeStripper, '');
-        this.history.replaceState({}, document.title, this.root + this.fragment + loc.search);
+        // If we've started off with a route from a `pushState`-enabled
+        // browser, but we're currently in a browser that doesn't support it...
+        if (!this._hasPushState && !atRoot) {
+          this.fragment = this.getFragment(null, true);
+          this.location.replace(this.root + this.location.search + '#' + this.fragment);
+          // Return immediately as browser will do redirect to new url
+          return true;
+
+        // Or if we've started out with a hash-based route, but we're currently
+        // in a browser where it could be `pushState`-based instead...
+        } else if (this._hasPushState && atRoot && loc.hash) {
+          this.fragment = this.getHash().replace(routeStripper, '');
+          this.history.replaceState({}, document.title, this.root + this.fragment + loc.search);
+        }
+
       }
 
       if (!this.options.silent) return this.loadUrl();
@@ -5625,21 +5700,20 @@ define("underscore", (function (global) {
       }
       if (current === this.fragment) return false;
       if (this.iframe) this.navigate(current);
-      this.loadUrl() || this.loadUrl(this.getHash());
+      this.loadUrl();
     },
 
     // Attempt to load the current URL fragment. If a route succeeds with a
     // match, returns `true`. If no defined routes matches the fragment,
     // returns `false`.
-    loadUrl: function(fragmentOverride) {
-      var fragment = this.fragment = this.getFragment(fragmentOverride);
-      var matched = _.any(this.handlers, function(handler) {
+    loadUrl: function(fragment) {
+      fragment = this.fragment = this.getFragment(fragment);
+      return _.any(this.handlers, function(handler) {
         if (handler.route.test(fragment)) {
           handler.callback(fragment);
           return true;
         }
       });
-      return matched;
     },
 
     // Save a fragment into the hash history, or replace the URL state if the
@@ -5651,11 +5725,18 @@ define("underscore", (function (global) {
     // you wish to modify the current URL without adding an entry to the history.
     navigate: function(fragment, options) {
       if (!History.started) return false;
-      if (!options || options === true) options = {trigger: options};
-      fragment = this.getFragment(fragment || '');
+      if (!options || options === true) options = {trigger: !!options};
+
+      var url = this.root + (fragment = this.getFragment(fragment || ''));
+
+      // Strip the fragment of the query and hash for matching.
+      fragment = fragment.replace(pathStripper, '');
+
       if (this.fragment === fragment) return;
       this.fragment = fragment;
-      var url = this.root + fragment;
+
+      // Don't include a trailing slash on the root.
+      if (fragment === '' && url !== '/') url = url.slice(0, -1);
 
       // If pushState is available, we use it to set the fragment as a real URL.
       if (this._hasPushState) {
@@ -5678,7 +5759,7 @@ define("underscore", (function (global) {
       } else {
         return this.location.assign(url);
       }
-      if (options.trigger) this.loadUrl(fragment);
+      if (options.trigger) return this.loadUrl(fragment);
     },
 
     // Update the hash location, either replacing the current entry, or adding
@@ -5746,7 +5827,7 @@ define("underscore", (function (global) {
   };
 
   // Wrap an optional error callback with a fallback error event.
-  var wrapError = function (model, options) {
+  var wrapError = function(model, options) {
     var error = options.error;
     options.error = function(resp) {
       if (error) error(model, resp, options);

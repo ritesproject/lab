@@ -1,8 +1,8 @@
 {
   "type": "md2d",
   "imagePath": "",
-  "width": 5,
-  "height": 3,
+  "width": 4.5,
+  "height": 2.5,
   "unitsScheme": "md2d",
   "lennardJonesForces": true,
   "coulombForces": false,
@@ -21,9 +21,11 @@
   "DNAState": "dna",
   "DNA": "",
   "DNAMutations": true,
+  "useQuantumDynamics": false,
+  "useChemicalReactions": false,
   "viewOptions": {
-    "viewPortWidth": 5,
-    "viewPortHeight": 3,
+    "viewPortWidth": 4.5,
+    "viewPortHeight": 2.5,
     "viewPortZoom": 1,
     "viewPortX": 0,
     "viewPortY": 0,
@@ -90,7 +92,7 @@
       -0.0010000000474974513,
       -0.0010000000474974513,
       -0.0010000000474974513,
-      -5
+      -0.1
     ],
     "color": [
       -855310,
@@ -102,12 +104,12 @@
   },
   "atoms": {
     "x": [
-      2.5,
-      3.2071067811865475
+      2.25,
+      2.9571067811865475
     ],
     "y": [
-      2.75,
-      2.042893219
+      2.25,
+      1.542893219
     ],
     "vx": [
       0,
@@ -153,16 +155,16 @@
   },
   "lines": {
     "x1": [
-      2.5
+      2.25
     ],
     "y1": [
-      2.975
+      2.475
     ],
     "x2": [
-      2.5
+      2.25
     ],
     "y2": [
-      0.03
+      -1.48
     ],
     "beginStyle": [
       "none"

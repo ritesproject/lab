@@ -22,6 +22,8 @@
   "DNAState": "dna",
   "DNA": "",
   "DNAMutations": true,
+  "useQuantumDynamics": false,
+  "useChemicalReactions": true,
   "viewOptions": {
     "viewPortWidth": 4,
     "viewPortHeight": 2.5,
@@ -54,6 +56,7 @@
         "y": 1.54,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.1,
         "calloutPoint": [
           1.7,
           0.98
@@ -67,6 +70,7 @@
         "y": 2.27,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.1,
         "calloutPoint": [
           1.11,
           2.47
@@ -79,6 +83,7 @@
         "y": 2.29,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.1,
         "calloutPoint": [
           1.35,
           2.47
@@ -91,6 +96,7 @@
         "y": 2.26,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.1,
         "calloutPoint": [
           0.83,
           2.47
@@ -103,6 +109,7 @@
         "y": 0.3,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.1,
         "calloutPoint": [
           2.45,
           0.03
@@ -115,6 +122,7 @@
         "y": 0.3,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.1,
         "calloutPoint": [
           2.04,
           0.03
@@ -127,6 +135,7 @@
         "y": 0.29,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.1,
         "calloutPoint": [
           1.42,
           0.03
@@ -177,7 +186,7 @@
       -0.009999999776482582,
       -0.019999999552965164,
       -0.1,
-      -5
+      -0.1
     ],
     "color": [
       -855310,
@@ -566,6 +575,69 @@
       0,
       0
     ],
+    "radical": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
     "element": [
       2,
       2,
@@ -871,5 +943,23 @@
     "strength": [
       50
     ]
+  },
+  "chemicalReactions": {
+    "valenceElectrons": [
+      1,
+      1,
+      7,
+      7
+    ],
+    "bondEnergy": {
+      "default": 6,
+      "0-0": 4,
+      "1-1": 4,
+      "2-2": 4,
+      "3-3": 4
+    },
+    "activationEnergy": {
+      "default": 0.2
+    }
   }
 }

@@ -21,6 +21,8 @@
   "DNAState": "dna",
   "DNA": "",
   "DNAMutations": true,
+  "useQuantumDynamics": false,
+  "useChemicalReactions": false,
   "viewOptions": {
     "viewPortWidth": 4.5,
     "viewPortHeight": 2.5,
@@ -90,7 +92,7 @@
       -0.009999999776482582,
       -0.009999999776482582,
       -0.009999999776482582,
-      -5
+      -0.1
     ],
     "color": [
       -855310,
@@ -227,8 +229,8 @@
       0
     ],
     "color": [
-      "linear 90deg rgb(0,0,255) 0% NaN 50% rgb(0,0,255) 100%",
-      "linear 90deg rgb(128,128,128) 0% NaN 50% rgb(128,128,128) 100%"
+      "linear 90deg rgb(0,0,255) 0% #fff 50% rgb(0,0,255) 100%",
+      "linear 90deg rgb(128,128,128) 0% #fff 50% rgb(128,128,128) 100%"
     ],
     "lineColor": [
       "black",

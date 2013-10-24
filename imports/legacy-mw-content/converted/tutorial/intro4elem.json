@@ -21,6 +21,8 @@
   "DNAState": "dna",
   "DNA": "",
   "DNAMutations": true,
+  "useQuantumDynamics": false,
+  "useChemicalReactions": false,
   "viewOptions": {
     "viewPortWidth": 5,
     "viewPortHeight": 2.5,
@@ -53,6 +55,7 @@
         "y": 1.94,
         "layer": 2,
         "frame": "rounded rectangle",
+        "fontSize": 0.09,
         "calloutPoint": [
           1.95,
           1.53
@@ -68,6 +71,7 @@
         "y": 1.02,
         "layer": 2,
         "frame": "rounded rectangle",
+        "fontSize": 0.09,
         "calloutPoint": [
           1.92,
           0.64
@@ -83,6 +87,7 @@
         "y": 1.5,
         "layer": 2,
         "frame": "rounded rectangle",
+        "fontSize": 0.09,
         "calloutPoint": [
           1.93,
           1.06
@@ -98,6 +103,7 @@
         "y": 0.54,
         "layer": 2,
         "frame": "rounded rectangle",
+        "fontSize": 0.09,
         "calloutPoint": [
           1.92,
           0.23
@@ -113,6 +119,7 @@
         "y": 1.92,
         "layer": 2,
         "color": "rgb(128,128,128)",
+        "fontSize": 0.1,
         "anchor": "upper-left"
       },
       {
@@ -120,6 +127,7 @@
         "x": 1.78,
         "y": 1.635,
         "layer": 1,
+        "fontSize": 0.1,
         "hostType": "Atom",
         "hostIndex": 0,
         "anchor": "upper-left"
@@ -129,6 +137,7 @@
         "x": 1.77,
         "y": 1.165,
         "layer": 1,
+        "fontSize": 0.1,
         "hostType": "Atom",
         "hostIndex": 1,
         "anchor": "upper-left"
@@ -138,6 +147,7 @@
         "x": 1.725,
         "y": 0.745,
         "layer": 1,
+        "fontSize": 0.1,
         "hostType": "Atom",
         "hostIndex": 2,
         "anchor": "upper-left"
@@ -147,6 +157,7 @@
         "x": 1.745,
         "y": 0.335,
         "layer": 1,
+        "fontSize": 0.1,
         "hostType": "Atom",
         "hostIndex": 3,
         "anchor": "upper-left"
@@ -157,6 +168,7 @@
         "y": 2.38,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.12,
         "backgroundColor": "rgb(128,128,128)",
         "anchor": "upper-left"
       },
@@ -166,6 +178,7 @@
         "y": 0.33,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.14,
         "backgroundColor": "rgb(255,192,192)",
         "anchor": "upper-left"
       }
@@ -213,7 +226,7 @@
       -0.1,
       -0.1,
       -0.1,
-      -5
+      -0.1
     ],
     "color": [
       -855310,

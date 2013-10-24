@@ -21,6 +21,8 @@
   "DNAState": "dna",
   "DNA": "",
   "DNAMutations": true,
+  "useQuantumDynamics": false,
+  "useChemicalReactions": false,
   "viewOptions": {
     "viewPortWidth": 6,
     "viewPortHeight": 2.5,
@@ -53,6 +55,7 @@
         "y": 2.47,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.12,
         "backgroundColor": "rgb(255,255,0)",
         "anchor": "upper-left"
       },
@@ -62,6 +65,7 @@
         "y": 2.03,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.15,
         "backgroundColor": "rgb(255,192,255)",
         "anchor": "upper-left"
       },
@@ -71,6 +75,7 @@
         "y": 1.48,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.12,
         "backgroundColor": "rgb(255,255,255)",
         "anchor": "upper-left"
       },
@@ -80,6 +85,7 @@
         "y": 1.06,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.12,
         "anchor": "upper-left"
       },
       {
@@ -88,6 +94,7 @@
         "y": 1.47,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.12,
         "anchor": "upper-left"
       },
       {
@@ -96,6 +103,7 @@
         "y": 1.48,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.12,
         "anchor": "upper-left"
       },
       {
@@ -104,6 +112,7 @@
         "y": 0.58,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.11,
         "anchor": "upper-left"
       },
       {
@@ -112,6 +121,7 @@
         "y": 1.26,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.12,
         "backgroundColor": "rgb(192,192,192)",
         "anchor": "upper-left"
       },
@@ -121,6 +131,7 @@
         "y": 1.07,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.12,
         "anchor": "upper-left"
       },
       {
@@ -129,6 +140,7 @@
         "y": 0.58,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.11,
         "anchor": "upper-left"
       },
       {
@@ -137,6 +149,7 @@
         "y": 0.58,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.11,
         "anchor": "upper-left"
       },
       {
@@ -145,6 +158,7 @@
         "y": 0.58,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.11,
         "anchor": "upper-left"
       },
       {
@@ -153,6 +167,7 @@
         "y": 1.79,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.12,
         "backgroundColor": "rgb(255,255,192)",
         "anchor": "upper-left"
       },
@@ -162,6 +177,7 @@
         "y": 0.58,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.11,
         "anchor": "upper-left"
       },
       {
@@ -170,6 +186,7 @@
         "y": 0.58,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.11,
         "anchor": "upper-left"
       },
       {
@@ -179,6 +196,7 @@
         "layer": 1,
         "frame": "rounded rectangle",
         "color": "rgb(153,0,153)",
+        "fontSize": 0.14,
         "hostType": "Atom",
         "hostIndex": 0,
         "backgroundColor": "rgb(204,204,255)",
@@ -228,7 +246,7 @@
       -0.1,
       -0.1,
       -0.1,
-      -5
+      -0.1
     ],
     "color": [
       -855310,

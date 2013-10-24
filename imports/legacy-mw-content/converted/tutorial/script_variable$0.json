@@ -21,6 +21,8 @@
   "DNAState": "dna",
   "DNA": "",
   "DNAMutations": true,
+  "useQuantumDynamics": false,
+  "useChemicalReactions": false,
   "viewOptions": {
     "viewPortWidth": 5,
     "viewPortHeight": 2.5,
@@ -53,6 +55,7 @@
         "y": 1.88,
         "layer": 2,
         "frame": "rounded rectangle",
+        "fontSize": 0.09,
         "calloutPoint": [
           1.89,
           1.47
@@ -68,6 +71,7 @@
         "y": 0.96,
         "layer": 2,
         "frame": "rounded rectangle",
+        "fontSize": 0.09,
         "calloutPoint": [
           1.86,
           0.58
@@ -83,6 +87,7 @@
         "y": 1.44,
         "layer": 2,
         "frame": "rounded rectangle",
+        "fontSize": 0.09,
         "calloutPoint": [
           1.87,
           1
@@ -98,6 +103,7 @@
         "y": 0.48,
         "layer": 2,
         "frame": "rounded rectangle",
+        "fontSize": 0.09,
         "calloutPoint": [
           1.86,
           0.17
@@ -113,6 +119,7 @@
         "y": 1.96,
         "layer": 2,
         "color": "rgb(128,128,128)",
+        "fontSize": 0.1,
         "anchor": "upper-left"
       },
       {
@@ -120,6 +127,7 @@
         "x": 1.72,
         "y": 1.575,
         "layer": 1,
+        "fontSize": 0.1,
         "hostType": "Atom",
         "hostIndex": 0,
         "anchor": "upper-left"
@@ -129,6 +137,7 @@
         "x": 1.71,
         "y": 1.105,
         "layer": 1,
+        "fontSize": 0.1,
         "hostType": "Atom",
         "hostIndex": 1,
         "anchor": "upper-left"
@@ -138,6 +147,7 @@
         "x": 1.665,
         "y": 0.685,
         "layer": 1,
+        "fontSize": 0.1,
         "hostType": "Atom",
         "hostIndex": 2,
         "anchor": "upper-left"
@@ -147,6 +157,7 @@
         "x": 1.685,
         "y": 0.275,
         "layer": 1,
+        "fontSize": 0.1,
         "hostType": "Atom",
         "hostIndex": 3,
         "anchor": "upper-left"
@@ -157,6 +168,7 @@
         "y": 2.34,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.12,
         "backgroundColor": "rgb(128,128,128)",
         "anchor": "upper-left"
       }
@@ -204,7 +216,7 @@
       -0.1,
       -0.1,
       -0.1,
-      -5
+      -0.1
     ],
     "color": [
       -855310,

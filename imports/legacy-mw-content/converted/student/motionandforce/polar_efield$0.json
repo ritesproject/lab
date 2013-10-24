@@ -21,6 +21,8 @@
   "DNAState": "dna",
   "DNA": "",
   "DNAMutations": true,
+  "useQuantumDynamics": false,
+  "useChemicalReactions": false,
   "viewOptions": {
     "viewPortWidth": 5,
     "viewPortHeight": 4,
@@ -52,6 +54,7 @@
         "x": 1.875,
         "y": 3.18,
         "layer": 1,
+        "fontSize": 0.1,
         "hostType": "Atom",
         "hostIndex": 0,
         "anchor": "upper-left"
@@ -61,6 +64,7 @@
         "x": 1.64,
         "y": 3.18,
         "layer": 1,
+        "fontSize": 0.1,
         "hostType": "Atom",
         "hostIndex": 1,
         "anchor": "upper-left"
@@ -70,6 +74,7 @@
         "x": 1.865,
         "y": 1.67,
         "layer": 1,
+        "fontSize": 0.1,
         "hostType": "Atom",
         "hostIndex": 2,
         "anchor": "upper-left"
@@ -79,6 +84,7 @@
         "x": 1.63,
         "y": 1.67,
         "layer": 1,
+        "fontSize": 0.1,
         "hostType": "Atom",
         "hostIndex": 3,
         "anchor": "upper-left"
@@ -88,6 +94,7 @@
         "x": 2.775,
         "y": 3.22,
         "layer": 1,
+        "fontSize": 0.1,
         "hostType": "Atom",
         "hostIndex": 4,
         "anchor": "upper-left"
@@ -97,6 +104,7 @@
         "x": 2.54,
         "y": 3.22,
         "layer": 1,
+        "fontSize": 0.1,
         "hostType": "Atom",
         "hostIndex": 5,
         "anchor": "upper-left"
@@ -106,6 +114,7 @@
         "x": 2.811842041015625,
         "y": 1.695,
         "layer": 1,
+        "fontSize": 0.1,
         "hostType": "Atom",
         "hostIndex": 6,
         "anchor": "upper-left"
@@ -115,6 +124,7 @@
         "x": 2.576842041015625,
         "y": 1.695,
         "layer": 1,
+        "fontSize": 0.1,
         "hostType": "Atom",
         "hostIndex": 7,
         "anchor": "upper-left"
@@ -124,6 +134,7 @@
         "x": 1.875,
         "y": 0.84,
         "layer": 1,
+        "fontSize": 0.1,
         "hostType": "Atom",
         "hostIndex": 8,
         "anchor": "upper-left"
@@ -133,6 +144,7 @@
         "x": 1.64,
         "y": 0.84,
         "layer": 1,
+        "fontSize": 0.1,
         "hostType": "Atom",
         "hostIndex": 9,
         "anchor": "upper-left"
@@ -142,6 +154,7 @@
         "x": 2.835,
         "y": 0.79,
         "layer": 1,
+        "fontSize": 0.1,
         "hostType": "Atom",
         "hostIndex": 10,
         "anchor": "upper-left"
@@ -151,6 +164,7 @@
         "x": 2.6,
         "y": 0.79,
         "layer": 1,
+        "fontSize": 0.1,
         "hostType": "Atom",
         "hostIndex": 11,
         "anchor": "upper-left"
@@ -160,6 +174,7 @@
         "x": 0.985,
         "y": 3.19,
         "layer": 1,
+        "fontSize": 0.1,
         "hostType": "Atom",
         "hostIndex": 12,
         "anchor": "upper-left"
@@ -169,6 +184,7 @@
         "x": 0.75,
         "y": 3.19,
         "layer": 1,
+        "fontSize": 0.1,
         "hostType": "Atom",
         "hostIndex": 13,
         "anchor": "upper-left"
@@ -178,6 +194,7 @@
         "x": 1.015,
         "y": 2.45,
         "layer": 1,
+        "fontSize": 0.1,
         "hostType": "Atom",
         "hostIndex": 14,
         "anchor": "upper-left"
@@ -187,6 +204,7 @@
         "x": 0.78,
         "y": 2.45,
         "layer": 1,
+        "fontSize": 0.1,
         "hostType": "Atom",
         "hostIndex": 15,
         "anchor": "upper-left"
@@ -196,6 +214,7 @@
         "x": 0.975,
         "y": 1.65,
         "layer": 1,
+        "fontSize": 0.1,
         "hostType": "Atom",
         "hostIndex": 16,
         "anchor": "upper-left"
@@ -205,6 +224,7 @@
         "x": 0.74,
         "y": 1.65,
         "layer": 1,
+        "fontSize": 0.1,
         "hostType": "Atom",
         "hostIndex": 17,
         "anchor": "upper-left"
@@ -214,6 +234,7 @@
         "x": 0.965,
         "y": 0.85,
         "layer": 1,
+        "fontSize": 0.1,
         "hostType": "Atom",
         "hostIndex": 18,
         "anchor": "upper-left"
@@ -223,6 +244,7 @@
         "x": 0.73,
         "y": 0.85,
         "layer": 1,
+        "fontSize": 0.1,
         "hostType": "Atom",
         "hostIndex": 19,
         "anchor": "upper-left"
@@ -232,6 +254,7 @@
         "x": 1.891842041015625,
         "y": 2.475,
         "layer": 1,
+        "fontSize": 0.1,
         "hostType": "Atom",
         "hostIndex": 20,
         "anchor": "upper-left"
@@ -241,6 +264,7 @@
         "x": 1.656842041015625,
         "y": 2.475,
         "layer": 1,
+        "fontSize": 0.1,
         "hostType": "Atom",
         "hostIndex": 21,
         "anchor": "upper-left"
@@ -250,6 +274,7 @@
         "x": 2.805,
         "y": 2.5,
         "layer": 1,
+        "fontSize": 0.1,
         "hostType": "Atom",
         "hostIndex": 22,
         "anchor": "upper-left"
@@ -259,6 +284,7 @@
         "x": 2.57,
         "y": 2.5,
         "layer": 1,
+        "fontSize": 0.1,
         "hostType": "Atom",
         "hostIndex": 23,
         "anchor": "upper-left"
@@ -268,6 +294,7 @@
         "x": 3.685,
         "y": 3.27,
         "layer": 1,
+        "fontSize": 0.1,
         "hostType": "Atom",
         "hostIndex": 24,
         "anchor": "upper-left"
@@ -277,6 +304,7 @@
         "x": 3.45,
         "y": 3.27,
         "layer": 1,
+        "fontSize": 0.1,
         "hostType": "Atom",
         "hostIndex": 25,
         "anchor": "upper-left"
@@ -286,6 +314,7 @@
         "x": 3.695,
         "y": 2.51,
         "layer": 1,
+        "fontSize": 0.1,
         "hostType": "Atom",
         "hostIndex": 26,
         "anchor": "upper-left"
@@ -295,6 +324,7 @@
         "x": 3.46,
         "y": 2.51,
         "layer": 1,
+        "fontSize": 0.1,
         "hostType": "Atom",
         "hostIndex": 27,
         "anchor": "upper-left"
@@ -304,6 +334,7 @@
         "x": 3.751842041015625,
         "y": 1.705,
         "layer": 1,
+        "fontSize": 0.1,
         "hostType": "Atom",
         "hostIndex": 28,
         "anchor": "upper-left"
@@ -313,6 +344,7 @@
         "x": 3.516842041015625,
         "y": 1.705,
         "layer": 1,
+        "fontSize": 0.1,
         "hostType": "Atom",
         "hostIndex": 29,
         "anchor": "upper-left"
@@ -322,6 +354,7 @@
         "x": 3.725,
         "y": 0.82,
         "layer": 1,
+        "fontSize": 0.1,
         "hostType": "Atom",
         "hostIndex": 30,
         "anchor": "upper-left"
@@ -331,6 +364,7 @@
         "x": 3.49,
         "y": 0.82,
         "layer": 1,
+        "fontSize": 0.1,
         "hostType": "Atom",
         "hostIndex": 31,
         "anchor": "upper-left"
@@ -379,7 +413,7 @@
       -0.009999999776482582,
       -0.1,
       -0.009999999776482582,
-      -5
+      -0.1
     ],
     "color": [
       -26215,
@@ -863,7 +897,7 @@
     "color": [
       "rgb(255,255,255)",
       "rgb(221,221,221)",
-      "transparent"
+      "rgb(221,221,221)"
     ],
     "lineColor": [
       "black",

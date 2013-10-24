@@ -21,6 +21,8 @@
   "DNAState": "dna",
   "DNA": "",
   "DNAMutations": true,
+  "useQuantumDynamics": true,
+  "useChemicalReactions": false,
   "viewOptions": {
     "viewPortWidth": 3.85,
     "viewPortHeight": 2.5,
@@ -99,7 +101,7 @@
       -0.1,
       -0.009999999776482582,
       -0.009999999776482582,
-      -5
+      -0.1
     ],
     "color": [
       -11118849,
@@ -1339,6 +1341,13 @@
       ]
     ],
     "photons": {},
-    "radiationlessEmissionProbability": 0.5
+    "radiationlessEmissionProbability": 0.5,
+    "lightSource": {
+      "on": true,
+      "frequency": 14,
+      "radiationPeriod": 650,
+      "numberOfBeams": 5,
+      "angleOfIncidence": -2.6179938
+    }
   }
 }

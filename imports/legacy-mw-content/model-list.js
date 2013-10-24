@@ -1825,11 +1825,18 @@ modelList = [
     "section": "interactions/maze-game",
     "content": [
       {
-        "name": "mazeGame",
+        "name": "mazeGame-1",
         "path": "interactions/maze-game/",
         "cml": "interactions/maze-game/mazeGame.cml",
         "mml": "interactions/maze-game/mazeGame$0.mml",
         "json": "converted/interactions/maze-game/mazeGame$0.json"
+      },
+      {
+        "name": "mazeGame-2",
+        "path": "interactions/maze-game/",
+        "cml": "interactions/maze-game/mazeGame.cml",
+        "mml": "interactions/maze-game/mazeGameModified$0.mml",
+        "json": "converted/interactions/maze-game/mazeGameModified$0.json"
       }
     ]
   },
@@ -1837,11 +1844,25 @@ modelList = [
     "section": "interactions/mixing-liquids",
     "content": [
       {
-        "name": "particleMixing",
+        "name": "particleMixing-1",
         "path": "interactions/mixing-liquids/",
         "cml": "interactions/mixing-liquids/particleMixing.cml",
         "mml": "interactions/mixing-liquids/particleMixing$0.mml",
         "json": "converted/interactions/mixing-liquids/particleMixing$0.json"
+      },
+      {
+        "name": "particleMixing-2",
+        "path": "interactions/mixing-liquids/",
+        "cml": "interactions/mixing-liquids/particleMixing.cml",
+        "mml": "interactions/mixing-liquids/particleMixingDoubleEthanol$0.mml",
+        "json": "converted/interactions/mixing-liquids/particleMixingDoubleEthanol$0.json"
+      },
+      {
+        "name": "particleMixing-3",
+        "path": "interactions/mixing-liquids/",
+        "cml": "interactions/mixing-liquids/particleMixing.cml",
+        "mml": "interactions/mixing-liquids/particleMixingDoubleWater$0.mml",
+        "json": "converted/interactions/mixing-liquids/particleMixingDoubleWater$0.json"
       }
     ]
   },
@@ -1897,11 +1918,18 @@ modelList = [
     "section": "interactions/target-game-distance",
     "content": [
       {
-        "name": "targetGameDist",
+        "name": "targetGameDist-1",
         "path": "interactions/target-game-distance/",
         "cml": "interactions/target-game-distance/targetGameDist.cml",
         "mml": "interactions/target-game-distance/targetGameDist$0.mml",
         "json": "converted/interactions/target-game-distance/targetGameDist$0.json"
+      },
+      {
+        "name": "targetGameDist-2",
+        "path": "interactions/target-game-distance/",
+        "cml": "interactions/target-game-distance/targetGameDist.cml",
+        "mml": "interactions/target-game-distance/targetGameDist-noLabels$0.mml",
+        "json": "converted/interactions/target-game-distance/targetGameDist-noLabels$0.json"
       }
     ]
   },
@@ -4599,6 +4627,60 @@ modelList = [
     ]
   },
   {
+    "section": "student/heattransfer",
+    "content": [
+      {
+        "name": "a",
+        "path": "student/heattransfer/",
+        "cml": "student/heattransfer/a.cml",
+        "mml": "student/heattransfer/aircooling$0.mml",
+        "json": "converted/student/heattransfer/aircooling$0.json"
+      },
+      {
+        "name": "aircooling",
+        "path": "student/heattransfer/",
+        "cml": "student/heattransfer/aircooling.cml",
+        "mml": "student/heattransfer/aircooling$0.mml",
+        "json": "converted/student/heattransfer/aircooling$0.json"
+      },
+      {
+        "name": "caloric",
+        "path": "student/heattransfer/",
+        "cml": "student/heattransfer/caloric.cml",
+        "mml": "student/heattransfer/caloric$0.mml",
+        "json": "converted/student/heattransfer/caloric$0.json"
+      },
+      {
+        "name": "equipartition",
+        "path": "student/heattransfer/",
+        "cml": "student/heattransfer/equipartition.cml",
+        "mml": "student/heattransfer/equipartition$0.mml",
+        "json": "converted/student/heattransfer/equipartition$0.json"
+      },
+      {
+        "name": "heatflow1",
+        "path": "student/heattransfer/",
+        "cml": "student/heattransfer/heatflow1.cml",
+        "mml": "student/heattransfer/heatflow1$0.mml",
+        "json": "converted/student/heattransfer/heatflow1$0.json"
+      },
+      {
+        "name": "heattransfer2",
+        "path": "student/heattransfer/",
+        "cml": "student/heattransfer/heattransfer2.cml",
+        "mml": "student/heattransfer/heattransfer2$0.mml",
+        "json": "converted/student/heattransfer/heattransfer2$0.json"
+      },
+      {
+        "name": "hotliquidcoldsolid",
+        "path": "student/heattransfer/",
+        "cml": "student/heattransfer/hotliquidcoldsolid.cml",
+        "mml": "student/heattransfer/hotliquidcoldsolid$0.mml",
+        "json": "converted/student/heattransfer/hotliquidcoldsolid$0.json"
+      }
+    ]
+  },
+  {
     "section": "student/materials",
     "content": [
       {
@@ -5843,6 +5925,270 @@ modelList = [
         "cml": "rites/sunlight1.cml",
         "mml": "rites/sunlight1$0.mml",
         "json": "converted/rites/sunlight1$0.json"
+      }
+    ]
+  },
+  {
+    "section": "itsi/crystal",
+    "content": [
+      {
+        "name": "compress",
+        "path": "itsi/crystal/",
+        "cml": "itsi/crystal/compress.cml",
+        "mml": "itsi/crystal/compress$0.mml",
+        "json": "converted/itsi/crystal/compress$0.json"
+      },
+      {
+        "name": "crystal_intro2",
+        "path": "itsi/crystal/",
+        "cml": "itsi/crystal/crystal_intro2.cml",
+        "mml": "itsi/crystal/crystal_intro2$0.mml",
+        "json": "converted/itsi/crystal/crystal_intro2$0.json"
+      },
+      {
+        "name": "crystal_intro5",
+        "path": "itsi/crystal/",
+        "cml": "itsi/crystal/crystal_intro5.cml",
+        "mml": "itsi/crystal/crystal_intro5$0.mml",
+        "json": "converted/itsi/crystal/crystal_intro5$0.json"
+      },
+      {
+        "name": "crystal_intro6",
+        "path": "itsi/crystal/",
+        "cml": "itsi/crystal/crystal_intro6.cml",
+        "mml": "itsi/crystal/crystal_intro6$0.mml",
+        "json": "converted/itsi/crystal/crystal_intro6$0.json"
+      },
+      {
+        "name": "molecularcrystal",
+        "path": "itsi/crystal/",
+        "cml": "itsi/crystal/molecularcrystal.cml",
+        "mml": "itsi/crystal/molecularcrystal$0.mml",
+        "json": "converted/itsi/crystal/molecularcrystal$0.json"
+      },
+      {
+        "name": "polymorphism",
+        "path": "itsi/crystal/",
+        "cml": "itsi/crystal/polymorphism.cml",
+        "mml": "itsi/crystal/polymorphism$0.mml",
+        "json": "converted/itsi/crystal/polymorphism$0.json"
+      }
+    ]
+  },
+  false,
+  {
+    "section": "itsi/heattransfer",
+    "content": [
+      {
+        "name": "changing-temp-page5",
+        "path": "itsi/heattransfer/",
+        "cml": "itsi/heattransfer/changing-temp-page5.cml",
+        "mml": "itsi/heattransfer/changing-temp-page5$0.mml",
+        "json": "converted/itsi/heattransfer/changing-temp-page5$0.json"
+      },
+      {
+        "name": "changing-temp-page6",
+        "path": "itsi/heattransfer/",
+        "cml": "itsi/heattransfer/changing-temp-page6.cml",
+        "mml": "itsi/heattransfer/changing-temp-page6$0.mml",
+        "json": "converted/itsi/heattransfer/changing-temp-page6$0.json"
+      },
+      {
+        "name": "changing-temp-page7",
+        "path": "itsi/heattransfer/",
+        "cml": "itsi/heattransfer/changing-temp-page7.cml",
+        "mml": "itsi/heattransfer/changing-temp-page7$0.mml",
+        "json": "converted/itsi/heattransfer/changing-temp-page7$0.json"
+      },
+      {
+        "name": "explosion_model1",
+        "path": "itsi/heattransfer/",
+        "cml": "itsi/heattransfer/explosion_model1.cml",
+        "mml": "itsi/heattransfer/explosion_model1$0.mml",
+        "json": "converted/itsi/heattransfer/explosion_model1$0.json"
+      },
+      {
+        "name": "heatflow1",
+        "path": "itsi/heattransfer/",
+        "cml": "itsi/heattransfer/heatflow1.cml",
+        "mml": "itsi/heattransfer/heatflow1$0.mml",
+        "json": "converted/itsi/heattransfer/heatflow1$0.json"
+      }
+    ]
+  },
+  {
+    "section": "itsi/states-of-matter",
+    "content": [
+      {
+        "name": "atomic-movement-in-gases",
+        "path": "itsi/states-of-matter/",
+        "cml": "itsi/states-of-matter/atomic-movement-in-gases.cml",
+        "mml": "itsi/states-of-matter/atomic-movement-in-gases$0.mml",
+        "json": "converted/itsi/states-of-matter/atomic-movement-in-gases$0.json"
+      },
+      {
+        "name": "atomic-movement-in-liquids",
+        "path": "itsi/states-of-matter/",
+        "cml": "itsi/states-of-matter/atomic-movement-in-liquids.cml",
+        "mml": "itsi/states-of-matter/atomic-movement-in-liquids$0.mml",
+        "json": "converted/itsi/states-of-matter/atomic-movement-in-liquids$0.json"
+      },
+      {
+        "name": "atomic-movement-in-solids",
+        "path": "itsi/states-of-matter/",
+        "cml": "itsi/states-of-matter/atomic-movement-in-solids.cml",
+        "mml": "itsi/states-of-matter/atomic-movement-in-solids$0.mml",
+        "json": "converted/itsi/states-of-matter/atomic-movement-in-solids$0.json"
+      },
+      {
+        "name": "latentheat2",
+        "path": "itsi/states-of-matter/",
+        "cml": "itsi/states-of-matter/latentheat2.cml",
+        "mml": "itsi/states-of-matter/latentheat2$0.mml",
+        "json": "converted/itsi/states-of-matter/latentheat2$0.json"
+      },
+      {
+        "name": "latentheat3",
+        "path": "itsi/states-of-matter/",
+        "cml": "itsi/states-of-matter/latentheat3.cml",
+        "mml": "itsi/states-of-matter/latentheat3$0.mml",
+        "json": "converted/itsi/states-of-matter/latentheat3$0.json"
+      },
+      {
+        "name": "page5",
+        "path": "itsi/states-of-matter/",
+        "cml": "itsi/states-of-matter/page5.cml",
+        "mml": "itsi/states-of-matter/page5$0.mml",
+        "json": "converted/itsi/states-of-matter/page5$0.json"
+      },
+      {
+        "name": "page8-1",
+        "path": "itsi/states-of-matter/",
+        "cml": "itsi/states-of-matter/page8.cml",
+        "mml": "itsi/states-of-matter/page8$0.mml",
+        "json": "converted/itsi/states-of-matter/page8$0.json"
+      },
+      {
+        "name": "page8-2",
+        "path": "itsi/states-of-matter/",
+        "cml": "itsi/states-of-matter/page8.cml",
+        "mml": "itsi/states-of-matter/page8$1.mml",
+        "json": "converted/itsi/states-of-matter/page8$1.json"
+      },
+      {
+        "name": "phase-change-1",
+        "path": "itsi/states-of-matter/",
+        "cml": "itsi/states-of-matter/phase-change.cml",
+        "mml": "itsi/states-of-matter/phase-change$0.mml",
+        "json": "converted/itsi/states-of-matter/phase-change$0.json"
+      },
+      {
+        "name": "phase-change-2",
+        "path": "itsi/states-of-matter/",
+        "cml": "itsi/states-of-matter/phase-change.cml",
+        "mml": "itsi/states-of-matter/phase-changes-caused-by-energy-input$0.mml",
+        "json": "converted/itsi/states-of-matter/phase-changes-caused-by-energy-input$0.json"
+      },
+      {
+        "name": "phase-changes-caused-by-energy-input",
+        "path": "itsi/states-of-matter/",
+        "cml": "itsi/states-of-matter/phase-changes-caused-by-energy-input.cml",
+        "mml": "itsi/states-of-matter/phase-changes-caused-by-energy-input$0.mml",
+        "json": "converted/itsi/states-of-matter/phase-changes-caused-by-energy-input$0.json"
+      }
+    ]
+  },
+  {
+    "section": "itsi/dissolving",
+    "content": [
+      {
+        "name": "how-does-salt-dissolve-in-water",
+        "path": "itsi/dissolving/",
+        "cml": "itsi/dissolving/how-does-salt-dissolve-in-water.cml",
+        "mml": "itsi/dissolving/how-does-salt-dissolve-in-water$0.mml",
+        "json": "converted/itsi/dissolving/how-does-salt-dissolve-in-water$0.json"
+      },
+      {
+        "name": "impact-of-heating",
+        "path": "itsi/dissolving/",
+        "cml": "itsi/dissolving/impact-of-heating.cml",
+        "mml": "itsi/dissolving/impact-of-heating$0.mml",
+        "json": "converted/itsi/dissolving/impact-of-heating$0.json"
+      },
+      {
+        "name": "mixing-polar-and-non-polar",
+        "path": "itsi/dissolving/",
+        "cml": "itsi/dissolving/mixing-polar-and-non-polar.cml",
+        "mml": "itsi/dissolving/mixing-polar-and-non-polar$0.mml",
+        "json": "converted/itsi/dissolving/mixing-polar-and-non-polar$0.json"
+      },
+      {
+        "name": "polarity-of-molecules",
+        "path": "itsi/dissolving/",
+        "cml": "itsi/dissolving/polarity-of-molecules.cml",
+        "mml": "itsi/dissolving/polarity-of-molecules$0.mml",
+        "json": "converted/itsi/dissolving/polarity-of-molecules$0.json"
+      },
+      {
+        "name": "temperature-affects-dissolving",
+        "path": "itsi/dissolving/",
+        "cml": "itsi/dissolving/temperature-affects-dissolving.cml",
+        "mml": "itsi/dissolving/temperature-affects-dissolving$0.mml",
+        "json": "converted/itsi/dissolving/temperature-affects-dissolving$0.json"
+      },
+      {
+        "name": "what-is-salt",
+        "path": "itsi/dissolving/",
+        "cml": "itsi/dissolving/what-is-salt.cml",
+        "mml": "itsi/dissolving/what-is-salt$0.mml",
+        "json": "converted/itsi/dissolving/what-is-salt$0.json"
+      }
+    ]
+  },
+  {
+    "section": "itsi/stoichiometry",
+    "content": [
+      {
+        "name": "choosing-a-reaction",
+        "path": "itsi/stoichiometry/",
+        "cml": "itsi/stoichiometry/choosing-a-reaction.cml",
+        "mml": "itsi/stoichiometry/choosing-a-reaction$0.mml",
+        "json": "converted/itsi/stoichiometry/choosing-a-reaction$0.json"
+      },
+      {
+        "name": "constructing-a-larger-number-of-water-molecules",
+        "path": "itsi/stoichiometry/",
+        "cml": "itsi/stoichiometry/constructing-a-larger-number-of-water-molecules.cml",
+        "mml": "itsi/stoichiometry/constructing-a-larger-number-of-water-molecules$0.mml",
+        "json": "converted/itsi/stoichiometry/constructing-a-larger-number-of-water-molecules$0.json"
+      },
+      {
+        "name": "constructucting-water-molecules",
+        "path": "itsi/stoichiometry/",
+        "cml": "itsi/stoichiometry/constructucting-water-molecules.cml",
+        "mml": "itsi/stoichiometry/constructucting-water-molecules$0.mml",
+        "json": "converted/itsi/stoichiometry/constructucting-water-molecules$0.json"
+      },
+      {
+        "name": "correct-ratio-of-hydrogen-and-oxygen",
+        "path": "itsi/stoichiometry/",
+        "cml": "itsi/stoichiometry/correct-ratio-of-hydrogen-and-oxygen.cml",
+        "mml": "itsi/stoichiometry/correct-ratio-of-hydrogen-and-oxygen$0.mml",
+        "json": "converted/itsi/stoichiometry/correct-ratio-of-hydrogen-and-oxygen$0.json"
+      },
+      {
+        "name": "getting-ratios-right",
+        "path": "itsi/stoichiometry/",
+        "cml": "itsi/stoichiometry/getting-ratios-right.cml",
+        "mml": "itsi/stoichiometry/getting-ratios-right$0.mml",
+        "json": "converted/itsi/stoichiometry/getting-ratios-right$0.json"
+      },
+      {
+        "name": "most-ammonia-molecules",
+        "path": "itsi/stoichiometry/",
+        "cml": "itsi/stoichiometry/most-ammonia-molecules.cml",
+        "mml": "itsi/stoichiometry/most-ammonia-molecules$0.mml",
+        "json": "converted/itsi/stoichiometry/most-ammonia-molecules$0.json"
       }
     ]
   },
@@ -7598,6 +7944,13 @@ modelList = [
         "json": "converted/conversion-and-physics-examples/quantum-emission$0.json"
       },
       {
+        "name": "radial-bonds-rendering",
+        "path": "conversion-and-physics-examples/",
+        "cml": "conversion-and-physics-examples/radial-bonds-rendering.cml",
+        "mml": "conversion-and-physics-examples/radial-bonds-rendering$0.mml",
+        "json": "converted/conversion-and-physics-examples/radial-bonds-rendering$0.json"
+      },
+      {
         "name": "rectangle",
         "path": "conversion-and-physics-examples/",
         "cml": "conversion-and-physics-examples/rectangle.cml",
@@ -7638,6 +7991,81 @@ modelList = [
         "cml": "conversion-and-physics-examples/visible-and-invisible.cml",
         "mml": "conversion-and-physics-examples/visible-and-invisible$0.mml",
         "json": "converted/conversion-and-physics-examples/visible-and-invisible$0.json"
+      }
+    ]
+  },
+  {
+    "section": "conversion-and-physics-examples/chemical-reactions",
+    "content": [
+      {
+        "name": "bonds-exchange",
+        "path": "conversion-and-physics-examples/chemical-reactions/",
+        "cml": "conversion-and-physics-examples/chemical-reactions/bonds-exchange.cml",
+        "mml": "conversion-and-physics-examples/chemical-reactions/bonds-exchange$0.mml",
+        "json": "converted/conversion-and-physics-examples/chemical-reactions/bonds-exchange$0.json"
+      },
+      {
+        "name": "chemreact-page1",
+        "path": "conversion-and-physics-examples/chemical-reactions/",
+        "cml": "conversion-and-physics-examples/chemical-reactions/chemreact-page1.cml",
+        "mml": "conversion-and-physics-examples/chemical-reactions/chemreact-page1$0.mml",
+        "json": "converted/conversion-and-physics-examples/chemical-reactions/chemreact-page1$0.json"
+      },
+      {
+        "name": "chemreact-page6-1",
+        "path": "conversion-and-physics-examples/chemical-reactions/",
+        "cml": "conversion-and-physics-examples/chemical-reactions/chemreact-page6.cml",
+        "mml": "conversion-and-physics-examples/chemical-reactions/chemreact-page6$0.mml",
+        "json": "converted/conversion-and-physics-examples/chemical-reactions/chemreact-page6$0.json"
+      },
+      {
+        "name": "chemreact-page6-2",
+        "path": "conversion-and-physics-examples/chemical-reactions/",
+        "cml": "conversion-and-physics-examples/chemical-reactions/chemreact-page6.cml",
+        "mml": "conversion-and-physics-examples/chemical-reactions/chemreact-page6$1.mml",
+        "json": "converted/conversion-and-physics-examples/chemical-reactions/chemreact-page6$1.json"
+      },
+      {
+        "name": "correct-ratio-of-hydrogen-and-oxygen",
+        "path": "conversion-and-physics-examples/chemical-reactions/",
+        "cml": "conversion-and-physics-examples/chemical-reactions/correct-ratio-of-hydrogen-and-oxygen.cml",
+        "mml": "conversion-and-physics-examples/chemical-reactions/correct-ratio-of-hydrogen-and-oxygen$0.mml",
+        "json": "converted/conversion-and-physics-examples/chemical-reactions/correct-ratio-of-hydrogen-and-oxygen$0.json"
+      },
+      {
+        "name": "double-and-triple-bonds",
+        "path": "conversion-and-physics-examples/chemical-reactions/",
+        "cml": "conversion-and-physics-examples/chemical-reactions/double-and-triple-bonds.cml",
+        "mml": "conversion-and-physics-examples/chemical-reactions/double-and-triple-bonds$0.mml",
+        "json": "converted/conversion-and-physics-examples/chemical-reactions/double-and-triple-bonds$0.json"
+      },
+      {
+        "name": "hydrogen-oxygen-reaction",
+        "path": "conversion-and-physics-examples/chemical-reactions/",
+        "cml": "conversion-and-physics-examples/chemical-reactions/hydrogen-oxygen-reaction.cml",
+        "mml": "conversion-and-physics-examples/chemical-reactions/hydrogen-oxygen-reaction$0.mml",
+        "json": "converted/conversion-and-physics-examples/chemical-reactions/hydrogen-oxygen-reaction$0.json"
+      },
+      {
+        "name": "polymersPage4-1",
+        "path": "conversion-and-physics-examples/chemical-reactions/",
+        "cml": "conversion-and-physics-examples/chemical-reactions/polymersPage4.cml",
+        "mml": "conversion-and-physics-examples/chemical-reactions/polymersPage4$0.mml",
+        "json": "converted/conversion-and-physics-examples/chemical-reactions/polymersPage4$0.json"
+      },
+      {
+        "name": "polymersPage4-2",
+        "path": "conversion-and-physics-examples/chemical-reactions/",
+        "cml": "conversion-and-physics-examples/chemical-reactions/polymersPage4.cml",
+        "mml": "conversion-and-physics-examples/chemical-reactions/polymersPage4$1.mml",
+        "json": "converted/conversion-and-physics-examples/chemical-reactions/polymersPage4$1.json"
+      },
+      {
+        "name": "simplest-free-radical-reaction",
+        "path": "conversion-and-physics-examples/chemical-reactions/",
+        "cml": "conversion-and-physics-examples/chemical-reactions/simplest-free-radical-reaction.cml",
+        "mml": "conversion-and-physics-examples/chemical-reactions/simplest-free-radical-reaction$0.mml",
+        "json": "converted/conversion-and-physics-examples/chemical-reactions/simplest-free-radical-reaction$0.json"
       }
     ]
   }

@@ -22,6 +22,8 @@
   "DNAState": "dna",
   "DNA": "",
   "DNAMutations": true,
+  "useQuantumDynamics": false,
+  "useChemicalReactions": true,
   "viewOptions": {
     "viewPortWidth": 3.5,
     "viewPortHeight": 2.5,
@@ -64,6 +66,7 @@
         "y": 2.35,
         "layer": 2,
         "color": "rgb(153,0,0)",
+        "fontSize": 0.16,
         "anchor": "upper-left"
       }
     ],
@@ -110,7 +113,7 @@
       -0.1071428582072258,
       -0.09285714477300644,
       -0.1,
-      -5
+      -0.1
     ],
     "color": [
       -855310,
@@ -571,6 +574,81 @@
       0,
       0
     ],
+    "radical": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
     "element": [
       1,
       2,
@@ -943,5 +1021,23 @@
     "visible": [
       true
     ]
+  },
+  "chemicalReactions": {
+    "valenceElectrons": [
+      1,
+      1,
+      7,
+      7
+    ],
+    "bondEnergy": {
+      "default": 6,
+      "0-0": 4,
+      "1-1": 4,
+      "2-2": 4,
+      "3-3": 4
+    },
+    "activationEnergy": {
+      "default": 0.2
+    }
   }
 }

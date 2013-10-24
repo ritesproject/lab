@@ -1,4 +1,4 @@
-/*global Lab, _, $, jQuery, d3, Shutterbug, CodeMirror, controllers, alert, model, modelList, benchmark, _gaq, DEVELOPMENT: true, AUTHORING: true */
+/*global Lab, _, $, jQuery, d3, Shutterbug, CodeMirror, controllers, alert, modelList, benchmark, _gaq, DEVELOPMENT: true, AUTHORING: true */
 /*jshint boss:true */
 
 // Strawman setting for telling the interactive to be in "author mode",
@@ -43,10 +43,10 @@ AUTHORING = false;
       interactiveUrl,
       interactive,
       hash,
+      model,
 
       editor,
       modelEditor,
-      modelJson,
 
       jsonModelPath,
       $jsonModelLink = $("#json-model-link"),
@@ -165,6 +165,7 @@ AUTHORING = false;
       // instance of the Interactive now.
       controller = new Lab.InteractivesController(interactiveUrl, '#interactive-container');
       controller.on("modelLoaded", function() {
+        model = controller.getModel();
         interactive = controller.serialize();
         setupFullPage();
       });
@@ -266,17 +267,19 @@ AUTHORING = false;
     $jsonModelLink.attr("href", origin + Lab.config.actualRoot + jsonModelPath);
     $jsonModelLink.attr("title", "View model JSON in another window");
 
-    // construct link to DataGames embeddable version of Interactive
-    dgGameSpecification = JSON.stringify([{
-      "name": $selectInteractive.find("option:selected").text(),
-      "dimensions": {
-        "width": 600,
-        "height":400
-      },
-      "url": Lab.config.dataGamesProxyPrefix + "embeddable.html#" +  interactiveUrl
-    }]);
+    if (Lab.config.dataGamesProxyPrefix) {
+      // construct link to DataGames embeddable version of Interactive
+      dgGameSpecification = JSON.stringify([{
+        "name": $selectInteractive.find("option:selected").text(),
+        "dimensions": {
+          "width": 600,
+          "height":400
+        },
+        "url": Lab.config.dataGamesProxyPrefix + "embeddable.html#" +  interactiveUrl
+      }]);
+    }
 
-    if (Lab.config.static) {
+    if (Lab.config.static || !Lab.config.dataGamesProxyPrefix) {
       $dataGamesLink.hide();
       $dataGamesStagingLink.hide();
     } else {
@@ -776,67 +779,64 @@ AUTHORING = false;
         $modelTextArea = $("#model-text-area"),
         $modelEditorContent = $("#model-editor-content"),
         modelButtonHandlersAdded,
-        foldFunc = CodeMirror.newFoldFunction(CodeMirror.braceRangeFinder);
+        foldFunc = CodeMirror.newFoldFunction(CodeMirror.braceRangeFinder),
+        modelJson;
 
-    if (typeof modelJson === 'undefined') {
-      $.get(Lab.config.actualRoot + interactive.models[0].url).done(function(results) {
-        if (typeof results === 'string') results = JSON.parse(results);
-        modelJson = results;
-        $modelTextArea.text(JSON.stringify(modelJson, null, indent));
-        if (!modelEditor) {
-          modelEditor = CodeMirror.fromTextArea($modelTextArea.get(0), {
-            mode: { name: "javascript", json: true },
-            indentUnit: indent,
-            lineNumbers: true,
-            lineWrapping: false,
-            onGutterClick: foldFunc
-          });
-        } else {
-          modelEditor.setValue(JSON.stringify(modelJson, null, indent));
+    function serializeModelAndUpdateEditor() {
+      var modelState;
+      if(isFullPage()) {
+        modelState = controller.modelController.state();
+        modelEditor.setValue(JSON.stringify(modelState, null, indent));
+      } else {
+        iframePhone.post({ type:'getModelState' });
+        iframePhone.addListener('modelState', function(message) {
+          modelEditor.setValue(JSON.stringify(message, null, indent));
+        });
+      }
+    }
+
+    if (!modelEditor) {
+      modelEditor = CodeMirror.fromTextArea($modelTextArea.get(0), {
+        mode: { name: "javascript", json: true },
+        indentUnit: indent,
+        lineNumbers: true,
+        lineWrapping: false,
+        onGutterClick: foldFunc
+      });
+    }
+
+    serializeModelAndUpdateEditor();
+
+    if (!modelButtonHandlersAdded) {
+      modelButtonHandlersAdded = true;
+
+      $updateModelButton.on('click', function() {
+        try {
+          modelJson = JSON.parse(modelEditor.getValue());
+        } catch (e) {
+          alert("Model JSON syntax error: " + e.message);
+          throw new Error("Model JSON syntax error: " + e.message);
         }
-        if (!modelButtonHandlersAdded) {
-          modelButtonHandlersAdded = true;
-
-          $updateModelButton.on('click', function() {
-            try {
-              modelJson = JSON.parse(modelEditor.getValue());
-            } catch (e) {
-              alert("Model JSON syntax error: " + e.message);
-              throw new Error("Model JSON syntax error: " + e.message);
-            }
-            if(isFullPage()) {
-              controller.loadModel(interactive.models[0].id, modelJson);
-            } else {
-              iframePhone.post({ type:'loadModel', data: { modelId: interactive.models[0].id, modelObject: modelJson } });
-            }
-          });
-
-          $autoFormatModelJsonButton.on('click', function() {
-            autoFormatEditorContent(modelEditor);
-          });
-
-          $updateJsonFromModelButton.on('click', function() {
-            var modelState;
-            if(isFullPage()) {
-              modelState = controller.getModelController().state();
-              modelEditor.setValue(JSON.stringify(modelState, null, indent));
-            } else {
-              iframePhone.post({ type:'getModelState' });
-              iframePhone.addListener('modelState', function(message) {
-                modelEditor.setValue(JSON.stringify(message, null, indent));
-              });
-            }
-          });
-
-          $showModelEditor.change(function() {
-            if (this.checked) {
-              $modelEditorContent.show(100);
-            } else {
-              $modelEditorContent.hide(100);
-            }
-          }).change();
+        if(isFullPage()) {
+          controller.loadModel(interactive.models[0].id, modelJson);
+        } else {
+          iframePhone.post({ type:'loadModel', data: { modelId: interactive.models[0].id, modelObject: modelJson } });
         }
       });
+
+      $autoFormatModelJsonButton.on('click', function() {
+        autoFormatEditorContent(modelEditor);
+      });
+
+      $updateJsonFromModelButton.on('click', serializeModelAndUpdateEditor);
+
+      $showModelEditor.change(function() {
+        if (this.checked) {
+          $modelEditorContent.show(100);
+        } else {
+          $modelEditorContent.hide(100);
+        }
+      }).change();
     }
   }
 
@@ -874,10 +874,24 @@ AUTHORING = false;
   //
   // Benchmarks
   //
+  function getFingerprint() {
+    if (Lab.config.environment == 'production') {
+      // fake fingerprint on production because library won't be loaded
+      return "mock fingerprint";
+    } else {
+      return new Fingerprint().get(); // semi-unique browser id
+    }
+  }
+
   function setupBenchmarks() {
     var $showBenchmarks = $("#show-benchmarks"),
         $benchmarksContent = $("#benchmarks-content"),
-        $runBenchmarksButton = $("#run-benchmarks-button");
+        $runBenchmarksButton = $("#run-benchmarks-button"),
+        $submitBenchmarksButton = $("#submit-benchmarks-button"),
+        $submissionInfo = $("#browser-submission-info"),
+        $showSubmissionInfo = $("#show-browser-submission-info"),
+        $browserFingerprint = $("#browser-fingerprint"),
+        fingerprint = getFingerprint();
 
     $showBenchmarks.change(function() {
       if (this.checked) {
@@ -894,8 +908,12 @@ AUTHORING = false;
       var modelController,
           benchmarksTable = document.getElementById("model-benchmark-results");
 
+      if (!$showBenchmarks.prop("checked")) {
+        $("#show-benchmarks").prop("checked", true).change();
+      }
+
       if(isFullPage()) {
-        modelController = controller.getModelController();
+        modelController = controller.modelController;
         // Run interactive benchmarks + model benchmarks.
         Lab.benchmark.run(controller.benchmarks.concat(modelController.benchmarks),
           benchmarksTable,
@@ -908,6 +926,36 @@ AUTHORING = false;
           Lab.benchmark.renderToTable(benchmarksTable, message.benchmarks, message.results);
         });
       }
+
+      if (Lab.config.benchmarkAPIurl) {
+        $submitBenchmarksButton.removeAttr("disabled");
+      }
+    });
+
+    $browserFingerprint.text(fingerprint);
+
+    $showSubmissionInfo.on('click', function() {
+      $submissionInfo.toggle();
+      return false;
+    });
+
+    $submitBenchmarksButton.on('click', function() {
+      var data = {},
+          headers = headers = $('#model-benchmark-results th');
+
+      // create data object directly from the table element
+      headers.each(function(i) {
+        data[this.innerHTML] = $('#model-benchmark-results tr.average td:nth-child('+(i+1)+')').text()
+      });
+
+      data["browser id"] = fingerprint;
+
+      $.ajax({
+        type: "POST",
+        url: Lab.config.benchmarkAPIurl,
+        data: data,
+        complete: function() { $('#submit-success').text("Sent!"); }
+      });
     });
   }
 
@@ -1318,12 +1366,30 @@ AUTHORING = false;
     }
 
     function addEventListeners() {
-      model.on("tick.dataTable", renderModelDatatable);
-      model.on('play.dataTable', renderModelDatatable);
-      model.on('reset.dataTable', renderModelDatatable);
-      model.on('seek.dataTable', renderModelDatatable);
-      model.on('stepForward.dataTable', renderModelDatatable);
-      model.on('stepBack.dataTable', renderModelDatatable);
+      model.on("tick.dataTable", function() {
+        renderModelDatatable();
+      });
+      model.on('play.dataTable', function() {
+        renderModelDatatable();
+      });
+      model.on('reset.dataTable', function() {
+        renderModelDatatable(true);
+      });
+      model.on('seek.dataTable', function() {
+        renderModelDatatable();
+      });
+      model.on('stepForward.dataTable', function() {
+        renderModelDatatable();
+      });
+      model.on('stepBack.dataTable', function() {
+        renderModelDatatable();
+      });
+      model.on('addAtom.dataTable', function() {
+        renderModelDatatable(true);
+      });
+      model.on('removeAtom.dataTable', function() {
+        renderModelDatatable(true);
+      });
     }
 
     function removeEventListeners() {
@@ -1333,6 +1399,8 @@ AUTHORING = false;
       model.on('seek.dataTable', null);
       model.on('stepForward.dataTable', null);
       model.on('stepBack.dataTable', null);
+      model.on('addAtom.dataTable', null);
+      model.on('removeAtom.dataTable', null);
     }
 
     // Initialization
@@ -1340,7 +1408,7 @@ AUTHORING = false;
       if (this.checked) {
         addEventListeners();
         $modelDatatableContent.show(100);
-        renderModelDatatable();
+        renderModelDatatable(true);
       } else {
         removeEventListeners();
         $modelDatatableContent.hide(100);

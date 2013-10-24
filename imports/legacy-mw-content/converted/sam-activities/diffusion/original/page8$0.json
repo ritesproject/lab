@@ -22,6 +22,8 @@
   "DNAState": "dna",
   "DNA": "",
   "DNAMutations": true,
+  "useQuantumDynamics": false,
+  "useChemicalReactions": false,
   "viewOptions": {
     "viewPortWidth": 5,
     "viewPortHeight": 2.5,
@@ -81,6 +83,7 @@
         "y": 2.36,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.12,
         "calloutPoint": [
           2.38,
           1.61
@@ -94,6 +97,7 @@
         "y": 0.7,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.12,
         "calloutPoint": [
           1.04,
           0.02
@@ -107,6 +111,7 @@
         "y": 0.7,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.12,
         "calloutPoint": [
           3.94,
           0.03
@@ -158,7 +163,7 @@
       -0.009999999776482582,
       -0.1,
       -0.1,
-      -5
+      -0.1
     ],
     "color": [
       -65536,

@@ -432,21 +432,21 @@ define('lab.config',['require','common/actual-root'],function (require) {
   var actualRoot = require('common/actual-root'),
       publicAPI;
   publicAPI = {
-  "static": false,
   "sharing": true,
   "logging": true,
   "tracing": false,
-  "home": "http://lab.concord.org",
-  "homeForSharing": "http://lab.concord.org",
-  "homeInteractivePath": "/interactive.html",
-  "homeEmbeddablePath": "/embeddable.html",
+  "home": "http://lab.ritesproject.net",
+  "homeForSharing": null,
+  "homeInteractivePath": "/examples/interactives/interactive.html",
+  "homeEmbeddablePath": "/examples/interactives/embeddable.html",
+  "benchmarkAPIurl": "https://script.google.com/macros/s/AKfycbzosXAVPdVRFUrF6FRI42dzQb2IGLnF9GlIbj9gUpeWpXALKgM/exec",
+  "actualRoot": "",
   "utmCampaign": null,
   "fontface": "Lato",
-  "hostName": "lab.dev.concord.org",
-  "dataGamesProxyPrefix": "DataGames/Games/concord/lab/",
+  "hostName": "localhost:9292",
   "authoring": false,
-  "actualRoot": "",
-  "environment": "development"
+  "environment": "development",
+  "static": false
 };
   publicAPI.actualRoot = actualRoot;
   return publicAPI;
@@ -556,11 +556,15 @@ define('import-export/dg-exporter',['require','common/console'],function(require
     },
 
     isDgGameControllerDefined: function() {
-      return !!(window.parent && window.parent.DG && window.parent.DG.currGameController);
+      if (Lab.config.dataGamesProxyPrefix) {
+        return !!(window.parent && window.parent.DG && window.parent.DG.currGameController);
+      } else {
+        return false;
+      }
     },
 
     // Synonym...
-    isExportAvailable: function() {
+    canExportData: function() {
       return this.isDgGameControllerDefined();
     },
 

@@ -21,6 +21,8 @@
   "DNAState": "dna",
   "DNA": "",
   "DNAMutations": true,
+  "useQuantumDynamics": false,
+  "useChemicalReactions": false,
   "viewOptions": {
     "viewPortWidth": 7,
     "viewPortHeight": 2.5,
@@ -44,30 +46,19 @@
     "electricFieldDensity": 18,
     "electricFieldColor": "auto",
     "showAtomTrace": false,
-    "images": [],
-    "imageMapping": {},
-    "textBoxes": [
+    "images": [
       {
-        "text": "Target\nArea",
-        "x": 6.17,
-        "y": 0.45,
-        "layer": 1,
-        "frame": "rounded rectangle",
-        "calloutPoint": [
-          6.5,
-          0.51
-        ],
-        "backgroundColor": "rgb(0,255,0)",
-        "anchor": "upper-left"
-      },
-      {
-        "text": "10",
-        "x": 5.93,
-        "y": 1.09,
-        "layer": 1,
-        "anchor": "upper-left"
+        "imageUri": "target.png",
+        "imageHostIndex": 0,
+        "imageHostType": "",
+        "imageLayer": 2,
+        "imageLayerPosition": 1,
+        "imageX": 6.09,
+        "imageY": 1.22
       }
     ],
+    "imageMapping": {},
+    "textBoxes": [],
     "xlabel": false,
     "ylabel": false,
     "xunits": false,
@@ -111,7 +102,7 @@
       -0.1,
       -0.1,
       -0.1,
-      -5
+      -0.1
     ],
     "color": [
       -855310,

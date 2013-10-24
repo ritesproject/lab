@@ -21,6 +21,8 @@
   "DNAState": "dna",
   "DNA": "",
   "DNAMutations": true,
+  "useQuantumDynamics": false,
+  "useChemicalReactions": false,
   "viewOptions": {
     "viewPortWidth": 5,
     "viewPortHeight": 2.5,
@@ -53,6 +55,7 @@
         "y": 2.23,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.11,
         "calloutPoint": [
           2.97,
           2.88
@@ -66,6 +69,7 @@
         "y": 2.4,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.11,
         "calloutPoint": [
           1.11,
           2.5
@@ -78,6 +82,7 @@
         "y": 1.15,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.11,
         "calloutPoint": [
           0.87,
           0.02
@@ -90,6 +95,7 @@
         "y": 0.62,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.11,
         "calloutPoint": [
           0.21,
           0.22
@@ -102,6 +108,7 @@
         "y": 1.37,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.11,
         "calloutPoint": [
           4.79,
           1.23
@@ -115,6 +122,7 @@
         "layer": 1,
         "frame": "rounded rectangle",
         "color": "rgb(128,128,128)",
+        "fontSize": 0.11,
         "backgroundColor": "rgb(204,204,255)",
         "anchor": "upper-left"
       },
@@ -123,6 +131,7 @@
         "x": 1.74,
         "y": 1.57,
         "layer": 1,
+        "fontSize": 0.14,
         "anchor": "upper-left"
       },
       {
@@ -131,6 +140,7 @@
         "y": 0.52,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.11,
         "calloutPoint": [
           2.46,
           0.01
@@ -143,6 +153,7 @@
         "y": 0.52,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.11,
         "calloutPoint": [
           2.07,
           0.02
@@ -155,6 +166,7 @@
         "y": 0.51,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.11,
         "calloutPoint": [
           1.45,
           0.03
@@ -205,7 +217,7 @@
       -0.1,
       -0.1,
       -0.1,
-      -5
+      -0.1
     ],
     "color": [
       -855310,

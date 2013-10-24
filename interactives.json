@@ -138,6 +138,16 @@
       "publicationStatus": "public"
     },
     {
+      "title": "Image Property Manipulation",
+      "path": "interactives/basic-examples/image-properties.json",
+      "groupKey": "basic-examples",
+      "subtitle": "Demonstration of how to get and set image properties",
+      "about": [
+
+      ],
+      "publicationStatus": "public"
+    },
+    {
       "title": "Interactive Components",
       "path": "interactives/basic-examples/interactive-components.json",
       "groupKey": "basic-examples",
@@ -272,6 +282,39 @@
       "publicationStatus": "public"
     },
     {
+      "title": "Pendulum: rod length and graph",
+      "path": "interactives/basic-examples/pendulum-and-graph.json",
+      "groupKey": "basic-examples",
+      "subtitle": "Explore how rod length affects the period of a pendulum.",
+      "about": [
+
+      ],
+      "publicationStatus": "public",
+      "aspectRatio": 1.8
+    },
+    {
+      "title": "Pendulum: rod length table, and graph",
+      "path": "interactives/basic-examples/pendulum-and-table-and-graph.json",
+      "groupKey": "basic-examples",
+      "subtitle": "Explore how rod length affects the period of a pendulum.",
+      "about": [
+
+      ],
+      "publicationStatus": "public",
+      "aspectRatio": 1.5
+    },
+    {
+      "title": "Pendulum: rod length and graph",
+      "path": "interactives/basic-examples/pendulum-and-table.json",
+      "groupKey": "basic-examples",
+      "subtitle": "Explore how rod length affects the period of a pendulum.",
+      "about": [
+
+      ],
+      "publicationStatus": "public",
+      "aspectRatio": 1.8
+    },
+    {
       "title": "Performance Tuning for Slow Computers",
       "path": "interactives/basic-examples/performance-tuning-for-slow-computers.json",
       "groupKey": "basic-examples",
@@ -380,6 +423,22 @@
       "publicationStatus": "public"
     },
     {
+      "title": "Extra Heavy Script",
+      "path": "interactives/benchmarks/10-extra-heavy-script.json",
+      "groupKey": "benchmarks",
+      "subtitle": "Simple model and rendering, but the script is extremely time consuming.",
+      "about": "",
+      "publicationStatus": "public"
+    },
+    {
+      "title": "Atoms Versus FPS",
+      "path": "interactives/benchmarks/11-atoms-versus-fps.json",
+      "groupKey": "benchmarks",
+      "subtitle": "Demo showing how many atoms md2d can handle",
+      "about": "",
+      "publicationStatus": "public"
+    },
+    {
       "title": "Oil and Water",
       "path": "interactives/benchmarks/2-oil-and-water-shake.json",
       "groupKey": "benchmarks",
@@ -401,7 +460,7 @@
       "groupKey": "benchmarks",
       "subtitle": "17 molecules created from 51 atoms using 34 radial and 17 angular bonds and displaying VDW lines",
       "about": "",
-      "publicationStatus": "draft"
+      "publicationStatus": "public"
     },
     {
       "title": "100 Charged Atoms, run 10s",
@@ -423,6 +482,22 @@
         "This model has 100 charged atoms, this means that the modeling engine spends proportionally more time calculating pairwise forces for the long-range Coulomb forces than in some of the other models.",
         "Since there are no bonds and no display of VDW lines the view is less computationaly intensive than other benchmarks."
       ],
+      "publicationStatus": "public"
+    },
+    {
+      "title": "200 Atoms with KE Shading",
+      "path": "interactives/benchmarks/5-200-atoms-ke-shading.json",
+      "groupKey": "benchmarks",
+      "subtitle": "200 unbonded atoms: benchmarking KE shading.",
+      "about": "",
+      "publicationStatus": "public"
+    },
+    {
+      "title": "200 Atoms",
+      "path": "interactives/benchmarks/5-200-atoms.json",
+      "groupKey": "benchmarks",
+      "subtitle": "200 unbonded atoms: benchmarking simple rendering.",
+      "about": "",
       "publicationStatus": "public"
     },
     {
@@ -450,6 +525,40 @@
         "Explore the role of hydrophobic and hydrophilic interactions in protein folding. Generate a random peptide string and watch how it folds in an aqueous environment. Change the solvent to see what happens if the peptide is in an oily environment or a vacuum instead of an aqueous environment."
       ],
       "publicationStatus": "public"
+    },
+    {
+      "title": "Seeing Specific Heat and Latent Heat",
+      "path": "interactives/benchmarks/9-latent-heat.json",
+      "groupKey": "benchmarks",
+      "subtitle": "Seeing Specific Heat and Latent Heat in a Melting Experiment",
+      "about": [
+        "Specific heat capacity is the measure of the heat energy required",
+        "to raise the temperature of a given quantity of a substance by one",
+        "kelvin. Latent heat of melting describes tœhe amount of heat",
+        "required to melt a solid. When a solid is undergoing melting, the",
+        "temperature basically remains constant until the entire solid is",
+        "molten. The above simulation demonstrates the specific heat and",
+        "the latent heat.",
+        "",
+        "The physical origin of latent heat is that when a system is in a",
+        "phase transition, its structure will change. Changing structure",
+        "usually results in changes of potential energy, because potential",
+        "energy depends primarily on structure. In the simulation,",
+        "the energy added to the system is absorbed by the atoms and used",
+        "to break the interatomic interactions (so that they can leave the",
+        "condensed state). During the phase transition the kinetic energy",
+        "doesn't increase, as the",
+        "potential energy increases in the expense of the input energy.",
+        "During this period, the interatomic interactions diminish and the",
+        "structure breaks up, resulting in a phase transition.",
+        "",
+        "One thing you would notice is that the temperature-energy curve on",
+        "the right has fluctuations. This is because we have much fewer",
+        "atoms (169) in the simulation than there would be in a real",
+        "physical model."
+      ],
+      "publicationStatus": "public",
+      "aspectRatio": 2.1
     },
     {
       "title": "Amino Acids Momentum Test",
@@ -501,6 +610,14 @@
     {
       "title": "Angular Bonds",
       "path": "interactives/conversion-tests/angular-bonds.json",
+      "groupKey": "conversion-tests",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "public"
+    },
+    {
+      "title": "Custom Arrowheads",
+      "path": "interactives/conversion-tests/arrowheads.json",
       "groupKey": "conversion-tests",
       "subtitle": "",
       "about": "",
@@ -803,20 +920,20 @@
       "publicationStatus": "public"
     },
     {
+      "title": "Radial Bonds Types",
+      "path": "interactives/conversion-tests/radial-bonds-rendering.json",
+      "groupKey": "conversion-tests",
+      "subtitle": "Demonstrates visualization of single, double and triple radial bonds.",
+      "about": "",
+      "publicationStatus": "public"
+    },
+    {
       "title": "Rectangles",
       "path": "interactives/conversion-tests/rectangle.json",
       "groupKey": "conversion-tests",
       "subtitle": "",
       "about": "",
       "publicationStatus": "public"
-    },
-    {
-      "title": "Shifted Arroheads",
-      "path": "interactives/conversion-tests/shifted-arrowheads.json",
-      "groupKey": "conversion-tests",
-      "subtitle": "",
-      "about": "This is just to show how the arrowheads need to be shifted.",
-      "publicationStatus": "draft"
     },
     {
       "title": "Single Image on an Atom",
@@ -885,6 +1002,134 @@
         "You can enable or disable visibility of the larger yellow atoms using the pull-down menu selection"
       ],
       "publicationStatus": "public"
+    },
+    {
+      "title": "Bonds Exchange",
+      "path": "interactives/conversion-tests/chemical-reactions/bonds-exchange.json",
+      "groupKey": "conversion-tests/chemical-reactions",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "chemreact-page1",
+      "path": "interactives/conversion-tests/chemical-reactions/chemreact-page1.json",
+      "groupKey": "conversion-tests/chemical-reactions",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "chemreact-page6$1",
+      "path": "interactives/conversion-tests/chemical-reactions/chemreact-page6$1.json",
+      "groupKey": "conversion-tests/chemical-reactions",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "chemreact-page6",
+      "path": "interactives/conversion-tests/chemical-reactions/chemreact-page6.json",
+      "groupKey": "conversion-tests/chemical-reactions",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "Chemical Reactions and Stoichiometry: Getting the ratios right.",
+      "path": "interactives/conversion-tests/chemical-reactions/correct-ratio-of-hydrogen-and-oxygen.json",
+      "groupKey": "conversion-tests/chemical-reactions",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "Various Types of Bonds",
+      "path": "interactives/conversion-tests/chemical-reactions/double-and-triple-bonds.json",
+      "groupKey": "conversion-tests/chemical-reactions",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "fourToFour",
+      "path": "interactives/conversion-tests/chemical-reactions/fourToFour.json",
+      "groupKey": "conversion-tests/chemical-reactions",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "hclReaction",
+      "path": "interactives/conversion-tests/chemical-reactions/hclReaction.json",
+      "groupKey": "conversion-tests/chemical-reactions",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "Hydrogen-Oxygen Reaction",
+      "path": "interactives/conversion-tests/chemical-reactions/hydrogen-oxygen-reaction.json",
+      "groupKey": "conversion-tests/chemical-reactions",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "oneToOne",
+      "path": "interactives/conversion-tests/chemical-reactions/oneToOne.json",
+      "groupKey": "conversion-tests/chemical-reactions",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "polymersPage4$1",
+      "path": "interactives/conversion-tests/chemical-reactions/polymersPage4$1.json",
+      "groupKey": "conversion-tests/chemical-reactions",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "polymersPage4",
+      "path": "interactives/conversion-tests/chemical-reactions/polymersPage4.json",
+      "groupKey": "conversion-tests/chemical-reactions",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "Simplest Free Radical Reaction",
+      "path": "interactives/conversion-tests/chemical-reactions/simplest-free-radical-reaction.json",
+      "groupKey": "conversion-tests/chemical-reactions",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "twoToOne",
+      "path": "interactives/conversion-tests/chemical-reactions/twoToOne.json",
+      "groupKey": "conversion-tests/chemical-reactions",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "twoToThree",
+      "path": "interactives/conversion-tests/chemical-reactions/twoToThree.json",
+      "groupKey": "conversion-tests/chemical-reactions",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "twoToTwo",
+      "path": "interactives/conversion-tests/chemical-reactions/twoToTwo.json",
+      "groupKey": "conversion-tests/chemical-reactions",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
     },
     {
       "title": "Mouse Interaction",
@@ -2491,6 +2736,56 @@
       "aspectRatio": 1.6
     },
     {
+      "title": "Pendulum: rod length and mass",
+      "path": "interactives/inquiry-examples/pendulum/2-pendulum-simple1.json",
+      "groupKey": "inquiry-examples/pendulum",
+      "subtitle": "Explore how the factors of rod length and mass affect the period of a pendulum.",
+      "about": [
+        "Adjust the **Rod length**, **Mass of the ball** and **Starting angle** parameters.",
+        "Then click the **Start** button to start an experiment run. Watch the **Pendulum Angle**",
+        "graph to see how the angle of the pendulum changes as it swings back and forth.",
+        "Use the graph to determine the period of the pendulum. Try changing each parameter",
+        "and observe how each one affects the period. Can you explain why?",
+        "",
+        "After closing this window click the **?** help icon in the upper left to find out more."
+      ],
+      "publicationStatus": "public",
+      "aspectRatio": 1.25
+    },
+    {
+      "title": "Pendulum 180: rod length and mass",
+      "path": "interactives/inquiry-examples/pendulum/3-pendulum-simple-180.json",
+      "groupKey": "inquiry-examples/pendulum",
+      "subtitle": "Explore how the factors of starting angles up to 180°, rod length and mass affect the period of a pendulum.",
+      "about": [
+        "Adjust the **Rod length**, **Mass of the ball** and **Starting angle** parameters.",
+        "Then click the **Start** button to start an experiment run. Watch the **Pendulum Angle**",
+        "graph to see how the angle of the pendulum changes as it swings back and forth.",
+        "Use the graph to determine the period of the pendulum. Try changing each parameter",
+        "and observe how each one affects the period. Can you explain why?",
+        "",
+        "After closing this window click the **?** help icon in the upper left to find out more."
+      ],
+      "publicationStatus": "public",
+      "aspectRatio": 1.3
+    },
+    {
+      "title": "Double Pendulum",
+      "path": "interactives/inquiry-examples/pendulum/4-double-pendulum1.json",
+      "groupKey": "inquiry-examples/pendulum",
+      "subtitle": "Explore a double pendulum.",
+      "about": [
+        "Adjust the **Rod length**, **Mass of the ball** and **Starting angle** parameters.",
+        "Then click the **Start** button to start an experiment run. Watch the **Pendulum Angle**",
+        "graph to see how the angle of the pendulum changes as it swings back and forth.",
+        "Use the graph to determine the period of the pendulum. Try changing each parameter",
+        "and observe how each one affects the period. Can you explain why?",
+        "",
+        "After closing this window click the **?** help icon in the upper left to find out more."
+      ],
+      "publicationStatus": "public"
+    },
+    {
       "title": "Pendulum",
       "path": "interactives/inquiry-space/pendulum/1-pendulum.json",
       "groupKey": "inquiry-space/pendulum",
@@ -2540,20 +2835,32 @@
       "aspectRatio": 1.4
     },
     {
-      "title": "act2model",
+      "title": "Distance and Force Magnitude",
       "path": "interactives/interactions/act2model.json",
       "groupKey": "interactions",
-      "subtitle": "",
-      "about": "",
-      "publicationStatus": "draft"
+      "subtitle": "Explore the relationship between the electric field around an object and the forces on charged objects.",
+      "about": [
+        "Control the polarity of the stationary charged object and observe how it affects the electric field around the charged object.",
+        "Add a second charged object and move it around the stationary object.",
+        "Observe how the strength and direction of the forces depends on the charges and distance between the two objects.",
+        "Turn the force and electric field visualizations on and off to see their interactions."
+      ],
+      "publicationStatus": "draft",
+      "aspectRatio": 1.18
     },
     {
-      "title": "amount-charge",
+      "title": "Charge Intensity and Electric Field Force Magnitude",
       "path": "interactives/interactions/amount-charge.json",
       "groupKey": "interactions",
-      "subtitle": "",
-      "about": "",
-      "publicationStatus": "draft"
+      "subtitle": "Manipulate the charge on objects to explore the relationship between the electric field around objects and the forces on objects.",
+      "about": [
+        "Control the amount of chrage on two objects an observe how it affects ",
+        "(1) the electric fields around the charged objects and ",
+        "(2) the strength and direction of the forces acting between the two objects.",
+        "Turn the force and electric field visualizations on and off to see their interactions."
+      ],
+      "publicationStatus": "draft",
+      "aspectRatio": 1.31
     },
     {
       "title": "atomBuilderIons",
@@ -2576,8 +2883,8 @@
       "path": "interactives/interactions/chargeballs.json",
       "groupKey": "interactions",
       "subtitle": "Explore how charged objects interact.",
-      "about": "Change the charge on each ball to positive or negative. Observe how the different charges on each ball affect the relationship between the balls.",
-      "publicationStatus": "draft",
+      "about": "Change the charge on each sphere to positive or negative. Observe how the charges affect the interaction between the spheres.",
+      "publicationStatus": "public",
       "aspectRatio": 1.8
     },
     {
@@ -2621,36 +2928,64 @@
       "publicationStatus": "draft"
     },
     {
-      "title": "forceDirection",
+      "title": "Direction of Force in Electric Fields",
       "path": "interactives/interactions/forceDirection.json",
       "groupKey": "interactions",
-      "subtitle": "",
-      "about": "",
-      "publicationStatus": "draft"
+      "subtitle": "How is the direction of force oriented between charged objects?",
+      "about": [
+        "An electric field is produced by the stationary object in this simulation.",
+        "How does the force on the draggable object change when it is moved around the stationary object?",
+        "How the force affected by the polarity of the charge on the stationary object?",
+        "Use the *trace force vectors* checkbox to help characterize the direction of force arrow when the charged object is in different positions."
+      ],
+      "publicationStatus": "draft",
+      "aspectRatio": 1.6
     },
     {
-      "title": "forceDirectionVDG",
-      "path": "interactives/interactions/forceDirectionVDG.json",
+      "title": "Direction of Force Around a VDG (Negatively Charged)",
+      "path": "interactives/interactions/forceDirectionVDGnegative.json",
       "groupKey": "interactions",
-      "subtitle": "",
-      "about": "",
+      "subtitle": "How is the direction of force oriented between charged objects?",
+      "about": [
+        "The colored arrow indicates the direction of force between the charged object and the VDG.",
+        "How does the orientation of the arrow change as the charged object is moved around?",
+        "Use the *trace force vectors* checkbox to help characterize the direction of force arrow when the charged object is in different positions"
+      ],
       "publicationStatus": "draft"
     },
     {
-      "title": "forceStrengthDirection",
+      "title": "Direction of Force Around a VDG (Positively Charged)",
+      "path": "interactives/interactions/forceDirectionVDGpositive.json",
+      "groupKey": "interactions",
+      "subtitle": "How is the direction of force oriented between charged objects?",
+      "about": [
+        "The colored arrow indicates the direction of force between the charged object and the VDG.",
+        "How does the orientation of the arrow change as the charged object is moved around?",
+        "Use the *trace force vectors* checkbox to help characterize the direction of force arrow when the charged object is in different positions"
+      ],
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "Direction and Strength of Force in Electric Fields",
       "path": "interactives/interactions/forceStrengthDirection.json",
       "groupKey": "interactions",
-      "subtitle": "",
-      "about": "",
+      "subtitle": "Explore the force between charged objects.",
+      "about": [
+        "An electric field is produced by the stationary object in this simulation.",
+        "How does the force on the draggable object change when it is moved around the stationary object?",
+        "How the force affected by the polarity of the charge on the stationary object?",
+        "Use the *trace force vectors* checkbox to help characterize the direction and magnitude of force arrow when the charged object is in different positions."
+      ],
       "publicationStatus": "draft"
     },
     {
-      "title": "mazeGame",
+      "title": "Electrostatics: Maze Game",
       "path": "interactives/interactions/mazeGame.json",
       "groupKey": "interactions",
-      "subtitle": "",
-      "about": "",
-      "publicationStatus": "draft"
+      "subtitle": "Guide a charged object through a maze.",
+      "about": "Control the charge of the gray ball by using the -, 0, and + buttons below the game. Use the attractive and repulsive forces between charged objects to navigate through the maze. Can you get it to the target before time runs out?",
+      "publicationStatus": "public",
+      "aspectRatio": 2.04
     },
     {
       "title": "particle",
@@ -2661,12 +2996,13 @@
       "publicationStatus": "draft"
     },
     {
-      "title": "particleMixing",
+      "title": "Mixing Liquids",
       "path": "interactives/interactions/particleMixing.json",
       "groupKey": "interactions",
-      "subtitle": "",
+      "subtitle": "Explore how liquids mix at the molecular level.",
       "about": "",
-      "publicationStatus": "draft"
+      "publicationStatus": "draft",
+      "aspectRatio": 0.9325
     },
     {
       "title": "rutherford",
@@ -2677,36 +3013,50 @@
       "publicationStatus": "draft"
     },
     {
-      "title": "syringe",
+      "title": "Gas Pressure in a Syringe",
       "path": "interactives/interactions/syringe.json",
       "groupKey": "interactions",
       "subtitle": "",
       "about": "",
-      "publicationStatus": "broken"
+      "publicationStatus": "draft",
+      "aspectRatio": 1.31625
     },
     {
-      "title": "targetFreePlay",
+      "title": "Target Game (Free Play)",
       "path": "interactives/interactions/targetFreePlay.json",
       "groupKey": "interactions",
-      "subtitle": "",
-      "about": "",
-      "publicationStatus": "draft"
+      "subtitle": "Can you steer a charged particle to a target by using charged objects?",
+      "about": [
+        "Use the *Launch a positive particle* button to shoot a positive particle across the game board.",
+        "Place any number of charged objects in any location to steer the positive particle to the target.",
+        "Can you get the charged particle into the target?"
+      ],
+      "publicationStatus": "draft",
+      "aspectRatio": 1.12
     },
     {
-      "title": "targetGameCharge",
+      "title": "Target Game (Charge Magnitude / Force Relationship)",
       "path": "interactives/interactions/targetGameCharge.json",
       "groupKey": "interactions",
-      "subtitle": "",
-      "about": "",
-      "publicationStatus": "draft"
+      "subtitle": "Can you manipulate the amount of charge on charged objects to steer a charged particle to a target?",
+      "about": [
+        "Use the *Launch a positive particle* button to shoot a positive particle across the game board.",
+        "Adjust the amount of charge on objects **A** and **B** to steer the moving particle to the target.",
+        "Can you get the charged particle into the target?"
+      ],
+      "publicationStatus": "draft",
+      "aspectRatio": 1.175
     },
     {
-      "title": "targetGameDist",
+      "title": "Target Game (Distance/Force Relationship)",
       "path": "interactives/interactions/targetGameDist.json",
       "groupKey": "interactions",
-      "subtitle": "",
-      "about": "",
-      "publicationStatus": "draft"
+      "subtitle": "Can you manipulate the position of charged particles to steer another object to a target?",
+      "about": [
+        "Use the *Launch a positive particle* button to shoot a positive particle across the game board.",
+        "Adjust the position of the negatively and positively charged objects to steer the moving particle to the target."
+      ],
+      "publicationStatus": "broken"
     },
     {
       "title": "Molecular Crystal - Compressing a crystal (MOLO)",
@@ -2757,6 +3107,141 @@
       "subtitle": "",
       "about": "",
       "publicationStatus": "draft"
+    },
+    {
+      "title": "how-does-salt-dissolve-in-water",
+      "path": "interactives/itsi/dissolving/how-does-salt-dissolve-in-water.json",
+      "groupKey": "itsi/dissolving",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "impact-of-heating",
+      "path": "interactives/itsi/dissolving/impact-of-heating.json",
+      "groupKey": "itsi/dissolving",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "mixing-polar-and-non-polar",
+      "path": "interactives/itsi/dissolving/mixing-polar-and-non-polar.json",
+      "groupKey": "itsi/dissolving",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "polarity-of-molecules",
+      "path": "interactives/itsi/dissolving/polarity-of-molecules.json",
+      "groupKey": "itsi/dissolving",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "temperature-affects-dissolving",
+      "path": "interactives/itsi/dissolving/temperature-affects-dissolving.json",
+      "groupKey": "itsi/dissolving",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "what-is-salt",
+      "path": "interactives/itsi/dissolving/what-is-salt.json",
+      "groupKey": "itsi/dissolving",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "Convection 4A: Natural convection",
+      "path": "interactives/itsi/energy2d/S4A1.json",
+      "groupKey": "itsi/energy2d",
+      "subtitle": "Which mechanism transfers heat more quickly, conduction or convection?",
+      "about": [
+        "This model has two parts with a warm surface at the bottom. The right-hand side is a solid material",
+        "that happens to have the same conductivity as air. The left-hand side is just air. Warmer air heated",
+        "by the hot surface has a buoyant force upward.",
+        "",
+        "**Your task is to compare the rates of the heat flow from the bottom to the top in the two parts.**",
+        "",
+        "1.  Run the model and note the temperatures measured by the two thermometers.",
+        "2.  When the model stops, write the temperatures measured by the thermometers and the temperature at",
+        "    the bottom heater.",
+        "",
+        "Reset the model. Set the bottom temperature to be **Low** and **High** and repeat steps 1-2, respectively."
+      ],
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "Convection 4B: Slow down convection",
+      "path": "interactives/itsi/energy2d/S4B1.json",
+      "groupKey": "itsi/energy2d",
+      "subtitle": "How can convection be reduced?",
+      "about": [
+        "This model has two compartments with a warm surface at the bottom. In the middle of the",
+        "right-hand compartment there is a barrier.",
+        "",
+        "**Your task is to compare the rates of the convective heat transfer from the bottom to the top in the two compartments.**",
+        "",
+        "1.  Run the model and note the temperatures measured by the two thermometers.",
+        "2.  When the model stops, write the temperatures measured by the thermometers and the temperature at the bottom heater.",
+        "3.  Try changing the location of the barrier or adding more barriers. Click on the barrier to change size, move, or copy it.",
+        "4.  Try to connect what you observe in this model to the attic in a house."
+      ],
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "Convection 4C: Forced convection",
+      "path": "interactives/itsi/energy2d/S4C1.json",
+      "groupKey": "itsi/energy2d",
+      "subtitle": "How does blowing air cool down an object?",
+      "about": [
+        "There are two warm objects in this model, separated by a thin, long insulator in the middle.",
+        "In the upper part, there is a fan blowing from left to right. In the lower part, there is no fan blowing.",
+        "",
+        "1.  Run the model and note the temperatures measured by the two thermometers.",
+        "2.  After the model has run for about 25 model minutes (the time for the model, not real time),",
+        "note the temperatures measured by the thermometers.",
+        "",
+        "Set the wind speed to be **Low** and **High** and repeat steps 1-2, respectively."
+      ],
+      "publicationStatus": "public",
+      "aspectRatio": 1.5
+    },
+    {
+      "title": "Convection 4D: The stack effect",
+      "path": "interactives/itsi/energy2d/S4D1.json",
+      "groupKey": "itsi/energy2d",
+      "subtitle": "Where does the house lose energy?",
+      "about": [
+        "The two rooms each have a heater at the bottom and **leaks** near the top.",
+        "",
+        "1.  Run the model and look for leaking energy.",
+        "2.  Click on the wall and roof elements to change the sizes and locations of the leaks.",
+        "3.  Note the convection pattern in each situation."
+      ],
+      "publicationStatus": "public",
+      "aspectRatio": 1.0
+    },
+    {
+      "title": "Convection 4E: Blowing wind",
+      "path": "interactives/itsi/energy2d/S4E1.json",
+      "groupKey": "itsi/energy2d",
+      "subtitle": "Why should you close the windows in a stormy winter day?",
+      "about": [
+        "This model investigates the effect of wind blowing towards a building. The air currents",
+        "are indicated by arrows and can be shown by streamlines.",
+        "",
+        "1.  Run the model and note the convection and heating patterns both inside and outside the house,",
+        "    heated by a heating board on the floor.",
+        "2.  Change the wind condition and open or close the windows to examine how heat flow will change."
+      ],
+      "publicationStatus": "public",
+      "aspectRatio": 1.0
     },
     {
       "title": "Conduction B - area",
@@ -2830,6 +3315,500 @@
       "aspectRatio": 1.7
     },
     {
+      "title": "changing-temp-page5",
+      "path": "interactives/itsi/heattransfer/changing-temp-page5.json",
+      "groupKey": "itsi/heattransfer",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "changing-temp-page6",
+      "path": "interactives/itsi/heattransfer/changing-temp-page6.json",
+      "groupKey": "itsi/heattransfer",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft",
+      "aspectRatio": 2.1
+    },
+    {
+      "title": "explosion",
+      "path": "interactives/itsi/heattransfer/explosion.json",
+      "groupKey": "itsi/heattransfer",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "heatflow1",
+      "path": "interactives/itsi/heattransfer/heatflow1.json",
+      "groupKey": "itsi/heattransfer",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "changing-temp-page7",
+      "path": "interactives/itsi/heattransfer/thermal-radiation.json",
+      "groupKey": "itsi/heattransfer",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "Atomic Movement in Gases",
+      "path": "interactives/itsi/states-of-matter/atomic-movement-in-gases.json",
+      "groupKey": "itsi/states-of-matter",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "Atomic Movement in Liquids",
+      "path": "interactives/itsi/states-of-matter/atomic-movement-in-liquids.json",
+      "groupKey": "itsi/states-of-matter",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "Atomic Movement in Solids",
+      "path": "interactives/itsi/states-of-matter/atomic-movement-in-solids.json",
+      "groupKey": "itsi/states-of-matter",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "Intermolecular Attractions and States of Matter",
+      "path": "interactives/itsi/states-of-matter/interatomic-interactions-and-states.json",
+      "groupKey": "itsi/states-of-matter",
+      "subtitle": "Explore how states of matter are related to the strength of intermolecular attractions.",
+      "about": [
+        "There are three states of matter—solid, liquid and gas. Run the model and change the",
+        "strength of attractions between the molecules. How does changing the force of attraction",
+        "between molecules affect the state of that material?"
+      ],
+      "publicationStatus": "draft",
+      "aspectRatio": 1.2
+    },
+    {
+      "title": "Seeing Specific Heat and Latent Heat",
+      "path": "interactives/itsi/states-of-matter/latent-heat2.json",
+      "groupKey": "itsi/states-of-matter",
+      "subtitle": "Seeing Specific Heat and Latent Heat in a Melting Experiment",
+      "about": [
+        "Specific heat capacitiy is the measure of the heat energy required",
+        "to raise the temperature of a given quantity of a substance by one",
+        "kelvin. Latent heat of melting describes tœhe amount of heat",
+        "required to melt a solid. When a solid is undergoing melting, the",
+        "temperature basically remains constant until the entire solid is",
+        "molten. The above simulation demonstrates the specific heat and",
+        "the latent heat.",
+        "",
+        "The physical origin of latent heat is that when a system is in a",
+        "phase transition, its structure will change. Changing structure",
+        "usually results in changes of potential energy, because potential",
+        "energy depends primarily on structure. In the simulation,",
+        "the energy added to the system is absorbed by the atoms and used",
+        "to break the interatomic interactions (so that they can leave the",
+        "condensed state). During the phase transition the kinetic energy",
+        "doesn't increase, as the",
+        "potential energy increases in the expense of the input energy.",
+        "During this period, the interatomic interactions diminish and the",
+        "structure breaks up, resulting in a phase transition.",
+        "",
+        "One thing you would notice is that the temperature-energy curve on",
+        "the right has fluctuations. This is because we have much fewer",
+        "atoms (169) in the simulation than there would be in a real",
+        "physical model."
+      ],
+      "publicationStatus": "draft",
+      "aspectRatio": 2.1
+    },
+    {
+      "title": "Specific Heat and Latent Heat in Condensation",
+      "path": "interactives/itsi/states-of-matter/latent-heat3.json",
+      "groupKey": "itsi/states-of-matter",
+      "subtitle": "Seeing Specific Heat and Latent Heat in a Condensation Experiment",
+      "about": [
+        "Specific heat capacitiy is the measure of the heat energy required",
+        "to raise the temperature of a given quantity of a substance by one",
+        "kelvin. Latent heat of melting describes tœhe amount of heat",
+        "required to melt a solid. When a solid is undergoing melting, the",
+        "temperature basically remains constant until the entire solid is",
+        "molten. The above simulation demonstrates the specific heat and",
+        "the latent heat.",
+        "",
+        "The physical origin of latent heat is that when a system is in a",
+        "phase transition, its structure will change. Changing structure",
+        "usually results in changes of potential energy, because potential",
+        "energy depends primarily on structure. In the simulation,",
+        "the energy added to the system is absorbed by the atoms and used",
+        "to break the interatomic interactions (so that they can leave the",
+        "condensed state). During the phase transition the kinetic energy",
+        "doesn't increase, as the",
+        "potential energy increases in the expense of the input energy.",
+        "During this period, the interatomic interactions diminish and the",
+        "structure breaks up, resulting in a phase transition.",
+        "",
+        "One thing you would notice is that the temperature-energy curve on",
+        "the right has fluctuations. This is because we have much fewer",
+        "atoms (169) in the simulation than there would be in a real",
+        "physical model."
+      ],
+      "publicationStatus": "draft",
+      "aspectRatio": 2.1
+    },
+    {
+      "title": "Evaporation - A more realistic model",
+      "path": "interactives/itsi/states-of-matter/page8-1.json",
+      "groupKey": "itsi/states-of-matter",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft",
+      "aspectRatio": 2.0
+    },
+    {
+      "title": "Phase Changes Caused by Energy Input",
+      "path": "interactives/itsi/states-of-matter/phase-changes-caused-by-energy-input.json",
+      "groupKey": "itsi/states-of-matter",
+      "subtitle": "Explore how energy input causes matter to change states.",
+      "about": [
+        "Matter exists as solids, liquids and gases, and can change state between these.",
+        "",
+        "The model shows a liquid material on the left (small atoms). The amount of heat",
+        "energy is shown by kinetic energy (KE) shading, with deeper shades of red",
+        "representing more energetic atoms. On the right side of the barrier is a solid",
+        "material (large atoms).",
+        "",
+        "Run the model. How much energy is able to penetrate the barrier? Remove the barrier.",
+        "How quickly do the more energetic atoms melt the solid?"
+      ],
+      "publicationStatus": "draft",
+      "aspectRatio": 1.5
+    },
+    {
+      "title": "choosing-a-reaction",
+      "path": "interactives/itsi/stoichiometry/choosing-a-reaction.json",
+      "groupKey": "itsi/stoichiometry",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "constructing-a-larger-number-of-water-molecules",
+      "path": "interactives/itsi/stoichiometry/constructing-a-larger-number-of-water-molecules.json",
+      "groupKey": "itsi/stoichiometry",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "constructucting-water-molecules",
+      "path": "interactives/itsi/stoichiometry/constructucting-water-molecules.json",
+      "groupKey": "itsi/stoichiometry",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "correct-ratio-of-hydrogen-and-oxygen",
+      "path": "interactives/itsi/stoichiometry/correct-ratio-of-hydrogen-and-oxygen.json",
+      "groupKey": "itsi/stoichiometry",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "fourToFour",
+      "path": "interactives/itsi/stoichiometry/fourToFour.json",
+      "groupKey": "itsi/stoichiometry",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "getting-ratios-right",
+      "path": "interactives/itsi/stoichiometry/getting-ratios-right.json",
+      "groupKey": "itsi/stoichiometry",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "hclReaction",
+      "path": "interactives/itsi/stoichiometry/hclReaction.json",
+      "groupKey": "itsi/stoichiometry",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "most-ammonia-molecules",
+      "path": "interactives/itsi/stoichiometry/most-ammonia-molecules.json",
+      "groupKey": "itsi/stoichiometry",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "oneToOne",
+      "path": "interactives/itsi/stoichiometry/oneToOne.json",
+      "groupKey": "itsi/stoichiometry",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "reaction1",
+      "path": "interactives/itsi/stoichiometry/reaction1.json",
+      "groupKey": "itsi/stoichiometry",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "reaction2",
+      "path": "interactives/itsi/stoichiometry/reaction2.json",
+      "groupKey": "itsi/stoichiometry",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "singleDisp",
+      "path": "interactives/itsi/stoichiometry/singleDisp.json",
+      "groupKey": "itsi/stoichiometry",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "twoToOne",
+      "path": "interactives/itsi/stoichiometry/twoToOne.json",
+      "groupKey": "itsi/stoichiometry",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "twoToThree",
+      "path": "interactives/itsi/stoichiometry/twoToThree.json",
+      "groupKey": "itsi/stoichiometry",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "twoToTwo",
+      "path": "interactives/itsi/stoichiometry/twoToTwo.json",
+      "groupKey": "itsi/stoichiometry",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "water0",
+      "path": "interactives/itsi/stoichiometry/water0.json",
+      "groupKey": "itsi/stoichiometry",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "water1",
+      "path": "interactives/itsi/stoichiometry/water1.json",
+      "groupKey": "itsi/stoichiometry",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "water10",
+      "path": "interactives/itsi/stoichiometry/water10.json",
+      "groupKey": "itsi/stoichiometry",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "water11",
+      "path": "interactives/itsi/stoichiometry/water11.json",
+      "groupKey": "itsi/stoichiometry",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "water12",
+      "path": "interactives/itsi/stoichiometry/water12.json",
+      "groupKey": "itsi/stoichiometry",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "water13",
+      "path": "interactives/itsi/stoichiometry/water13.json",
+      "groupKey": "itsi/stoichiometry",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "water14",
+      "path": "interactives/itsi/stoichiometry/water14.json",
+      "groupKey": "itsi/stoichiometry",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "water2",
+      "path": "interactives/itsi/stoichiometry/water2.json",
+      "groupKey": "itsi/stoichiometry",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "water20",
+      "path": "interactives/itsi/stoichiometry/water20.json",
+      "groupKey": "itsi/stoichiometry",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "water21",
+      "path": "interactives/itsi/stoichiometry/water21.json",
+      "groupKey": "itsi/stoichiometry",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "water22",
+      "path": "interactives/itsi/stoichiometry/water22.json",
+      "groupKey": "itsi/stoichiometry",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "water23",
+      "path": "interactives/itsi/stoichiometry/water23.json",
+      "groupKey": "itsi/stoichiometry",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "water24",
+      "path": "interactives/itsi/stoichiometry/water24.json",
+      "groupKey": "itsi/stoichiometry",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "water3",
+      "path": "interactives/itsi/stoichiometry/water3.json",
+      "groupKey": "itsi/stoichiometry",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "water30",
+      "path": "interactives/itsi/stoichiometry/water30.json",
+      "groupKey": "itsi/stoichiometry",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "water31",
+      "path": "interactives/itsi/stoichiometry/water31.json",
+      "groupKey": "itsi/stoichiometry",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "water32",
+      "path": "interactives/itsi/stoichiometry/water32.json",
+      "groupKey": "itsi/stoichiometry",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "water33",
+      "path": "interactives/itsi/stoichiometry/water33.json",
+      "groupKey": "itsi/stoichiometry",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "water34",
+      "path": "interactives/itsi/stoichiometry/water34.json",
+      "groupKey": "itsi/stoichiometry",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "water4",
+      "path": "interactives/itsi/stoichiometry/water4.json",
+      "groupKey": "itsi/stoichiometry",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "water40",
+      "path": "interactives/itsi/stoichiometry/water40.json",
+      "groupKey": "itsi/stoichiometry",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "water41",
+      "path": "interactives/itsi/stoichiometry/water41.json",
+      "groupKey": "itsi/stoichiometry",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "water42",
+      "path": "interactives/itsi/stoichiometry/water42.json",
+      "groupKey": "itsi/stoichiometry",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "water43",
+      "path": "interactives/itsi/stoichiometry/water43.json",
+      "groupKey": "itsi/stoichiometry",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "water44",
+      "path": "interactives/itsi/stoichiometry/water44.json",
+      "groupKey": "itsi/stoichiometry",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
       "title": "Horizontal Align",
       "path": "interactives/layout-tests/align.json",
       "groupKey": "layout-tests",
@@ -2852,6 +3831,71 @@
       "subtitle": "Graph, Bar Graph, Slider, Button and Text can have custom dimensions specified using 'width' and 'height' properties (all CSS values are accepted).",
       "about": "",
       "publicationStatus": "public"
+    },
+    {
+      "title": "Oil and Water: ar: 1.3, fontScale 1.5",
+      "path": "interactives/layout-tests/oil-and-water-aspect-ratio-1.3-font-scale-1.5.json",
+      "groupKey": "layout-tests",
+      "subtitle": "Explore how polar and non-polar substances interact.",
+      "about": [
+        "It is well known that \"oil and water don’t mix.\" But why? Run the model of",
+        "polar water (blue and red) and non-polar oil (gray). \"Shake up the oil and water",
+        "mixture,\" then run it again and watch what happens to the molecules over time."
+      ],
+      "publicationStatus": "public",
+      "aspectRatio": 1.3
+    },
+    {
+      "title": "Oil and Water: 1.3, smaller model",
+      "path": "interactives/layout-tests/oil-and-water-aspect-ratio-1.3-smaller-model.json",
+      "groupKey": "layout-tests",
+      "subtitle": "Explore how polar and non-polar substances interact.",
+      "about": [
+        "It is well known that \"oil and water don’t mix.\" But why? Run the model of",
+        "polar water (blue and red) and non-polar oil (gray). \"Shake up the oil and water",
+        "mixture,\" then run it again and watch what happens to the molecules over time."
+      ],
+      "publicationStatus": "public",
+      "aspectRatio": 1.3
+    },
+    {
+      "title": "Oil and Water: 1.3",
+      "path": "interactives/layout-tests/oil-and-water-aspect-ratio-1.3.json",
+      "groupKey": "layout-tests",
+      "subtitle": "Explore how polar and non-polar substances interact.",
+      "about": [
+        "It is well known that \"oil and water don’t mix.\" But why? Run the model of",
+        "polar water (blue and red) and non-polar oil (gray). \"Shake up the oil and water",
+        "mixture,\" then run it again and watch what happens to the molecules over time."
+      ],
+      "publicationStatus": "public",
+      "aspectRatio": 1.3
+    },
+    {
+      "title": "Oil and Water: 1.6, smaller model",
+      "path": "interactives/layout-tests/oil-and-water-aspect-ratio-1.6-smaller-model.json",
+      "groupKey": "layout-tests",
+      "subtitle": "Explore how polar and non-polar substances interact.",
+      "about": [
+        "It is well known that \"oil and water don’t mix.\" But why? Run the model of",
+        "polar water (blue and red) and non-polar oil (gray). \"Shake up the oil and water",
+        "mixture,\" then run it again and watch what happens to the molecules over time."
+      ],
+      "publicationStatus": "public",
+      "aspectRatio": 1.6
+    },
+    {
+      "title": "Oil and Water: 1.6",
+      "path": "interactives/layout-tests/oil-and-water-aspect-ratio-1.6.json",
+      "groupKey": "layout-tests",
+      "subtitle": "Explore how polar and non-polar substances interact.",
+      "about": [
+        "It is well known that \"oil and water don’t mix.\" But why? Run the model of",
+        "polar water (blue and red) and non-polar oil (gray). \"Shake up the oil and water",
+        "mixture,\" then run it again and watch what happens to the molecules over time."
+      ],
+      "publicationStatus": "public",
+      "aspectRatio": 1.6
     },
     {
       "title": "Replacing Bitmap Images with SVG",
@@ -2882,6 +3926,74 @@
         "   Created by hand, this SVG image uses SVG text elements and the SVG feGaussianBlur filter to create the drop-shadow effect."
       ],
       "publicationStatus": "public"
+    },
+    {
+      "title": "Three containers wide-1",
+      "path": "interactives/layout-tests/three-containers-wide-1.json",
+      "groupKey": "layout-tests",
+      "subtitle": "Three containers wide: model, bar-graphs, line-graph",
+      "about": [
+        "Specific heat capacitiy is the measure of the heat energy required",
+        "to raise the temperature of a given quantity of a substance by one",
+        "kelvin. Latent heat of melting describes tœhe amount of heat",
+        "required to melt a solid. When a solid is undergoing melting, the",
+        "temperature basically remains constant until the entire solid is",
+        "molten. The above simulation demonstrates the specific heat and",
+        "the latent heat.",
+        "",
+        "The physical origin of latent heat is that when a system is in a",
+        "phase transition, its structure will change. Changing structure",
+        "usually results in changes of potential energy, because potential",
+        "energy depends primarily on structure. In the simulation,",
+        "the energy added to the system is absorbed by the atoms and used",
+        "to break the interatomic interactions (so that they can leave the",
+        "condensed state). During the phase transition the kinetic energy",
+        "doesn't increase, as the",
+        "potential energy increases in the expense of the input energy.",
+        "During this period, the interatomic interactions diminish and the",
+        "structure breaks up, resulting in a phase transition.",
+        "",
+        "One thing you would notice is that the temperature-energy curve on",
+        "the right has fluctuations. This is because we have much fewer",
+        "atoms (169) in the simulation than there would be in a real",
+        "physical model."
+      ],
+      "publicationStatus": "public",
+      "aspectRatio": 2.2
+    },
+    {
+      "title": "Three containers wide-2",
+      "path": "interactives/layout-tests/three-containers-wide-2.json",
+      "groupKey": "layout-tests",
+      "subtitle": "Three containers wide: model, line-graph, line-graph",
+      "about": [
+        "Specific heat capacitiy is the measure of the heat energy required",
+        "to raise the temperature of a given quantity of a substance by one",
+        "kelvin. Latent heat of melting describes tœhe amount of heat",
+        "required to melt a solid. When a solid is undergoing melting, the",
+        "temperature basically remains constant until the entire solid is",
+        "molten. The above simulation demonstrates the specific heat and",
+        "the latent heat.",
+        "",
+        "The physical origin of latent heat is that when a system is in a",
+        "phase transition, its structure will change. Changing structure",
+        "usually results in changes of potential energy, because potential",
+        "energy depends primarily on structure. In the simulation,",
+        "the energy added to the system is absorbed by the atoms and used",
+        "to break the interatomic interactions (so that they can leave the",
+        "condensed state). During the phase transition the kinetic energy",
+        "doesn't increase, as the",
+        "potential energy increases in the expense of the input energy.",
+        "During this period, the interatomic interactions diminish and the",
+        "structure breaks up, resulting in a phase transition.",
+        "",
+        "One thing you would notice is that the temperature-energy curve on",
+        "the right has fluctuations. This is because we have much fewer",
+        "atoms (169) in the simulation than there would be in a real",
+        "physical model."
+      ],
+      "publicationStatus": "public",
+      "aspectRatio": 2.4
     },
     {
       "title": "HClReaction",
@@ -4476,6 +5588,22 @@
       "publicationStatus": "draft"
     },
     {
+      "title": "Radioactivity Test",
+      "path": "interactives/rites/radioactivity0.json",
+      "groupKey": "rites",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "Radioactivity Test",
+      "path": "interactives/rites/radioactivity1.json",
+      "groupKey": "rites",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
       "title": "solid1",
       "path": "interactives/rites/solid1.json",
       "groupKey": "rites",
@@ -4758,7 +5886,7 @@
         "or changing the temperature? Why?"
       ],
       "publicationStatus": "public",
-      "aspectRatio": 1.8
+      "aspectRatio": 1.9
     },
     {
       "title": "Collapsing Soda Can",
@@ -5013,7 +6141,7 @@
       "aspectRatio": 1.65
     },
     {
-      "title": "Phase Changes",
+      "title": "Phase Change",
       "path": "interactives/sam/phase-change/6-phase-changes-caused-by-energy-input.json",
       "groupKey": "sam/phase-change",
       "subtitle": "Explore how energy input causes matter to change states.",
@@ -6259,6 +7387,54 @@
       "publicationStatus": "draft"
     },
     {
+      "title": "aircooling",
+      "path": "interactives/student/heattransfer/aircooling.json",
+      "groupKey": "student/heattransfer",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "caloric",
+      "path": "interactives/student/heattransfer/caloric.json",
+      "groupKey": "student/heattransfer",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "equipartition",
+      "path": "interactives/student/heattransfer/equipartition.json",
+      "groupKey": "student/heattransfer",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "heatflow1",
+      "path": "interactives/student/heattransfer/heatflow1.json",
+      "groupKey": "student/heattransfer",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "heattransfer2",
+      "path": "interactives/student/heattransfer/heattransfer2.json",
+      "groupKey": "student/heattransfer",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "hotliquidcoldsolid",
+      "path": "interactives/student/heattransfer/hotliquidcoldsolid.json",
+      "groupKey": "student/heattransfer",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
       "title": "Enclosure$1",
       "path": "interactives/student/materials/Enclosure$1.json",
       "groupKey": "student/materials",
@@ -7400,7 +8576,7 @@
       "groupKey": "student/stateofmatter",
       "subtitle": "Seeing Specific Heat and Latent Heat in a Melting Experiment",
       "about": [
-        "Specific heat capacitiy is the measure of the heat energy required",
+        "Specific heat capacity is the measure of the heat energy required",
         "to raise the temperature of a given quantity of a substance by one",
         "kelvin. Latent heat of melting describes tœhe amount of heat",
         "required to melt a solid. When a solid is undergoing melting, the",
@@ -9082,8 +10258,18 @@
       "title": "Hydrogen Combustion",
       "path": "interactives/visual/chemical-reactions/1-hydrogen1newcolors.json",
       "groupKey": "visual/chemical-reactions",
-      "subtitle": "The physics in this model will be incomplete until the development of the Chemical Reactions engine.",
-      "about": "",
+      "subtitle": "Hydrogen and oxygen can burn to form water",
+      "about": [
+        "This model shows how hydrogen and oxygen burn to form water.",
+        "The equation for this reaction is:",
+        "",
+        "2H2 + O2 ➡ 2H2O",
+        "",
+        "**Instructions**",
+        "",
+        "1. Run the model.",
+        "2. Click **Spark** to initiate the reaction."
+      ],
       "publicationStatus": "draft"
     },
     {
@@ -9220,6 +10406,11 @@
       "category": "Curriculum"
     },
     {
+      "path": "inquiry-examples/pendulum",
+      "name": "Inquiry Examples: Pendulums",
+      "category": "Curriculum"
+    },
+    {
       "path": "inquiry-space/pendulum",
       "name": "Inquiry Space: Pendulums",
       "category": "Curriculum"
@@ -9230,8 +10421,28 @@
       "category": "Curriculum"
     },
     {
+      "path": "itsi/states-of-matter",
+      "name": "ITSI: States of Matter",
+      "category": "Curriculum"
+    },
+    {
       "path": "itsi/gas-laws",
       "name": "ITSI: Gas Laws",
+      "category": "Curriculum"
+    },
+    {
+      "path": "itsi/heattransfer",
+      "name": "ITSI: Heat Transfer",
+      "category": "Curriculum"
+    },
+    {
+      "path": "itsi/stoichiometry",
+      "name": "ITSI: Stoichiometry",
+      "category": "Curriculum"
+    },
+    {
+      "path": "itsi/dissolving",
+      "name": "ITSI: Dissolving",
       "category": "Curriculum"
     },
     {
@@ -9290,6 +10501,11 @@
       "category": "Tests"
     },
     {
+      "path": "conversion-tests/chemical-reactions",
+      "name": "Chemical Reaction Conversion Tests",
+      "category": "Tests"
+    },
+    {
       "path": "layout-tests",
       "name": "Layout Tests",
       "category": "Tests"
@@ -9337,6 +10553,11 @@
     {
       "path": "student/fluid",
       "name": "Classic Java MW Examples: Fluid",
+      "category": "Curriculum"
+    },
+    {
+      "path": "student/heattransfer",
+      "name": "Classic Java MW Examples: Heat Transfer",
       "category": "Curriculum"
     },
     {

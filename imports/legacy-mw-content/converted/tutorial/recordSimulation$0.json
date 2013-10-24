@@ -21,6 +21,8 @@
   "DNAState": "dna",
   "DNA": "",
   "DNAMutations": true,
+  "useQuantumDynamics": false,
+  "useChemicalReactions": false,
   "viewOptions": {
     "viewPortWidth": 4.5,
     "viewPortHeight": 3,
@@ -53,6 +55,7 @@
         "y": 1.49,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.11,
         "calloutPoint": [
           0.6,
           0.02
@@ -66,6 +69,7 @@
         "y": 0.26,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.11,
         "calloutPoint": [
           1.44,
           0.02
@@ -79,6 +83,7 @@
         "y": 0.52,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.11,
         "calloutPoint": [
           1.67,
           0.02
@@ -91,6 +96,7 @@
         "y": 0.58,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.11,
         "calloutPoint": [
           1.86,
           0.01
@@ -103,6 +109,7 @@
         "y": 0.49,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.11,
         "calloutPoint": [
           2.09,
           0.02
@@ -115,6 +122,7 @@
         "y": 0.67,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.11,
         "calloutPoint": [
           2.25,
           0.03
@@ -127,6 +135,7 @@
         "y": 0.27,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.11,
         "calloutPoint": [
           2.47,
           0.02
@@ -139,6 +148,7 @@
         "y": 2.74,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.11,
         "backgroundColor": "rgb(192,192,255)",
         "anchor": "upper-left"
       }
@@ -193,7 +203,7 @@
       -0.1,
       -0.009999999776482582,
       -0.1,
-      -5
+      -0.1
     ],
     "color": [
       -855310,

@@ -21,6 +21,8 @@
   "DNAState": "dna",
   "DNA": "",
   "DNAMutations": true,
+  "useQuantumDynamics": false,
+  "useChemicalReactions": false,
   "viewOptions": {
     "viewPortWidth": 4.5,
     "viewPortHeight": 3,
@@ -79,6 +81,7 @@
         "x": 2.180029716953495,
         "y": 2.581888076538251,
         "layer": 1,
+        "fontSize": 0.12,
         "hostType": "Atom",
         "hostIndex": 22,
         "anchor": "upper-left"
@@ -88,6 +91,7 @@
         "x": 3.185957676466901,
         "y": 1.9897919187754036,
         "layer": 1,
+        "fontSize": 0.12,
         "hostType": "Atom",
         "hostIndex": 40,
         "anchor": "upper-left"
@@ -97,6 +101,7 @@
         "x": 1.2016151304853753,
         "y": 1.251712845586189,
         "layer": 1,
+        "fontSize": 0.12,
         "hostType": "Atom",
         "hostIndex": 83,
         "anchor": "upper-left"
@@ -107,6 +112,7 @@
         "y": 3,
         "layer": 1,
         "frame": "rounded rectangle",
+        "fontSize": 0.12,
         "calloutPoint": [
           1.34,
           2.49
@@ -158,7 +164,7 @@
       -0.009999999776482582,
       -0.019999999552965164,
       -0.00009999999747378752,
-      -5
+      -0.1
     ],
     "color": [
       -855310,
