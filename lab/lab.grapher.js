@@ -413,14 +413,14 @@ define('lab.version',['require'],function (require) {
     "repo": {
       "branch": "master",
       "commit": {
-        "sha":           "b19cb8115e58d0be55ef7aa48f2372a5a22b87dd",
-        "short_sha":      "b19cb811",
-        "url":            "https://github.com/concord-consortium/lab/commit/b19cb811",
+        "sha":           "413b261b766cbcf60b13fb60a893ee59682e0bb8",
+        "short_sha":      "413b261b",
+        "url":            "https://github.com/concord-consortium/lab/commit/413b261b",
         "author":        "William Day",
         "email":         "code@william-day.com",
-        "date":          "2013-10-24 16:29:36 -0400",
-        "short_message": "initial radioactivity model and interactives",
-        "message":       "initial radioactivity model and interactives"
+        "date":          "2013-11-06 09:53:54 -0500",
+        "short_message": "radioactivity core model update + variants",
+        "message":       "radioactivity core model update + variants"
       },
       "dirty": false
     }

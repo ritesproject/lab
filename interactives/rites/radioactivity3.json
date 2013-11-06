@@ -1,8 +1,10 @@
 {
-  "title": "Radioactivity Model",
+  "title": "Radioactivity Model + Graph + Graph + Table",
   "publicationStatus": "draft",
   "subtitle": "",
   "about": "",
+  "fontScale": 0.8,
+  "aspectRatio": 1,
   "models": [
     {
       "type": "md2d",
@@ -31,6 +33,7 @@
         "});",
         "onPropertyChange('time',function(t){",
         "  batch(function(){",
+        "    var decaying = true;",
         "    for(var i = 0; i < isotope.length; i++) {",
         "      if (isotope[i] === 0 && Math.random() < 0.05) {",
         "        setAtomProperties(i,{element: 1});",
@@ -39,6 +42,8 @@
         "        --parents0;",
         "        if (parents0 <= 0.5 * parents1) {",
         "          parents1 = parents0;",
+        "          // TODO this has some odd behavior if the stop comes early in a tick",
+        "          decaying = false;",
         "          stop();",
         "          break;",
         "        }",
@@ -46,6 +51,7 @@
         "    }",
         "    set('numElementsParent',parents);",
         "    set('numElementsChild',daughters);",
+        "    if (!decaying) appendDataPropertiesToComponent('half-life-time-table');",
         "  });",
         "});"
       ]
@@ -55,16 +61,29 @@
     {
       "name": "parents",
       "value": "return get('numElementsParent');"
+    },
+    {
+      "name": "timeSinceLastHalfLife",
+      "value": "return get('time') - get('timePreviousHalfLife');",
+      "label": "Decay time",
+      "unitAbbreviation": "fs"
     }
   ],
   "parameters": [
     {
       "name": "numElementsParent",
-      "initialValue": 0
+      "initialValue": 0,
+      "label": "Parent atoms"
     },
     {
       "name": "numElementsChild",
-      "initialValue": 0
+      "initialValue": 0,
+      "label": "Child atoms"
+    },
+    {
+      "name": "timePreviousHalfLife",
+      "initialValue": 0,
+      "unitType": "time"
     }
   ],
   "components": [
@@ -84,20 +103,52 @@
       "type": "button",
       "id": "run-model",
       "text": "Go",
-      "action": "start()"
+      "action": [
+        "set('timePreviousHalfLife',get('time'));",
+        "start()"
+      ]
     },
     {
       "type": "button",
       "id": "reset-model",
       "text": "Reset",
       "action": "reset()"
+    },
+    {
+      "type": "graph",
+      "id": "num-parents-graph",
+      "properties": ["parents"],
+      "width": "16em",
+      "height": "10em",
+      "ymin": 0,
+      "ymax": 1000,
+      "ylabel": "Parent Atoms",
+      "xmin": 0,
+      "xmax": 0.1,
+      "xTickCount": 6,
+      "yTickCount": 4,
+      "xFormatter": ".1r",
+      "title": "Parent Atom Decay"
+    },
+    {
+      "type": "table",
+      "id": "half-life-time-table",
+      "title": "Decay Times",
+      "streamDataFromModel": false,
+      "propertyColumns": ["numElementsParent","numElementsChild","timeSinceLastHalfLife"],
+      "width": "100%",
+      "height": "8em"
     }
   ],
   "layout": {
     "right": [
       ["reset-model","run-model"],
       ["num-atoms-parent"],
-      ["num-atoms-child"]
+      ["num-atoms-child"],
+      ["num-parents-graph"]
+    ],
+    "bottom-model": [
+      "half-life-time-table"
     ]
   },
   "template": [
@@ -106,6 +157,12 @@
       "width": "16em",
       "left": "model.right",
       "top": "model.top"
+    },
+    {
+      "id": "bottom-model",
+      "width": "model.width",
+      "left": "model.left",
+      "top": "model.bottom"
     }
   ]
 }

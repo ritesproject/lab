@@ -5588,7 +5588,7 @@
       "publicationStatus": "draft"
     },
     {
-      "title": "Radioactivity Test",
+      "title": "Radioactivity Model",
       "path": "interactives/rites/radioactivity0.json",
       "groupKey": "rites",
       "subtitle": "",
@@ -5596,12 +5596,29 @@
       "publicationStatus": "draft"
     },
     {
-      "title": "Radioactivity Test",
+      "title": "Radioactivity Model + Graph",
       "path": "interactives/rites/radioactivity1.json",
       "groupKey": "rites",
       "subtitle": "",
       "about": "",
       "publicationStatus": "draft"
+    },
+    {
+      "title": "Radioactivity Model + Graph + Graph",
+      "path": "interactives/rites/radioactivity2.json",
+      "groupKey": "rites",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
+      "title": "Radioactivity Model + Graph + Graph + Table",
+      "path": "interactives/rites/radioactivity3.json",
+      "groupKey": "rites",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft",
+      "aspectRatio": 1
     },
     {
       "title": "solid1",

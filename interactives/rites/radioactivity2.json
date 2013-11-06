@@ -1,8 +1,9 @@
 {
-  "title": "Radioactivity Model",
+  "title": "Radioactivity Model + Graph + Graph",
   "publicationStatus": "draft",
   "subtitle": "",
   "about": "",
+  "fontScale": 0.8,
   "models": [
     {
       "type": "md2d",
@@ -55,6 +56,11 @@
     {
       "name": "parents",
       "value": "return get('numElementsParent');"
+    },
+    {
+      "name": "timeSinceHalfLife",
+      "value": "return get('time') - get('timePreviousHalfLife');",
+      "unitType": "time"
     }
   ],
   "parameters": [
@@ -65,6 +71,11 @@
     {
       "name": "numElementsChild",
       "initialValue": 0
+    },
+    {
+      "name": "timePreviousHalfLife",
+      "initialValue": 0,
+      "unitType": "time"
     }
   ],
   "components": [
@@ -84,20 +95,57 @@
       "type": "button",
       "id": "run-model",
       "text": "Go",
-      "action": "start()"
+      "action": [
+        "set('timePreviousHalfLife',get('time'));",
+        "start()"
+      ]
     },
     {
       "type": "button",
       "id": "reset-model",
       "text": "Reset",
       "action": "reset()"
+    },
+    {
+      "type": "graph",
+      "id": "num-parents-graph",
+      "properties": ["parents"],
+      "width": "16em",
+      "height": "10em",
+      "ymin": 0,
+      "ymax": 1000,
+      "ylabel": "Parent Atoms",
+      "xmin": 0,
+      "xmax": 0.1,
+      "xTickCount": 6,
+      "yTickCount": 4,
+      "xFormatter": ".1r",
+      "title": "Parent Atom Decay"
+    },
+    {
+      "type": "graph",
+      "id": "time-since-half-life-graph",
+      "properties": ["timeSinceHalfLife"],
+      "width": "16em",
+      "height": "10em",
+      "ymin": 0,
+      "ymax": 20,
+      "ylabel": "Time (fs)",
+      "xmin": 0,
+      "xmax": 0.1,
+      "xTickCount": 6,
+      "yTickCount": 4,
+      "xFormatter": ".1r",
+      "title": "Time Elapsed"
     }
   ],
   "layout": {
     "right": [
       ["reset-model","run-model"],
       ["num-atoms-parent"],
-      ["num-atoms-child"]
+      ["num-atoms-child"],
+      ["num-parents-graph"],
+      ["time-since-half-life-graph"]
     ]
   },
   "template": [
@@ -106,6 +154,12 @@
       "width": "16em",
       "left": "model.right",
       "top": "model.top"
+    },
+    {
+      "id": "bottom-model",
+      "width": "model.width",
+      "left": "model.left",
+      "top": "model.bottom"
     }
   ]
 }
