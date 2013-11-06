@@ -1,5 +1,5 @@
 {
-  "title": "Radioactivity Test",
+  "title": "Radioactivity Model + Graph",
   "publicationStatus": "draft",
   "subtitle": "",
   "about": "",
@@ -9,7 +9,7 @@
       "id": "syringe$0",
       "url": "imports/legacy-mw-content/converted/rites/empty.json",
       "viewOptions": {
-        "controlButtons": "play_reset"
+        "controlButtons": ""
       },
       "onLoad": [
         "set('timeStep',1);",
@@ -39,7 +39,6 @@
         "        --parents0;",
         "        if (parents0 <= 0.5 * parents1) {",
         "          parents1 = parents0;",
-        "          console.log('half-life reached, pausing');",
         "          stop();",
         "          break;",
         "        }",
@@ -72,12 +71,26 @@
     {
       "type": "numericOutput",
       "id": "num-atoms-parent",
-      "property": "numElementsParent"
+      "property": "numElementsParent",
+      "label": "Parent atoms"
     },
     {
       "type": "numericOutput",
       "id": "num-atoms-child",
-      "property": "numElementsChild"
+      "property": "numElementsChild",
+      "label": "Daughter atoms"
+    },
+    {
+      "type": "button",
+      "id": "run-model",
+      "text": "Go",
+      "action": "start()"
+    },
+    {
+      "type": "button",
+      "id": "reset-model",
+      "text": "Reset",
+      "action": "reset()"
     },
     {
       "type": "graph",
@@ -97,10 +110,19 @@
     }
   ],
   "layout": {
-    "bottom": [
-    ],
     "right": [
-      "num-parents-graph"
+      ["reset-model","run-model"],
+      ["num-atoms-parent"],
+      ["num-atoms-child"],
+      ["num-parents-graph"]
     ]
-  }
+  },
+  "template": [
+    {
+      "id": "right",
+      "width": "16em",
+      "left": "model.right",
+      "top": "model.top"
+    }
+  ]
 }
