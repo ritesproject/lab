@@ -5621,6 +5621,14 @@
       "aspectRatio": 1
     },
     {
+      "title": "Radioactivity Model + Graph with Annotations",
+      "path": "interactives/rites/radioactivity4.json",
+      "groupKey": "rites",
+      "subtitle": "",
+      "about": "",
+      "publicationStatus": "draft"
+    },
+    {
       "title": "solid1",
       "path": "interactives/rites/solid1.json",
       "groupKey": "rites",

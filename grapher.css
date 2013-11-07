@@ -6,6 +6,8 @@
   .graph div.background {
     position: absolute;
     background: #efefef; }
+  .graph div.annotation-layer {
+    position: absolute; }
   .graph div.button-layer {
     position: absolute;
     text-align: right; }
