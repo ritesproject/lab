@@ -76,11 +76,17 @@ define(function (require) {
         // graph action/mode buttons.
         buttonLayer,
 
+        // div created above everything but the button layer for holding annotations
+        annotationLayer,
+
         // Div created and placed with z-index under all other graph layers
         background,
 
         // Optional string which can be displayed in background of interior plot area of graph.
         notification,
+
+        // Optonal set of annotations that can be added dynamically to call out features of a graph
+        annotations = [],
 
         // An array of strings holding 0 or more lines for the title of the graph
         titles = [],
@@ -783,7 +789,7 @@ define(function (require) {
 
       buttonLayer
         .attr("class", "button-layer")
-        .style("z-index", 3);
+        .style("z-index", 4);
 
       if (options.enableAutoScaleButton) {
         buttonLayer.append('a')
@@ -809,6 +815,26 @@ define(function (require) {
           "top":     padding.top + halfFontSizeInPixels + "px",
           "left":    padding.left + (size.width - fontSizeInPixels*2.0) + "px"
         });
+    }
+
+    function createAnnotationLayer() {
+      annotationLayer = elem.append("div");
+
+      annotationLayer
+        .attr("class", "annotation-layer")
+        .style("z-index", 3);
+
+      resizeAnnotationLayer();
+    }
+
+    function resizeAnnotationLayer() {
+      annotationLayer
+        .style({
+          "width": size.width + "px",
+          "height": size.height + "px",
+          "top": padding.top + "px",
+          "left": padding.left + "px"
+        })
     }
 
     // ------------------------------------------------------------
@@ -1171,6 +1197,36 @@ define(function (require) {
       }
 
       gy.exit().remove();
+
+      function annotationAttributes(type, d) {
+        var data = {}
+        for (var key in d) {
+          data[key] = d[key];
+        }
+        if (type === "line") {
+          data.x0 = xScale(d.x0 || 0);
+          data.x1 = xScale(d.x1 || size.width);
+          data.y0 = xScale(d.y0 || 0);
+          data.y1 = xScale(d.y1 || size.height);
+          data.stroke = data.stroke || "#f00";
+        }
+        return data;
+      }
+
+      // add any annotations if they exist
+      vis.selectAll("g.annotation")
+        .data(annotations)
+        .enter().append("g")
+          .attr("class", "annotation")
+          //.append("line")
+          //  .attr(function(d){ return annotationAttributes(d.type, d.data); })
+          .append("line")
+            .attr("stroke", function(d){ return d.data.hasOwnProperty("stroke") ? d.data.stroke : "#f00" } )
+            .attr("x1", function(d){ return d.data.hasOwnProperty('x1') ? xScale(d.data.x1) : 0; } )
+            .attr("x2", function(d){ return d.data.hasOwnProperty('x2') ? xScale(d.data.x2) : size.width; } )
+            .attr("y1", function(d){ return d.data.hasOwnProperty('y1') ? yScale(d.data.y1) : 0; } )
+            .attr("y2", function(d){ return d.data.hasOwnProperty('y2') ? yScale(d.data.y2) : size.height; } );
+
       plot.call(d3.behavior.zoom().x(xScale).y(yScale).on("zoom", redraw));
       update();
     }
@@ -2454,6 +2510,11 @@ define(function (require) {
         } else {
           return false;
         }
+      },
+
+      addAnnotation: function(annotation) {
+        annotations.push(annotation);
+        redraw();
       },
 
       // Point data consist of an array (or arrays) of [x,y] arrays.

@@ -245,6 +245,12 @@ define(function (require) {
       */
       appendDataPropertiesToComponent: appendDataPoint,
 
+      /**
+        Used to add annotations (lines, etc) to the graph
+      */
+      addAnnotation: function(annotation) {
+        grapher.addAnnotation(annotation);
+      },
 
       /**
         Add non-realtime dataset to the graph.

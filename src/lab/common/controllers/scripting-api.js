@@ -305,6 +305,16 @@ define(function (require) {
           },
 
           /**
+           * Add annotations to graphs.
+           */
+          addGraphAnnotation: function addGraphAnnotation(id, annotation) {
+            var component = interactivesController.getComponent(id);
+            if (component.type === 'graph') {
+              component.addAnnotation(annotation);
+            }
+          },
+
+          /**
             Change attributes of an existing component.
           */
           setComponentAttributes: function setComponentAttributes(compID, opts) {
