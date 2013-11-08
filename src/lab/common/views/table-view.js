@@ -7,6 +7,7 @@ define(function() {
         formatters  = opts.formatters,
         visibleRows = opts.visibleRows,
         tableData   = opts.tableData,
+        columnType  = opts.columnType,
         title       = opts.title,
         width       = opts.width,
         height      = opts.height,
@@ -156,14 +157,24 @@ define(function() {
       $tr = $('<tr class="data">');
       $($tr).data('index', index);
       for(i = 0; i < rowData.length; i++) {
-        $td = $('<td>');
-        datum = rowData[i];
-        if(typeof datum === "string") {
-          $td.text(datum);
-        } else if(typeof datum === "number") {
-          $td.text(formatters[i](datum));
+        if (columnType[i] === 'index' || columnType[i] === 'property') {
+          $td = $('<td>');
+          datum = rowData[i];
+          if(typeof datum === "string") {
+            $td.text(datum);
+          } else if(typeof datum === "number") {
+            $td.text(formatters[i](datum));
+          }
+          $tr.append($td);
+        } else if (columnType[i] === 'user') {
+          $td = $('<td>');
+          $input = $("<input>").attr("type","text");
+          $input.on("blur", function() {
+            $(this).attr("value", $(this).val());
+          });
+          $td.append($input);
+          $tr.append($td);
         }
-        $tr.append($td);
       }
       $tbody.append($tr);
       if (tableData.length < 2) {

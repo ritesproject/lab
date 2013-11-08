@@ -702,6 +702,9 @@ define(function() {
       propertyColumns: {
         defaultValue: []
       },
+      userColumns: {
+        defaultValue: []
+      },
       headerData: {
         defaultValue: []
       },

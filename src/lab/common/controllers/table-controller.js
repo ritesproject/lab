@@ -14,6 +14,7 @@ define(function (require) {
         $element,
         rowIndex,
         columns,
+        columnType,
         formatters,
         tableData,
         headerData,
@@ -36,6 +37,7 @@ define(function (require) {
         id: component.id,
         title: component.title,
         columns: columns,
+        columnType: columnType,
         tableData: tableData,
         formatters: formatters,
         visibleRows: component.visibleRows,
@@ -53,10 +55,12 @@ define(function (require) {
 
       columns = [];
       formatters = [];
+      columnType = [];
 
       if (component.indexColumn) {
         columns.push("#");
         formatters.push(d3.format("f"));
+        columnType.push('index');
       }
 
       for(i = 0; i < component.propertyColumns.length; i++) {
@@ -80,6 +84,12 @@ define(function (require) {
           columns.push(component.propertyColumns[i]);
           formatters.push(d3.format('.3r'));
         }
+        columnType.push('property');
+      }
+
+      for(i = 0; i < component.userColumns.length; i++) {
+        columns.push(component.userColumns[i]);
+        columnType.push('user');
       }
     }
 
@@ -101,6 +111,9 @@ define(function (require) {
       for(i = 0; i < component.propertyColumns.length; i++) {
         rowData.push(model.get(component.propertyColumns[i]));
       }
+      for(i = 0; i < component.userColumns.length; i++) {
+        rowData.push('');
+      }
       tableData.push(rowData);
       view.appendDataRow(rowData, rowIndex);
     }
@@ -112,6 +125,9 @@ define(function (require) {
       }
       for(i = 0; i < component.propertyColumns.length; i++) {
         rowData.push(model.get(component.propertyColumns[i]));
+      }
+      for(i = 0; i < component.userColumns.length; i++) {
+        rowData.push('');
       }
       if (tableData.length === 0) {
         tableData.push(rowData);
