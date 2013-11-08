@@ -204,7 +204,7 @@
       "top": "right-controls.bottom",
       "padding-left": "0.5em",
       "width": "24em",
-      "height": "8em"
+      "height": "10em"
     },
     {
       "id": "right-graph-daughter",
@@ -212,7 +212,7 @@
       "top": "right-graph-parent.bottom",
       "padding-left": "0.5em",
       "width": "24em",
-      "height": "8em"
+      "height": "10em"
     }
   ]
 }
