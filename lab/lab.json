@@ -602,6 +602,9 @@
       "propertyColumns": {
         "defaultValue": []
       },
+      "userColumns": {
+        "defaultValue": []
+      },
       "headerData": {
         "defaultValue": []
       },

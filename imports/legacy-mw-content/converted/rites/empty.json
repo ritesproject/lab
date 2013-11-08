@@ -1,8 +1,8 @@
 {
   "type": "md2d",
   "imagePath": "",
-  "width": 10,
-  "height": 10,
+  "width": 5,
+  "height": 5,
   "unitsScheme": "md2d",
   "lennardJonesForces": true,
   "coulombForces": true,
@@ -24,8 +24,8 @@
   "useQuantumDynamics": false,
   "useChemicalReactions": false,
   "viewOptions": {
-    "viewPortWidth": 10,
-    "viewPortHeight": 10,
+    "viewPortWidth": 5,
+    "viewPortHeight": 5,
     "viewPortZoom": 1,
     "viewPortX": 0,
     "viewPortY": 0,
@@ -123,10 +123,10 @@
       0
     ],
     "height": [
-      10
+      5
     ],
     "width": [
-      10
+      5
     ],
     "fence": [
       0

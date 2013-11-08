@@ -413,14 +413,14 @@ define('lab.version',['require'],function (require) {
     "repo": {
       "branch": "master",
       "commit": {
-        "sha":           "1b86e9ec4fec613bde09464b3b6e1c08b561508f",
-        "short_sha":      "1b86e9ec",
-        "url":            "https://github.com/concord-consortium/lab/commit/1b86e9ec",
+        "sha":           "3e78ef4a206c45aa86098398c2a445e84e306c5d",
+        "short_sha":      "3e78ef4a",
+        "url":            "https://github.com/concord-consortium/lab/commit/3e78ef4a",
         "author":        "William Day",
         "email":         "code@william-day.com",
-        "date":          "2013-11-07 09:05:15 -0500",
-        "short_message": "add basic line annotations to grapher",
-        "message":       "add basic line annotations to grapher"
+        "date":          "2013-11-08 11:28:44 -0500",
+        "short_message": "update radioactivity interactives for user tables",
+        "message":       "update radioactivity interactives for user tables"
       },
       "dirty": false
     }
@@ -2367,6 +2367,9 @@ define('common/controllers/interactive-metadata',[],function() {
         defaultValue: true
       },
       propertyColumns: {
+        defaultValue: []
+      },
+      userColumns: {
         defaultValue: []
       },
       headerData: {
@@ -13800,6 +13803,7 @@ define('common/views/table-view',[],function() {
         formatters  = opts.formatters,
         visibleRows = opts.visibleRows,
         tableData   = opts.tableData,
+        columnType  = opts.columnType,
         title       = opts.title,
         width       = opts.width,
         height      = opts.height,
@@ -13949,14 +13953,24 @@ define('common/views/table-view',[],function() {
       $tr = $('<tr class="data">');
       $($tr).data('index', index);
       for(i = 0; i < rowData.length; i++) {
-        $td = $('<td>');
-        datum = rowData[i];
-        if(typeof datum === "string") {
-          $td.text(datum);
-        } else if(typeof datum === "number") {
-          $td.text(formatters[i](datum));
+        if (columnType[i] === 'index' || columnType[i] === 'property') {
+          $td = $('<td>');
+          datum = rowData[i];
+          if(typeof datum === "string") {
+            $td.text(datum);
+          } else if(typeof datum === "number") {
+            $td.text(formatters[i](datum));
+          }
+          $tr.append($td);
+        } else if (columnType[i] === 'user') {
+          $td = $('<td>');
+          $input = $("<input>").attr("type","text");
+          $input.on("blur", function() {
+            $(this).attr("value", $(this).val());
+          });
+          $td.append($input);
+          $tr.append($td);
         }
-        $tr.append($td);
       }
       $tbody.append($tr);
       if (tableData.length < 2) {
@@ -14101,6 +14115,7 @@ define('common/controllers/table-controller',['require','common/controllers/inte
         $element,
         rowIndex,
         columns,
+        columnType,
         formatters,
         tableData,
         headerData,
@@ -14123,6 +14138,7 @@ define('common/controllers/table-controller',['require','common/controllers/inte
         id: component.id,
         title: component.title,
         columns: columns,
+        columnType: columnType,
         tableData: tableData,
         formatters: formatters,
         visibleRows: component.visibleRows,
@@ -14140,10 +14156,12 @@ define('common/controllers/table-controller',['require','common/controllers/inte
 
       columns = [];
       formatters = [];
+      columnType = [];
 
       if (component.indexColumn) {
         columns.push("#");
         formatters.push(d3.format("f"));
+        columnType.push('index');
       }
 
       for(i = 0; i < component.propertyColumns.length; i++) {
@@ -14167,6 +14185,12 @@ define('common/controllers/table-controller',['require','common/controllers/inte
           columns.push(component.propertyColumns[i]);
           formatters.push(d3.format('.3r'));
         }
+        columnType.push('property');
+      }
+
+      for(i = 0; i < component.userColumns.length; i++) {
+        columns.push(component.userColumns[i]);
+        columnType.push('user');
       }
     }
 
@@ -14188,6 +14212,9 @@ define('common/controllers/table-controller',['require','common/controllers/inte
       for(i = 0; i < component.propertyColumns.length; i++) {
         rowData.push(model.get(component.propertyColumns[i]));
       }
+      for(i = 0; i < component.userColumns.length; i++) {
+        rowData.push('');
+      }
       tableData.push(rowData);
       view.appendDataRow(rowData, rowIndex);
     }
@@ -14199,6 +14226,9 @@ define('common/controllers/table-controller',['require','common/controllers/inte
       }
       for(i = 0; i < component.propertyColumns.length; i++) {
         rowData.push(model.get(component.propertyColumns[i]));
+      }
+      for(i = 0; i < component.userColumns.length; i++) {
+        rowData.push('');
       }
       if (tableData.length === 0) {
         tableData.push(rowData);

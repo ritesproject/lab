@@ -413,14 +413,14 @@ define('lab.version',['require'],function (require) {
     "repo": {
       "branch": "master",
       "commit": {
-        "sha":           "1b86e9ec4fec613bde09464b3b6e1c08b561508f",
-        "short_sha":      "1b86e9ec",
-        "url":            "https://github.com/concord-consortium/lab/commit/1b86e9ec",
+        "sha":           "3e78ef4a206c45aa86098398c2a445e84e306c5d",
+        "short_sha":      "3e78ef4a",
+        "url":            "https://github.com/concord-consortium/lab/commit/3e78ef4a",
         "author":        "William Day",
         "email":         "code@william-day.com",
-        "date":          "2013-11-07 09:05:15 -0500",
-        "short_message": "add basic line annotations to grapher",
-        "message":       "add basic line annotations to grapher"
+        "date":          "2013-11-08 11:28:44 -0500",
+        "short_message": "update radioactivity interactives for user tables",
+        "message":       "update radioactivity interactives for user tables"
       },
       "dirty": false
     }

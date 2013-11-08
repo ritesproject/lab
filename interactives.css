@@ -387,6 +387,9 @@ code {
           padding: 0.2em 0.3em 0.2em 0.3em; }
       .interactive-table div.table-wrapper table tbody tr.selected {
         background-color: #fff4b8; }
+      .interactive-table div.table-wrapper table tbody tr input {
+        border: 0;
+        width: 100%; }
 
 .numeric-output {
   padding: 0.3em 0.2em 0.3em 0.7em; }
