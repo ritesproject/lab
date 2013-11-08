@@ -4,7 +4,7 @@
   "subtitle": "",
   "about": "",
   "fontScale": 1,
-  "aspectRatio": 0.8,
+  "aspectRatio": 1,
   "models": [
     {
       "type": "md2d",
