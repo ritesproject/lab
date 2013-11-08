@@ -1,9 +1,9 @@
 {
-  "title": "Radioactivity Model + Graph",
+  "title": "Radioactivity Experiment 1",
   "publicationStatus": "draft",
   "subtitle": "",
   "about": "",
-  "aspectRatio": 0.7,
+  "aspectRatio": 0.8,
   "fontSize": 1,
   "models": [
     {
@@ -14,6 +14,7 @@
         "controlButtons": ""
       },
       "onLoad": [
+        "setComponentDisabled('run-model', false);",
         "set('timeStep',1);",
         "set('timeStepsPerTick',1);",
         "var count = 0,",
@@ -51,7 +52,8 @@
         "    set('numElementsParent',parents);",
         "    set('numElementsChild',daughters);",
         "    if (!decaying) {",
-        "      stop();",
+        "      set('num-half-lives', get('num-half-lives') + 1);",
+        "      setComponentDisabled('run-model', true);",
         "      addGraphAnnotation('num-parents-graph',{",
         "        type: 'line',",
         "        data: {",
@@ -100,6 +102,23 @@
     {
       "name": "prevParents",
       "initialValue": 0
+    },
+    {
+      "name": "fake-temperature",
+      "initialValue": 50,
+      "unitAbbreviation": "C"
+    },
+    {
+      "name": "fake-pressure",
+      "initialValue": 5,
+      "unitAbbreviation": "atm"
+    },
+    {
+      "name": "num-half-lives",
+      "initialValue": 0,
+      "onChange": [
+        "if (value >= 5) stop();"
+      ]
     }
   ],
   "components": [
@@ -133,6 +152,26 @@
       "id": "reset-model",
       "text": "Reset",
       "action": "reload()"
+    },
+    {
+      "type": "slider",
+      "id": "control-temperature",
+      "property": "fake-temperature",
+      "min": -100,
+      "max": 100,
+      "steps": 199,
+      "title": "Temperature",
+      "displayValue": "return format('f')(value) + ' C';"
+    },
+    {
+      "type": "slider",
+      "id": "control-pressure",
+      "property": "fake-pressure",
+      "min": 1,
+      "max": 10,
+      "steps": 19,
+      "title": "Pressure",
+      "displayValue": "return format('f')(value) + ' atm';"
     },
     {
       "type": "graph",
@@ -171,6 +210,8 @@
     "right-controls": [
       ["run-model"],
       ["reset-model"],
+      ["control-temperature"],
+      ["control-pressure"],
       ["num-atoms-parent"],
       ["num-atoms-child"],
       ["current-time"]

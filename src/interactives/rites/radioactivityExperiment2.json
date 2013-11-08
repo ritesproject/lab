@@ -1,9 +1,9 @@
 {
-  "title": "Radioactivity Model + Graph",
+  "title": "Radioactivity Experiment 2",
   "publicationStatus": "draft",
   "subtitle": "",
   "about": "",
-  "aspectRatio": 0.7,
+  "aspectRatio": 0.8,
   "fontSize": 1,
   "models": [
     {
@@ -14,6 +14,11 @@
         "controlButtons": ""
       },
       "onLoad": [
+        "setComponentDisabled('run-model', false);",
+        "setComponentDisabled('select-isotope', false);",
+        "//TODO remove this hack!",
+        "resetGraphAnnotations('num-parents-graph');",
+        "resetGraphAnnotations('num-daughters-graph');",
         "set('timeStep',1);",
         "set('timeStepsPerTick',1);",
         "var count = 0,",
@@ -30,14 +35,15 @@
         "  set('prevParents', count);",
         "});",
         "onPropertyChange('time',function(t){",
-        "  var decaying = true;",
+        "  var decaying = true,",
+        "      decayProbability = get('decayProbability');",
         "  batch(function(){",
         "    // reset these in case the model has been scrubbed",
         "    parents      = get('numElementsParent');",
         "    daughters    = get('numElementsChild');",
         "    prevParents  = get('prevParents');",
         "    for(var i = 0; i < 1000; i++) {",
-        "      if (getAtomProperties(i).element === 0 && Math.random() < 0.05) {",
+        "      if (getAtomProperties(i).element === 0 && Math.random() < decayProbability) {",
         "        setAtomProperties(i,{element: 1});",
         "        --parents;",
         "        ++daughters;",
@@ -51,7 +57,8 @@
         "    set('numElementsParent',parents);",
         "    set('numElementsChild',daughters);",
         "    if (!decaying) {",
-        "      stop();",
+        "      set('num-half-lives', get('num-half-lives') + 1);",
+        "      setComponentDisabled('run-model', true);",
         "      addGraphAnnotation('num-parents-graph',{",
         "        type: 'line',",
         "        data: {",
@@ -100,6 +107,28 @@
     {
       "name": "prevParents",
       "initialValue": 0
+    },
+    {
+      "name": "decayProbability",
+      "initialValue": 0.05
+    },
+    {
+      "name": "num-half-lives",
+      "initialValue": 0,
+      "onChange": [
+        "if (value >= 5) stop();"
+      ]
+    },
+    {
+      "name": "decayProbabilities",
+      "initialValue": [0, 0.02, 0.05, 0.10, 0.20]
+    },
+    {
+      "name": "isotope",
+      "initialValue": 2,
+      "onChange": [
+        "if (!!value) set('decayProbability', get('decayProbabilities')[value]);"
+      ]
     }
   ],
   "components": [
@@ -126,13 +155,41 @@
       "type": "button",
       "id": "run-model",
       "text": "Go",
-      "action": "start()"
+      "action": [
+        "start();",
+        "setComponentDisabled('select-isotope', true);"
+      ]
     },
     {
       "type": "button",
       "id": "reset-model",
       "text": "Reset",
       "action": "reload()"
+    },
+    {
+      "type": "pulldown",
+      "id": "select-isotope",
+      "label": "Isotope",
+      "labelOn": "left",
+      "property": "isotope",
+      "options": [
+        {
+          "text": "A",
+          "value": 1
+        },
+        {
+          "text": "B",
+          "value": 2
+        },
+        {
+          "text": "C",
+          "value": 3
+        },
+        {
+          "text": "D",
+          "value": 4
+        }
+      ]
     },
     {
       "type": "graph",
@@ -171,6 +228,7 @@
     "right-controls": [
       ["run-model"],
       ["reset-model"],
+      ["select-isotope"],
       ["num-atoms-parent"],
       ["num-atoms-child"],
       ["current-time"]
