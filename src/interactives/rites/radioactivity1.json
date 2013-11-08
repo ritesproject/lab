@@ -3,6 +3,7 @@
   "publicationStatus": "draft",
   "subtitle": "",
   "about": "",
+  "fontScale": 0.9,
   "models": [
     {
       "type": "md2d",
@@ -15,46 +16,75 @@
         "set('timeStep',1);",
         "set('timeStepsPerTick',1);",
         "var count = 0,",
-        "    isotope = [],",
         "    parents = 1000,",
-        "    parents0 = parents,",
-        "    parents1 = parents,",
+        "    prevParents = parents,",
         "    daughters = 0;",
         "batch(function(){",
         "  while(count < parents){",
         "    if( addAtom({pinned: true, x: Math.random()*get('width'), y: Math.random()*get('height'), element: 0}) ) {",
         "      ++count;",
-        "      isotope.push(0);",
         "    }",
         "  }",
         "  set('numElementsParent', count);",
+        "  set('prevParents', count);",
         "});",
         "onPropertyChange('time',function(t){",
+        "  var decaying = true;",
         "  batch(function(){",
-        "    for(var i = 0; i < isotope.length; i++) {",
-        "      if (isotope[i] === 0 && Math.random() < 0.05) {",
+        "    // reset these in case the model has been scrubbed",
+        "    parents      = get('numElementsParent');",
+        "    daughters    = get('numElementsChild');",
+        "    prevParents  = get('prevParents');",
+        "    for(var i = 0; i < 1000; i++) {",
+        "      if (getAtomProperties(i).element === 0 && Math.random() < 0.05) {",
         "        setAtomProperties(i,{element: 1});",
-        "        isotope[i] = 1;",
-        "        --parents; ++daughters;",
-        "        --parents0;",
-        "        if (parents0 <= 0.5 * parents1) {",
-        "          parents1 = parents0;",
-        "          stop();",
+        "        --parents;",
+        "        ++daughters;",
+        "        if (parents <= 0.5 * prevParents) {",
+        "          set('prevParents', parents);",
+        "          decaying = false;",
         "          break;",
         "        }",
         "      }",
         "    }",
         "    set('numElementsParent',parents);",
         "    set('numElementsChild',daughters);",
+        "    if (!decaying) {",
+        "      stop();",
+        "      addGraphAnnotation('num-parents-graph',{",
+        "        type: 'line',",
+        "        data: {",
+        "          x1: t/1000,",
+        "          x2: t/1000",
+        "        }",
+        "      });",
+        "      addGraphAnnotation('num-parents-graph',{",
+        "        type: 'line',",
+        "        data: {",
+        "          y1: parents,",
+        "          y2: parents,",
+        "          stroke: '#0f0'",
+        "        }",
+        "      });",
+        "      addGraphAnnotation('num-daughters-graph',{",
+        "        type: 'line',",
+        "        data: {",
+        "          x1: t/1000,",
+        "          x2: t/1000",
+        "        }",
+        "      });",
+        "      addGraphAnnotation('num-daughters-graph',{",
+        "        type: 'line',",
+        "        data: {",
+        "          y1: daughters,",
+        "          y2: daughters,",
+        "          stroke: '#0f0'",
+        "        }",
+        "      });",
+        "    }",
         "  });",
         "});"
       ]
-    }
-  ],
-  "outputs": [
-    {
-      "name": "parents",
-      "value": "return get('numElementsParent');"
     }
   ],
   "parameters": [
@@ -64,6 +94,10 @@
     },
     {
       "name": "numElementsChild",
+      "initialValue": 0
+    },
+    {
+      "name": "prevParents",
       "initialValue": 0
     }
   ],
@@ -81,6 +115,13 @@
       "label": "Daughter atoms"
     },
     {
+      "type": "numericOutput",
+      "id": "current-time",
+      "property": "time",
+      "displayValue": "return format('.3f')(value/1000) + ' ps';",
+      "units": "ps"
+    },
+    {
       "type": "button",
       "id": "run-model",
       "text": "Go",
@@ -90,31 +131,50 @@
       "type": "button",
       "id": "reset-model",
       "text": "Reset",
-      "action": "reset()"
+      "action": "reload()"
     },
     {
       "type": "graph",
       "id": "num-parents-graph",
-      "properties": ["parents"],
+      "properties": ["numElementsParent"],
       "width": "16em",
-      "height": "16em",
+      "height": "8em",
       "ymin": 0,
       "ymax": 1000,
-      "ylabel": "Parent Atoms",
+      "ylabel": "Parent isotopes",
       "xmin": 0,
       "xmax": 0.1,
       "xTickCount": 6,
-      "yTickCount": 8,
+      "yTickCount": 4,
       "xFormatter": ".1r",
-      "title": "Parent Atom Decay"
+      "title": "Parent isotopes"
+    },
+    {
+      "type": "graph",
+      "id": "num-daughters-graph",
+      "properties": ["numElementsChild"],
+      "width": "16em",
+      "height": "8em",
+      "ymin": 0,
+      "ymax": 1000,
+      "ylabel": "Daughter isotopes",
+      "xmin": 0,
+      "xmax": 0.1,
+      "xTickCount": 6,
+      "yTickCount": 4,
+      "xFormatter": ".1r",
+      "title": "Daughter isotopes"
     }
   ],
   "layout": {
     "right": [
-      ["reset-model","run-model"],
+      ["run-model"],
+      ["reset-model"],
       ["num-atoms-parent"],
       ["num-atoms-child"],
-      ["num-parents-graph"]
+      ["current-time"],
+      ["num-parents-graph"],
+      ["num-daughters-graph"]
     ]
   },
   "template": [
