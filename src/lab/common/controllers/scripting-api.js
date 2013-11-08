@@ -314,6 +314,13 @@ define(function (require) {
             }
           },
 
+          resetGraphAnnotations: function resetGraphAnnotations(id) {
+            var component = interactivesController.getComponent(id);
+            if (component.type === 'graph') {
+              component.resetAnnotations();
+            }
+          },
+
           /**
             Change attributes of an existing component.
           */

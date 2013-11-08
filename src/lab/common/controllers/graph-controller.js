@@ -252,6 +252,10 @@ define(function (require) {
         grapher.addAnnotation(annotation);
       },
 
+      resetAnnotations: function() {
+        grapher.resetAnnotations();
+      },
+
       /**
         Add non-realtime dataset to the graph.
       */

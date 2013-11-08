@@ -1214,6 +1214,7 @@ define(function (require) {
       }
 
       // add any annotations if they exist
+      vis.selectAll("g.annotation").remove();
       vis.selectAll("g.annotation")
         .data(annotations)
         .enter().append("g")
@@ -2514,6 +2515,11 @@ define(function (require) {
 
       addAnnotation: function(annotation) {
         annotations.push(annotation);
+        redraw();
+      },
+
+      resetAnnotations: function() {
+        annotations = [];
         redraw();
       },
 
