@@ -3,7 +3,7 @@
   "publicationStatus": "draft",
   "subtitle": "",
   "about": "",
-  "fontScale": 0.8,
+  "fontScale": 1,
   "aspectRatio": 1,
   "models": [
     {
@@ -31,6 +31,7 @@
         "  }",
         "  set('numElementsParent', count);",
         "});",
+        "appendDataPropertiesToComponent('half-life-time-table');",
         "onPropertyChange('time',function(t){",
         "  batch(function(){",
         "    var decaying = true;",
@@ -73,12 +74,12 @@
     {
       "name": "numElementsParent",
       "initialValue": 0,
-      "label": "Parent atoms"
+      "label": "Parent isotopes"
     },
     {
       "name": "numElementsChild",
       "initialValue": 0,
-      "label": "Child atoms"
+      "label": "Daughter isotopes"
     },
     {
       "name": "timePreviousHalfLife",
@@ -91,13 +92,23 @@
       "type": "numericOutput",
       "id": "num-atoms-parent",
       "property": "numElementsParent",
-      "label": "Parent atoms"
+      "label": " "
     },
     {
       "type": "numericOutput",
       "id": "num-atoms-child",
       "property": "numElementsChild",
-      "label": "Daughter atoms"
+      "label": " "
+    },
+    {
+      "type": "text",
+      "id": "label-parents",
+      "text": "Parent isotopes"
+    },
+    {
+      "type": "text",
+      "id": "label-daughters",
+      "text": "Daughter isotopes"
     },
     {
       "type": "button",
@@ -112,57 +123,45 @@
       "type": "button",
       "id": "reset-model",
       "text": "Reset",
-      "action": "reset()"
-    },
-    {
-      "type": "graph",
-      "id": "num-parents-graph",
-      "properties": ["parents"],
-      "width": "16em",
-      "height": "10em",
-      "ymin": 0,
-      "ymax": 1000,
-      "ylabel": "Parent Atoms",
-      "xmin": 0,
-      "xmax": 0.1,
-      "xTickCount": 6,
-      "yTickCount": 4,
-      "xFormatter": ".1r",
-      "title": "Parent Atom Decay"
+      "action": "reload()"
     },
     {
       "type": "table",
       "id": "half-life-time-table",
-      "title": "Decay Times",
       "streamDataFromModel": false,
-      "propertyColumns": ["numElementsParent","numElementsChild","timeSinceLastHalfLife"],
+      "propertyColumns": ["numElementsParent","numElementsChild"],
+      "userColumns": ["Total Isotopes", "% Parents", "% Daughters"],
       "width": "100%",
-      "height": "8em"
+      "height": "12em"
     }
   ],
   "layout": {
     "right": [
-      ["reset-model","run-model"],
+      ["run-model"],
+      ["reset-model"],
+      ["label-parents"],
       ["num-atoms-parent"],
-      ["num-atoms-child"],
-      ["num-parents-graph"]
+      ["label-daughters"],
+      ["num-atoms-child"]
     ],
-    "bottom-model": [
+    "bottom": [
       "half-life-time-table"
     ]
   },
   "template": [
     {
       "id": "right",
-      "width": "16em",
       "left": "model.right",
       "top": "model.top"
     },
     {
-      "id": "bottom-model",
-      "width": "model.width",
+      "id": "bottom",
       "left": "model.left",
-      "top": "model.bottom"
+      "top": "model.bottom",
+      "width": "interactive.width",
+      "padding-right": "1em",
+      "padding-bottom": "1em",
+      "padding-top": "0.5em"
     }
   ]
 }

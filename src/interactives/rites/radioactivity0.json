@@ -72,13 +72,23 @@
       "type": "numericOutput",
       "id": "num-atoms-parent",
       "property": "numElementsParent",
-      "label": "Parent atoms"
+      "label": " "
     },
     {
       "type": "numericOutput",
       "id": "num-atoms-child",
       "property": "numElementsChild",
-      "label": "Daughter atoms"
+      "label": " "
+    },
+    {
+      "type": "text",
+      "id": "label-parents",
+      "text": "Parent isotopes"
+    },
+    {
+      "type": "text",
+      "id": "label-daughters",
+      "text": "Daughter isotopes"
     },
     {
       "type": "button",
@@ -90,13 +100,16 @@
       "type": "button",
       "id": "reset-model",
       "text": "Reset",
-      "action": "reset()"
+      "action": "reload()"
     }
   ],
   "layout": {
     "right": [
-      ["reset-model","run-model"],
+      ["run-model"],
+      ["reset-model"],
+      ["label-parents"],
       ["num-atoms-parent"],
+      ["label-daughters"],
       ["num-atoms-child"]
     ]
   },
