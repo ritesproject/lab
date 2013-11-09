@@ -62,31 +62,15 @@
         "      addGraphAnnotation('num-parents-graph',{",
         "        type: 'line',",
         "        data: {",
-        "          x1: t/1000,",
-        "          x2: t/1000",
-        "        }",
-        "      });",
-        "      addGraphAnnotation('num-parents-graph',{",
-        "        type: 'line',",
-        "        data: {",
-        "          y1: parents,",
-        "          y2: parents,",
-        "          stroke: '#0f0'",
+        "          x1: t,",
+        "          x2: t",
         "        }",
         "      });",
         "      addGraphAnnotation('num-daughters-graph',{",
         "        type: 'line',",
         "        data: {",
-        "          x1: t/1000,",
-        "          x2: t/1000",
-        "        }",
-        "      });",
-        "      addGraphAnnotation('num-daughters-graph',{",
-        "        type: 'line',",
-        "        data: {",
-        "          y1: daughters,",
-        "          y2: daughters,",
-        "          stroke: '#0f0'",
+        "          x1: t,",
+        "          x2: t",
         "        }",
         "      });",
         "    }",
@@ -145,13 +129,6 @@
       "label": "Daughter atoms"
     },
     {
-      "type": "numericOutput",
-      "id": "current-time",
-      "property": "time",
-      "displayValue": "return format('.3f')(value/1000) + ' ps';",
-      "units": "ps"
-    },
-    {
       "type": "button",
       "id": "run-model",
       "text": "Go",
@@ -195,15 +172,17 @@
       "type": "graph",
       "id": "num-parents-graph",
       "properties": ["numElementsParent"],
+      "xProperty": "time",
       "width": "100%",
-      "height": "8em",
+      "height": "100%",
       "ymin": 0,
       "ymax": 1000,
       "ylabel": "Parent isotopes",
       "xmin": 0,
-      "xmax": 0.1,
+      "xmax": 100,
       "xTickCount": 6,
       "yTickCount": 4,
+      "xlabel": "Time (s)",
       "xFormatter": ".1r",
       "title": "Parent isotopes"
     },
@@ -211,31 +190,32 @@
       "type": "graph",
       "id": "num-daughters-graph",
       "properties": ["numElementsChild"],
+      "xProperty": "time",
       "width": "100%",
-      "height": "8em",
+      "height": "100%",
       "ymin": 0,
       "ymax": 1000,
       "ylabel": "Daughter isotopes",
       "xmin": 0,
-      "xmax": 0.1,
+      "xmax": 100,
       "xTickCount": 6,
       "yTickCount": 4,
       "xFormatter": ".1r",
+      "xlabel": "Time (s)",
       "title": "Daughter isotopes"
     }
   ],
   "layout": {
     "right-controls": [
-      ["run-model"],
-      ["reset-model"],
+      ["run-model","reset-model"],
       ["select-isotope"],
-      ["num-atoms-parent"],
-      ["num-atoms-child"],
-      ["current-time"]
+      ["num-atoms-parent", "num-atoms-child"]
     ],
-    "right-graphs": [
-      ["num-parents-graph"],
-      ["num-daughters-graph"]
+    "right-graph-parent": [
+      "num-parents-graph"
+    ],
+    "right-graph-daughter": [
+      "num-daughters-graph"
     ]
   },
   "template": [
@@ -246,9 +226,17 @@
       "width": "interactive.width / 3"
     },
     {
-      "id": "right-graphs",
+      "id": "right-graph-parent",
       "left": "model.right",
       "top": "right-controls.bottom",
+      "height": "14em",
+      "width": "interactive.width / 3"
+    },
+    {
+      "id": "right-graph-daughter",
+      "left": "model.right",
+      "top": "right-graph-parent.bottom",
+      "height": "14em",
       "width": "interactive.width / 3"
     }
   ]
