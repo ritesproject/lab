@@ -3,6 +3,7 @@
   "publicationStatus": "draft",
   "subtitle": "",
   "about": "",
+  "helpOnLoad": true,
   "models": [
     {
       "type": "md2d",
@@ -48,6 +49,31 @@
         "    set('numElementsChild',daughters);",
         "  });",
         "});"
+      ]
+    }
+  ],
+  "helpTips": [
+    {
+      "text": [
+        "#Help is available!",
+        "- - -",
+        "To see the next help tip just click anywhere. You can leave help system",
+        "at any moment by clicking **x** sign in the upper-left corner.",
+        "",
+        "To get help again, click the question mark in the upper left corner."
+      ]
+    },
+    {
+      "component": "run-model",
+      "text": [
+        "The go button will start the decay model running. ",
+        "Once half of the parent isotopes have decayed, the model will stop. "
+      ]
+    },
+    {
+      "component": "reset-model",
+      "text": [
+        "The reset button will reset the decay model to its original state. "
       ]
     }
   ],
