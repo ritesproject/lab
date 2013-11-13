@@ -180,9 +180,9 @@ define(function() {
       if (tableData.length < 2) {
         alignColumnWidths();
       }
-      $tr[0].scrollIntoView();
-      clearSelection();
       // TODO fix scrolling issue, for now just don't select new rows
+      //$tr[0].scrollIntoView();
+      //clearSelection();
       //addSelection(index);
     }
 
