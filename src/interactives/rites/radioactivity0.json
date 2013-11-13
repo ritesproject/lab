@@ -33,7 +33,7 @@
         "onPropertyChange('time',function(t){",
         "  batch(function(){",
         "    for(var i = 0; i < isotope.length; i++) {",
-        "      if (isotope[i] === 0 && Math.random() < 0.05) {",
+        "      if (isotope[i] === 0 && Math.random() < 0.10) {",
         "        setAtomProperties(i,{element: 1});",
         "        isotope[i] = 1;",
         "        --parents; ++daughters;",

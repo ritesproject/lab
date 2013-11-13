@@ -40,7 +40,7 @@
         "    daughters    = get('numElementsChild');",
         "    prevParents  = get('prevParents');",
         "    for(var i = 0; i < 1000; i++) {",
-        "      if (getAtomProperties(i).element === 0 && Math.random() < 0.05) {",
+        "      if (getAtomProperties(i).element === 0 && Math.random() < 0.10) {",
         "        setAtomProperties(i,{element: 1});",
         "        --parents;",
         "        ++daughters;",
@@ -163,11 +163,11 @@
       "ymax": 1000,
       "ylabel": "Parent isotopes",
       "xmin": 0,
-      "xmax": 100,
+      "xmax": 50,
       "xTickCount": 10,
       "yTickCount": 4,
       "xlabel": "Time (s)",
-      "xFormatter": ".1r",
+      "xFormatter": ".2r",
       "title": "Parent isotopes"
     },
     {
@@ -181,11 +181,11 @@
       "ymax": 1000,
       "ylabel": "Daughter isotopes",
       "xmin": 0,
-      "xmax": 100,
+      "xmax": 50,
       "xTickCount": 10,
       "yTickCount": 4,
       "xlabel": "Time (s)",
-      "xFormatter": ".1r",
+      "xFormatter": ".2r",
       "title": "Daughter isotopes"
     }
   ],

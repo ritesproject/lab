@@ -94,7 +94,7 @@
     },
     {
       "name": "decayProbability",
-      "initialValue": 0.05
+      "initialValue": 0.10
     },
     {
       "name": "num-half-lives",
@@ -105,7 +105,7 @@
     },
     {
       "name": "decayProbabilities",
-      "initialValue": [0, 0.02, 0.05, 0.10, 0.20]
+      "initialValue": [0, 0.05, 0.10, 0.15, 0.20]
     },
     {
       "name": "isotope",
@@ -179,11 +179,11 @@
       "ymax": 1000,
       "ylabel": "Parent isotopes",
       "xmin": 0,
-      "xmax": 100,
-      "xTickCount": 6,
+      "xmax": 50,
+      "xTickCount": 10,
       "yTickCount": 4,
       "xlabel": "Time (s)",
-      "xFormatter": ".1r",
+      "xFormatter": ".2r",
       "title": "Parent isotopes"
     },
     {
@@ -197,10 +197,10 @@
       "ymax": 1000,
       "ylabel": "Daughter isotopes",
       "xmin": 0,
-      "xmax": 100,
-      "xTickCount": 6,
+      "xmax": 50,
+      "xTickCount": 10,
       "yTickCount": 4,
-      "xFormatter": ".1r",
+      "xFormatter": ".2r",
       "xlabel": "Time (s)",
       "title": "Daughter isotopes"
     }
