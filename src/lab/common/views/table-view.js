@@ -182,7 +182,8 @@ define(function() {
       }
       $tr[0].scrollIntoView();
       clearSelection();
-      addSelection(index);
+      // TODO fix scrolling issue, for now just don't select new rows
+      //addSelection(index);
     }
 
     function removeDataRow(index) {
