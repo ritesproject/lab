@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html;charset=utf-8' http-equiv='Content-Type' />
+    <title>Table Renderer with Snapshots</title>
+    <script src='http://d3js.org/d3.v3.min.js' type='text/javascript'></script>
+    <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js' type='text/javascript'></script>
+    <script src='../../shutterbug/shutterbug.js' type='text/javascript'></script>
+    <script src='purl.js' type='text/javascript'></script>
+    <script src='lab.tabler.js' type='text/javascript'></script>
+    <script src='medium-editor.js' type='text/javascript'></script>
+    <link href='//fonts.googleapis.com/css?family=Lato:400italic,700italic,300italic,400,300,700&amp;subset=latin,greek,latin-ext' rel='stylesheet' type='text/css' />
+    <link href="medium-editor.css" rel='stylesheet' type='text/css' />
+    <style>
+      table.tabler {
+        width: 100%;
+        height: 100%;
+      }
+      table.tabler {
+        text-align: left;
+      }
+      table.tabler .numeric input {
+        width: 100%;
+        border: 0px;
+        background: clear;
+      }
+    </style>
+  </head>
+  <body>
+    <div id='table-container' style="width: 100%; height: 100%">
+    </div>
+    <div id='image-output'>
+    </div>
+    <script>
+      function setupGraph() {
+
+        var description = JSON.parse($.url().param("d")),
+            rows, cols, headers, columnTypes, data;
+
+        window.table = new Lab.tabler.Table("#table-container", description);
+        window.editor = new MediumEditor(".editable");
+      }
+      $(window).load(function () {
+        if (typeof Shutterbug !== 'undefined') {
+          window.shutterbug = new Shutterbug("#table-container") };
+        }
+      );
+      setupGraph();
+      </script>
+    </body>
+</html>
