@@ -1,0 +1,35 @@
+table.tabler {
+  width: 100%;
+  height: 100%;
+  border-collapse: collapse;
+}
+table.tabler tr:first-child th {
+  background: #f0f0f0;
+  border-bottom: 1px solid #000;
+  padding: 4px 0 2px 0;
+}
+table.tabler tr td {
+  border-right: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+  padding: 2px 0 2px 0;
+}
+table.tabler tr td * {
+  margin: 0;
+}
+table.tabler tr:first-child td {
+  border-top: none;
+}
+table.tabler {
+  text-align: left;
+}
+table.tabler .numeric input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  padding: 4px 4px 4px 4px;
+  box-sizing: border-box;
+}
+table.tabler td p {
+  margin: 0;
+}
